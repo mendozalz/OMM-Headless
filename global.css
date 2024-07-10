@@ -147,7 +147,7 @@ html {
 
 .navMovil {
   position: fixed;
-  right: 30px;
+  right: 15px;
   top: 18px;
   & .menuMovil {
     width: 100%;

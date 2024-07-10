@@ -11,7 +11,7 @@ const $$EfectoFooter = createComponent(($$result, $$props, $$slots) => {
 }, "C:/Users/MENDO/OneDrive/Desktop/INVENTEK/BiografiaOctavioMarulandaMoralesHeadLess/src/components/EfectoFooter.astro", void 0);
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<div class="contenedor-main-footer overflow-hidden w-full h-[260px] md:h-[40vh] lg:h-[50vh] 2xl:h-[55vh] border-t-2 relative"> ${renderComponent($$result, "EfectoFooter", $$EfectoFooter, {})} <div class="w-full h-auto contendor-footer absolute bottom-0"> <div class="footer w-screen lg:max-w-[85vw] m-auto"> <div class="w-full h-auto text-center"> <h2 class="leading-[70px]">© 2024 Todos los derechos reservados</h2> <p class="lg:w-[50%] w-[80%] h-auto m-auto text-[14px] lg:text-base mb-10">
+  return renderTemplate`${maybeRenderHead()}<div class="contenedor-main-footer overflow-hidden w-full h-[320px] md:h-[40vh] lg:h-[50vh] 2xl:h-[55vh] border-t-2 relative"> ${renderComponent($$result, "EfectoFooter", $$EfectoFooter, {})} <div class="w-full h-auto contendor-footer absolute bottom-0"> <div class="footer w-screen lg:max-w-[85vw] m-auto"> <div class="w-full h-auto text-center"> <h2 class="leading-[70px]">© 2024 Todos los derechos reservados</h2> <p class="lg:w-[50%] w-[80%] h-auto m-auto text-[14px] lg:text-base mb-10">
 Esta web representa la vida y obra del ilustre Octavio Marulanda
             Morales. <br> Diseñado y contruido por <b>NODOS</b> </p> </div> <div class="w-full h-auto footer-imagen"> <img class="imagen-footer m-auto lg:w-[60%]" src="/img/logo octavio-footer.png" alt="Imagen del nombre de Octavio Marulanda Morales"> </div> </div> </div> </div>`;
 }, "C:/Users/MENDO/OneDrive/Desktop/INVENTEK/BiografiaOctavioMarulandaMoralesHeadLess/src/components/Footer.astro", void 0);
@@ -222,7 +222,7 @@ const Nav = () => {
   return /* @__PURE__ */ jsx(
     motion.div,
     {
-      className: "navigation w-full h-28  fixed top-0 right-0 left-0 text-gray-900 flex items-center justify-between px-6 py-2 font-semibold text-sm z-20",
+      className: "navigation w-full h-28  fixed top-0 right-0 left-0 text-gray-900 flex items-center justify-between px-2 lg:px-6 py-2 font-semibold text-sm z-20",
       style: {
         background,
         height,
@@ -288,6 +288,7 @@ const $$Layout = createComponent(($$result, $$props, $$slots) => {
     image = "/assets/blog-placeholder-1.jpg"
   } = Astro2.props;
   const canonicalURL = new URL(Astro2.url.pathname, Astro2.site);
+  Astro2.response.headers.set("CDN-Cache-Control", "public, max-age=45, must-revalidate");
   return renderTemplate`<html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link href="/fav_negro.ico" rel="icon" media="(prefers-color-scheme: light)"><link href="/fav_blanco.ico" rel="icon" media="(prefers-color-scheme: dark)"><link rel="preload" href="/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous"><!-- Canonical URL --><link rel="canonical"${addAttribute(canonicalURL, "href")}><!-- Primary Meta Tags --><title>${title}</title><meta name="title"${addAttribute(title, "content")}><meta name="description"${addAttribute(description, "content")}><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:url"${addAttribute(Astro2.url, "content")}><meta property="og:title"${addAttribute(title, "content")}><meta property="og:description"${addAttribute(description, "content")}><meta property="og:image"${addAttribute(new URL(image, Astro2.url), "content")}><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url"${addAttribute(Astro2.url, "content")}><meta property="twitter:title"${addAttribute(title, "content")}><meta property="twitter:description"${addAttribute(description, "content")}><meta property="twitter:image"${addAttribute(new URL(image, Astro2.url), "content")}><!-- Transition -->${renderComponent($$result, "ViewTransitions", $$ViewTransitions, {})}${renderHead()}</head> <body class="overflow-x-hidden scroll-container"> ${renderComponent($$result, "SmoothScroll", SmoothScroll, { "client:load": true, "client:component-hydration": "load", "client:component-path": "@/components/SmoothScroll", "client:component-export": "default" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Nav", Nav, { "client:load": true, "client:component-hydration": "load", "client:component-path": "@/components/Nav", "client:component-export": "default" })} ${renderSlot($$result2, $$slots["default"])} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })} </body></html>`;
 }, "C:/Users/MENDO/OneDrive/Desktop/INVENTEK/BiografiaOctavioMarulandaMoralesHeadLess/src/layouts/Layout.astro", void 0);
 

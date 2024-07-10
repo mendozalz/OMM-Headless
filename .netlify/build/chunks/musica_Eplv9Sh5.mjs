@@ -2,7 +2,7 @@
 import { a as createComponent, r as renderTemplate, m as maybeRenderHead, d as renderComponent } from './astro/server_DIJOQVyM.mjs';
 import 'kleur/colors';
 import 'clsx';
-import { $ as $$Layout } from './Layout_DaALRqJQ.mjs';
+import { $ as $$Layout } from './Layout_BADl5GlL.mjs';
 
 const ciudadInstituto = [
   {

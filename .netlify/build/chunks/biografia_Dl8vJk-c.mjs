@@ -3,7 +3,7 @@ import { a as createComponent, r as renderTemplate, d as renderComponent } from 
 import 'kleur/colors';
 import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import { motion } from 'framer-motion';
-import { $ as $$Layout } from './Layout_DaALRqJQ.mjs';
+import { $ as $$Layout } from './Layout_BADl5GlL.mjs';
 
 const TimeLineComponent = () => {
   return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsxs("div", { className: "mt-32 flex flex-col items-center py-2", children: [

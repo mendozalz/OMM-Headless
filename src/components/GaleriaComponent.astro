@@ -1,45 +1,56 @@
 ---
-import {getGalImg} from "../utils/GraphQL";
+import { getGalImg } from "../utils/GraphQL";
 
 type Gal = {
-    gallery: string
-    sourceUrl: string
-}
+  gallery: string;
+  sourceUrl: string;
+};
 
 const galleries = await getGalImg();
-console.log(galleries);
 
-
-let images = galleries.flatMap((gallery:Gal) => gallery.sourceUrl);
+let images = galleries.flatMap((gallery: Gal) => gallery.sourceUrl);
 images = images.reverse();
-console.log(images);
+
+interface Props {
+  pt: string;
+  px: string;
+  pb: string;
+}
+
+const { pt, px, pb } = Astro.props;
+console.log(pt);
 
 ---
 
 <html>
   <head>
     <title>Galería de Fotos</title>
-    <!-- <link rel="stylesheet" href="/path/to/your/styles.css"> -->
   </head>
   <body>
-    <div class="galeria-octavio-marulanda h-auto w-full mt-24 lg:mt-28">
+    <div class="galeria-octavio-marulanda h-auto w-full mt-24 lg:mt-28" style={`padding-top: ${pt}; padding-left: ${px}; padding-right: ${px}; padding-bottom: ${pb}`}>
+      <h1 class="intro font-bold text-center text-[26px] lg:text-[32px] py-8">
+        Galeria de imagenes
+      </h1>
       <div id="gallery">
-
-        {images.map((imageId:string, index:number) => (
-          <div>
-            <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
-            <a href={`#lightbox-${(index % 18) + 1}`}></a>
-          </div>
-        ))}
+        {
+          images.map((imageId: string, index: number) => (
+            <div>
+              <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
+              <a href={`#lightbox-${(index % 18) + 1}`} />
+            </div>
+          ))
+        }
       </div>
-      {images.map((imageId:string, index:number) => (
-        <div class="lightbox" id={`lightbox-${(index % 18) + 1}`}>
-          <div class="content">
-            <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
-            <a class="close" href="#gallery"></a>
+      {
+        images.map((imageId: string, index: number) => (
+          <div class="lightbox" id={`lightbox-${(index % 18) + 1}`}>
+            <div class="content">
+              <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
+              <a class="close" href="#gallery" />
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </body>
 </html>
@@ -47,196 +58,201 @@ console.log(images);
 <!-- Estilos -->
 
 <style>
-    .galeria-octavio-marulanda {
-  margin: 5px;
-  position: relative;
-  height: auto;
-  padding: 115px 15px 15px;
-}
+  .galeria-octavio-marulanda {
+    margin: 5px;
+    position: relative;
+    height: auto;
+    /* padding: 115px 15px 15px; */
+  }
 
-#gallery {
-  display: grid;
-  grid-template: repeat(6, 1fr) / repeat(6, 1fr);
-  grid-gap: 0.5em;
-}
-
-@media (max-width: 800px) {
   #gallery {
+    display: grid;
+    grid-template: repeat(6, 1fr) / repeat(6, 1fr);
+    grid-gap: 0.5em;
+  }
+
+  @media (max-width: 800px) {
+    #gallery {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery > div {
+      width: 90%;
+      margin: 1%;
+    }
+  }
+
+  @media (max-width: 800px) and (max-width: 350px) {
+    #gallery > div {
+      width: 98%;
+    }
+  }
+
+  #gallery > div:nth-child(6n + 1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  #gallery > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 4em "Helvetica";
+    text-shadow:
+      0 -1px 5px #fff,
+      -1px 0px 5px #fff,
+      0 1px 5px #fff,
+      1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+
+  #gallery > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+    object-fit: cover;
+  }
+
+  #gallery > div:hover img {
+    filter: blur(4px);
+  }
+
+  #gallery > div:hover a {
+    opacity: 1;
+  }
+
+  #gallery > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 2px 8px 0 rgba(0, 0, 0, 0.2),
+      0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #gallery div,
+  #gallery a {
     display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    text-decoration: none;
   }
-  #gallery > div {
-    width: 90%;
-    margin: 1%;
+
+  [id^="lightbox-"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 99;
   }
-}
 
-@media (max-width: 800px) and (max-width: 350px) {
-  #gallery > div {
-    width: 98%;
+  [id^="lightbox-"]:target {
+    opacity: 1;
+    pointer-events: inherit;
   }
-}
 
-#gallery > div:nth-child(6n+1) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-#gallery > div:nth-child(2) {
-  grid-column: span 3;
-  grid-row: span 3;
-}
-#gallery > div:nth-child(4) {
-  grid-column: span 1;
-  grid-row: span 2;
-}
+  [id^="lightbox-"]:target img {
+    filter: blur(0);
+  }
 
-#gallery > div > a {
-  opacity: 0;
-  position: absolute;
-  color: #000;
-  background-color: #000;
-  font: bold 4em "Helvetica";
-  text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
-  padding: 2rem;
-  mix-blend-mode: difference;
-  width: 100%;
-  height: 100%;
-  transition: all ease 1s;
-}
+  [id^="lightbox-"] .content {
+    max-width: 90%;
+    position: relative;
+    color: #fff;
+  }
 
-#gallery > div > img {
-  width: 100%;
-  min-height: 100%;
-  transition: all ease 1s;
-  object-fit: cover;
-}
+  [id^="lightbox-"] .content:hover > a.close {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
 
-#gallery > div:hover img {
-  filter: blur(4px);
-}
+  [id^="lightbox-"] .content:hover > .title {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
 
-#gallery > div:hover a {
-  opacity: 1;
-}
+  [id^="lightbox-"] .content:hover > .title::after {
+    opacity: 1;
+  }
 
-#gallery > div {
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
-}
+  [id^="lightbox-"] .content > * {
+    transition: all 450ms ease-in-out;
+  }
 
-#gallery div,
-#gallery a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-}
+  [id^="lightbox-"] .title {
+    display: block;
+    margin: 0;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(50%);
+    font-size: 1.5em;
+    opacity: 0;
+  }
 
-[id^=lightbox-] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  opacity: 0;
-  transition: opacity 450ms ease-in-out;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 99;
-}
+  [id^="lightbox-"] .title::after {
+    content: " ";
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: all 350ms ease-in-out 250ms;
+    opacity: 0;
+    transform-origin: bottom;
+    mix-blend-mode: soft-light;
+  }
 
-[id^=lightbox-]:target {
-  opacity: 1;
-  pointer-events: inherit;
-}
+  [id^="lightbox-"] img {
+    max-height: 90vh;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    filter: blur(50px);
+  }
 
-[id^=lightbox-]:target img {
-  filter: blur(0);
-}
+  [id^="lightbox-"] a.close {
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0, 0);
+    opacity: 0;
+    transform-origin: right top;
+    text-decoration: none;
+    color: #fff;
+  }
 
-[id^=lightbox-] .content {
-  max-width: 90%;
-  position: relative;
-  color: #fff;
-}
-
-[id^=lightbox-] .content:hover > a.close {
-  opacity: 1;
-  transform: scale(1, 1);
-}
-
-[id^=lightbox-] .content:hover > .title {
-  opacity: 1;
-  transform: translateY(-3px);
-}
-
-[id^=lightbox-] .content:hover > .title::after {
-  opacity: 1;
-}
-
-[id^=lightbox-] .content > * {
-  transition: all 450ms ease-in-out;
-}
-
-[id^=lightbox-] .title {
-  display: block;
-  margin: 0;
-  padding: 1em;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  transform: translateY(50%);
-  font-size: 1.5em;
-  opacity: 0;
-}
-
-[id^=lightbox-] .title::after {
-  content: " ";
-  background-color: rgba(0, 0, 0, 0.4);
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  transition: all 350ms ease-in-out 250ms;
-  opacity: 0;
-  transform-origin: bottom;
-  mix-blend-mode: soft-light;
-}
-
-[id^=lightbox-] img {
-  max-height: 90vh;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  filter: blur(50px);
-}
-
-[id^=lightbox-] a.close {
-  width: 2em;
-  height: 2em;
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: scale(0, 0);
-  opacity: 0;
-  transform-origin: right top;
-  text-decoration: none;
-  color: #fff;
-}
-
-[id^=lightbox-] a.close::after {
-  content: "X";
-}
-
+  [id^="lightbox-"] a.close::after {
+    content: "X";
+  }
 </style>

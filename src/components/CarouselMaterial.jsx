@@ -3,7 +3,7 @@ import { Carousel, Typography, Button } from "@material-tailwind/react";
 const CarouselMaterial = () => {
  
   return (
-    <Carousel className="rounded-xl carruselMaterial mt-14 2xl:mt-10" navigation= {false} autoplay={true} loop={true}>
+    <Carousel className="rounded-xl carruselMaterial mt-14 2xl:mt-10" navigation= {false} autoplay={true} loop={true} autoplayDelay={7000}>
       {cards.map((card) => (
         <div className="relative h-[80vh] lg:h-[70vh] 2xl:h-[100vh] w-ful" key={card.id}>
           <img

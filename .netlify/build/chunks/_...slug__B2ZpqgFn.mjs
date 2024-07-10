@@ -2,7 +2,7 @@
 import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, b as addAttribute, d as renderComponent, f as renderTransition, g as renderSlot, h as fade, u as unescapeHTML } from './astro/server_DIJOQVyM.mjs';
 import 'kleur/colors';
 import 'clsx';
-import { $ as $$Layout } from './Layout_DaALRqJQ.mjs';
+import { $ as $$Layout } from './Layout_BADl5GlL.mjs';
 /* empty css                          */
 import { jsx } from 'react/jsx-runtime';
 import 'react';
