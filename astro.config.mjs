@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-import vercel from '@astrojs/vercel/serverless';
+import netlify from '@astrojs/netlify';
 
 import fontPicker from "astro-font-picker";
 
@@ -9,6 +9,6 @@ import fontPicker from "astro-font-picker";
 export default defineConfig({
   site: "http://omm-headless.vercel.app",
   integrations: [tailwind(), react(), fontPicker()],
-  output: 'server', // Es necesario aplicar para que las single post o cpt-post puedan ser renderizadas
-  adapter: vercel(),
+  output: 'hybrid', // Es necesario aplicar para que las single post o cpt-post puedan ser renderizadas
+  adapter: netlify(),
 });
