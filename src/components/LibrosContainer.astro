@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import EncapsulamientoLibros from "./EncapsulamientoLibros";
+import {getLibros} from "../utils/GraphQL"
+
+const libros = await getLibros();
+
+---
+
+<div
+  id="libros"
+  class="bg-white w-full h-auto lg:max-w-container lg:h-auto py-10 m-auto grid place-items-center md:place-items-start overflow-hidden p-1 lg:pb-10 md:px-5 md:py-0"
+>
+  <EncapsulamientoLibros posts={libros} client:only="react" />
+</div>
