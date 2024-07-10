@@ -24,15 +24,15 @@ console.log(images);
   <body>
     <div class="galeria-octavio-marulanda h-auto w-full mt-24 lg:mt-28">
       <div id="gallery">
-        {images.map((imageId, index) => (
-          <div key={index}>
+        {images.map((imageId:any, index:any) => (
+          <div>
             <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
             <a href={`#lightbox-${(index % 18) + 1}`}></a>
           </div>
         ))}
       </div>
-      {images.map((imageId, index) => (
-        <div class="lightbox" id={`lightbox-${(index % 18) + 1}`} key={index}>
+      {images.map((imageId:any, index:any) => (
+        <div class="lightbox" id={`lightbox-${(index % 18) + 1}`}>
           <div class="content">
             <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
             <a class="close" href="#gallery"></a>

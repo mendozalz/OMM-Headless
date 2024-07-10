@@ -1,20 +1,9 @@
 import { useState } from "react";
 import LibrosItem from "./LibrosItem";
 import { motion } from "framer-motion";
+import type { Post, Props } from "../interfaces/interface";
 
-interface Post {
-  slug: string
-  fotoAutor: {
-    node: {
-      altText: string;
-      mediaItemUrl :string;
-    }
-  }
-}
 
-interface Props {
-  posts: Post[];
-}
 
 const tituloVariant = {
   offscreen: {

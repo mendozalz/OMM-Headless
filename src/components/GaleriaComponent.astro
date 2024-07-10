@@ -7,31 +7,33 @@ type Gal = {
 }
 
 const galleries = await getGalImg();
+console.log(galleries);
 
-// Flatten and extract all images from all galleries
+
 let images = galleries.flatMap((gallery:Gal) => gallery.sourceUrl);
 images = images.reverse();
+console.log(images);
 
 ---
 
 <html>
   <head>
     <title>Galería de Fotos</title>
-    <link rel="stylesheet" href="/path/to/your/styles.css">
+    <!-- <link rel="stylesheet" href="/path/to/your/styles.css"> -->
   </head>
   <body>
     <div class="galeria-octavio-marulanda h-auto w-full mt-24 lg:mt-28">
       <div id="gallery">
 
         {images.map((imageId:string, index:number) => (
-          <div key={index}>
+          <div>
             <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
             <a href={`#lightbox-${(index % 18) + 1}`}></a>
           </div>
         ))}
       </div>
       {images.map((imageId:string, index:number) => (
-        <div class="lightbox" id={`lightbox-${(index % 18) + 1}`} key={index}>
+        <div class="lightbox" id={`lightbox-${(index % 18) + 1}`}>
           <div class="content">
             <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
             <a class="close" href="#gallery"></a>
