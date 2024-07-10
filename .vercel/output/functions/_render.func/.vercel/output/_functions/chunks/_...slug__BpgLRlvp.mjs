@@ -2,13 +2,13 @@
 import { k as createAstro, l as createComponent, m as renderTemplate, n as maybeRenderHead, o as addAttribute, p as renderComponent, t as renderTransition, u as renderSlot, v as fade, w as unescapeHTML } from './astro/server_l2lp8Qud.mjs';
 import 'kleur/colors';
 import 'clsx';
-import { $ as $$Layout } from './Layout_CI8Jt88e.mjs';
+import { $ as $$Layout } from './Layout_CDz0Dnkk.mjs';
 /* empty css                          */
 import { jsx } from 'react/jsx-runtime';
 import 'react';
 import { a as getSingleLibro } from './GraphQL_CG8vETsO.mjs';
 
-const $$Astro$3 = createAstro("http://localhost:4321");
+const $$Astro$3 = createAstro("http://omm-headless.vercel.app");
 const $$Autor = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$Autor;
@@ -24,7 +24,7 @@ const $$Autor = createComponent(($$result, $$props, $$slots) => {
         "> <h3 class="text-verde-dark">${autor}</h3> <p>${bio}</p> </div> </section> <div class="w-full h-[3px] overflow-hidden gradient-line"></div>`;
 }, "C:/Users/MENDO/OneDrive/Desktop/INVENTEK/BiografiaOctavioMarulandaMoralesHeadLess/src/components/Autor.astro", void 0);
 
-const $$Astro$2 = createAstro("http://localhost:4321");
+const $$Astro$2 = createAstro("http://omm-headless.vercel.app");
 const $$LibroAnimado = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$LibroAnimado;
@@ -55,7 +55,7 @@ const DateComponent = ({ fechaPublicacion }) => {
   return /* @__PURE__ */ jsx("time", { className: "text-[20px] font-bold text-verde-oscuro", dateTime: fechaPublicacion, children: fechaFormateada });
 };
 
-const $$Astro$1 = createAstro("http://localhost:4321");
+const $$Astro$1 = createAstro("http://omm-headless.vercel.app");
 const $$SinglePostLayout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$SinglePostLayout;
@@ -66,7 +66,7 @@ Volver
 </a> </div> <div class="hero-single-libros grid lg:grid-cols-2"> <!-- Libros Portada --> ${postLibros?.acfLibros?.enlaceDeDescarga?.node?.link ? renderTemplate`<div class="order-last lg:order-first"> ${renderComponent($$result2, "LibroAnimado", $$LibroAnimado, { "descargar": postLibros.acfLibros.enlaceDeDescarga.node.link, "heroImg": postLibros.acfLibros.caratulaLibro.node.mediaItemUrl })} </div>` : renderTemplate`${renderComponent($$result2, "LibroAnimado", $$LibroAnimado, { "heroImg": postLibros.acfLibros.caratulaLibro.node.mediaItemUrl })}`} <!--  --> <div class="lg:border-l-2 lg:pl-8"> <!-- Categoria y Fecha de publicación Movil--> <div class="categoria-fecha-movil flex lg:hidden justify-between items-center gap-4 w-full h-20"> <div> ${postLibros?.categories?.nodes[0]?.name ? renderTemplate`<span class="border-verde-medio border-2 text-verde-oscuro font-medium rounded-3xl px-4 py-2 text-base">${postLibros.categories.nodes[0].name}</span>` : null} </div> ${renderComponent($$result2, "DateComponent", DateComponent, { "fechaPublicacion": postLibros.acfLibros.fechaPublicacion })}  </div> <div class="w-full m-auto lg:max-w-[85vw]"> <!-- Hero Single Post --> <img class="w-full h-[380px] rounded-xl lg:rounded-s-none object-cover" width="1020" height="320"${addAttribute(postLibros.acfLibros.caratulaLibro.node.mediaItemUrl, "src")} alt=""> </div> <!-- Titulo --> <h1 class="text-[36px] text-left lg:text-center lg:text-[56px] font-semibold lg:leading-[70px] lg:mt-8"> ${postLibros.title} </h1> <!-- Categoria y Fecha de publicación PC--> <div class="categoria-fecha-pc hidden lg:flex justify-start items-center gap-4 w-full h-20"> <div> ${postLibros?.categories?.nodes[0]?.name ? renderTemplate`<span class="border-verde-medio border-2 text-verde-oscuro font-medium rounded-3xl px-4 py-2 text-base">${postLibros.categories.nodes[0].name}</span>` : null} </div> ${renderComponent($$result2, "DateComponent", DateComponent, { "fechaPublicacion": postLibros.acfLibros.fechaPublicacion })} </div> </div> </div> <!-- Contenido del libro --> <li class="max-w-article-size mx-auto w-full h-auto space-y-4 list-none"> <div class="w-full max-w-[none] rounded-xl"${addAttribute(renderTransition($$result2, "apgj34uf", fade({ duration: "0.4s" })), "data-astro-transition-scope")}> <article> <div class="prose prose-zinc prose-invert lg:prose-xl lg:px-12 pb-12 m-auto"> ${renderSlot($$result2, $$slots["default"])} </div> </article> </div> </li> <!--  --> </div> <div class="img-autor"> ${renderComponent($$result2, "Autor", $$Autor, { "imgAutor": postLibros.acfLibros.autor.fotoAutor.node.mediaItemUrl, "autor": postLibros.acfLibros.autor.autorPublicacion, "bio": postLibros.acfLibros.autor.biografiaDelAutor })} </div> </div> ` })}`;
 }, "C:/Users/MENDO/OneDrive/Desktop/INVENTEK/BiografiaOctavioMarulandaMoralesHeadLess/src/layouts/SinglePostLayout.astro", "self");
 
-const $$Astro = createAstro("http://localhost:4321");
+const $$Astro = createAstro("http://omm-headless.vercel.app");
 const prerender = false;
 const $$ = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);

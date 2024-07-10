@@ -16,7 +16,43 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^\\/biografia\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/contacto\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/folclor\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/gal\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/galeria\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/home\\/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^\\/libros(?:\\/(.*?))?\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/musica\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/teatro\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/$",
 			"dest": "_render"
 		}
 	]

@@ -270,7 +270,7 @@ function SmoothScroll({ children }) {
   return /* @__PURE__ */ jsx("main", { root: true, options: { lerp: 0.1, duration: 1.5, smoothWheel: false }, children });
 }
 
-const $$Astro$1 = createAstro("http://localhost:4321");
+const $$Astro$1 = createAstro("http://omm-headless.vercel.app");
 const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$ViewTransitions;
@@ -278,7 +278,7 @@ const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`<meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback"${addAttribute(fallback, "content")}>`;
 }, "C:/Users/MENDO/OneDrive/Desktop/INVENTEK/BiografiaOctavioMarulandaMoralesHeadLess/node_modules/astro/components/ViewTransitions.astro", void 0);
 
-const $$Astro = createAstro("http://localhost:4321");
+const $$Astro = createAstro("http://omm-headless.vercel.app");
 const $$Layout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Layout;
