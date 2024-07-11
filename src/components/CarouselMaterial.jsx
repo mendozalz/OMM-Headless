@@ -1,7 +1,9 @@
 import { Carousel, Typography, Button } from "@material-tailwind/react";
 
+
+
 const CarouselMaterial = () => {
- 
+  
   return (
     <Carousel className="rounded-xl carruselMaterial mt-14 2xl:mt-10" navigation= {false} autoplay={true} loop={true} autoplayDelay={7000}>
       {cards.map((card) => (
@@ -44,21 +46,21 @@ export default CarouselMaterial;
 
 const cards = [
   {
-    url: "/fotos_octavio/carrusel-1.jpg",
+    url: "/fotos_octavio/carrusel-1.webp",
     title: "Octavio",
     parrafo: "Marunlanda Morales",
     id: 1,
     verMas: "/teatro",
   },
   {
-    url: "/fotos_octavio/carrusel-2.jpg",
+    url: "/fotos_octavio/carrusel-2.webp",
     title: "Octavio",
     parrafo: "Marunlanda Morales",
     id: 2,
     verMas: "/folclor",
   },
   {
-    url: "/fotos_octavio/carrusel-3.jpg",
+    url: "/fotos_octavio/carrusel-3.webp",
     title: "Octavio",
     parrafo: "Marunlanda Morales",
     id: 3,

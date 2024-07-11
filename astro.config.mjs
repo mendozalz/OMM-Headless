@@ -7,7 +7,7 @@ import fontPicker from "astro-font-picker";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://omm-headless.vercel.app",
+  site: "https://octaviomarulanda.local",
   integrations: [tailwind(), react(), fontPicker()],
   output: 'hybrid', // Es necesario aplicar para que las single post o cpt-post puedan ser renderizadas
   adapter: netlify({
