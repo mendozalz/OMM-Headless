@@ -1,11 +1,12 @@
-import { fetch, Agent } from 'undici';
+// import { fetch, Agent } from 'undici';
 
 export const fetchGraphQlLibros = async (query) => {
-  const agent = new Agent({
+  // Solo en uso de servidor Local
+  /* const agent = new Agent({
     connect: {
       rejectUnauthorized: false, // Ignorar certificados autofirmados
     },
-  });
+  }); */
 
   try {
     const res = await fetch(import.meta.env.GRAPHQL_ENDPOINT, {
@@ -14,7 +15,7 @@ export const fetchGraphQlLibros = async (query) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ query }),
-      dispatcher: agent, // Usar el agente configurado
+      //dispatcher: agent, // Usar el agente configurado
     });
 
     if (!res.ok) {
