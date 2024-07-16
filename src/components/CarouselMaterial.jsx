@@ -25,9 +25,16 @@ const CarouselMaterial = () => {
               <Typography
                 variant="lead"
                 color="black"
-                className="lg:pl-4 lg:text-[80px] text-[35px] lg:leading-[70px] leading-[30px] lg:font-normal text-black lg:text-left text-center font-irregardless tracking-[10px] font-semibold mb-[120px] lg:mb-0"
+                className="lg:pl-4 lg:text-[80px] text-[35px] lg:leading-[70px] leading-[30px] lg:font-normal text-black lg:text-left text-center font-irregardless tracking-[10px] font-semibold mb-[20px] lg:mb-0"
               >
                 {card.parrafo}
+              </Typography>
+              <Typography
+                variant="lead"
+                color="black"
+                className="lg:pl-4 lg:text-[40px] text-[35px] lg:leading-[70px] leading-[30px] lg:font-normal text-black lg:text-left text-center tracking-[10px] font-semibold mb-[100px] lg:mb-0"
+              >
+                {card.tipo}
               </Typography>
               <div className="w-full px-4 lg:max-w-[200px] lg:mt-4 mt-0">
                 <Button className="bg-verde-oscuro text-white w-full px-4 py-1 rounded-2xl text-[25px] uppercase">
@@ -50,6 +57,7 @@ const cards = [
     title: "Octavio",
     parrafo: "Marunlanda Morales",
     id: 1,
+    tipo: "Teatro",
     verMas: "/teatro",
   },
   {
@@ -57,6 +65,7 @@ const cards = [
     title: "Octavio",
     parrafo: "Marunlanda Morales",
     id: 2,
+    tipo: "Folclor",
     verMas: "/folclor",
   },
   {
@@ -64,6 +73,7 @@ const cards = [
     title: "Octavio",
     parrafo: "Marunlanda Morales",
     id: 3,
+    tipo: "Música",
     verMas: "/musica",
   },
 ];
