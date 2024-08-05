@@ -14,13 +14,14 @@ const AdvancedSearch = ({ posts }) => {
   const [filters, setFilters] = useState({
     title: "",
     category: "",
-    publicationDate: "",
+    publicationYear: "",
     author: "",
     city: "",
     type: "",
   });
   const [results, setResults] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [publicationYears, setPublicationYears] = useState([]); const [cities, setCities] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -35,10 +36,10 @@ const AdvancedSearch = ({ posts }) => {
     const filteredResults = posts.filter((post) => {
       const { node } = post;
 
-      const publicationDateFromAPI = new Date(node.acfLibros.fechaPublicacion);
-      const formattedPublicationDate = publicationDateFromAPI
-        .toISOString()
-        .slice(0, 10);
+      // Obtener el año de publicación
+      const publicationYear = new Date(
+        node.acfLibros.fechaPublicacion
+      ).getFullYear();
 
       return (
         (filters.title === "" ||
@@ -47,8 +48,9 @@ const AdvancedSearch = ({ posts }) => {
             .includes(filters.title.toLowerCase())) &&
         (filters.category === "" ||
           node.acfLibros.categoriaLibro === filters.category) &&
-        (filters.publicationDate === "" ||
-          formattedPublicationDate === filters.publicationDate) &&
+          (filters.publicationYear === "" || // Cambio aquí
+            publicationYear === parseInt(filters.publicationYear)) && // Cambio aquí
+          /* (filters.author === "" ||
         /* (filters.author === "" ||
           node.acfLibros.autor.autorPublicacion.toLowerCase() ===
             filters.author.toLowerCase()) && */ // Exact match for author
@@ -71,6 +73,18 @@ const AdvancedSearch = ({ posts }) => {
     const uniqueCategories = Array.from(new Set(allCategories));
 
     setCategories(uniqueCategories);
+
+    // Obtener años de publicación únicos
+    const uniqueYears = new Set(
+      posts.map((post) =>
+        new Date(post.node.acfLibros.fechaPublicacion).getFullYear()
+      )
+    );
+    setPublicationYears(Array.from(uniqueYears));
+
+    // Obtener ciudades únicas
+    const uniqueCities = new Set(posts.map((post) => post.node.acfLibros.ciudad));
+    setCities(Array.from(uniqueCities));
   }, [posts]);
 
   return (
@@ -103,24 +117,30 @@ const AdvancedSearch = ({ posts }) => {
                 ))}
               </SelectContent>
             </Select>
-            <Input
-              name="publicationDate"
-              type="date"
-              value={filters.publicationDate}
-              onChange={handleInputChange}
-            />
-            {/* <Input
-              name="author"
-              placeholder="Autor"
-              value={filters.author}
-              onChange={handleInputChange}
-            /> */}
-            <Input
-              name="city"
-              placeholder="Ciudad"
-              value={filters.city}
-              onChange={handleInputChange}
-            />
+            <Select onValueChange={handleSelectChange("publicationYear")}>
+              <SelectTrigger>
+                <SelectValue placeholder="Año de publicación" />
+              </SelectTrigger>
+              <SelectContent>
+                {publicationYears.map((year) => (
+                  <SelectItem key={year} value={year}>
+                    {year}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select onValueChange={handleSelectChange("city")}>
+              <SelectTrigger>
+                <SelectValue placeholder="Ciudad" />
+              </SelectTrigger>
+              <SelectContent>
+                {cities.map((city) => (
+                  <SelectItem key={city} value={city}>
+                    {city}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Select onValueChange={handleSelectChange("type")}>
               <SelectTrigger>
                 <SelectValue placeholder="Tipo de material" />

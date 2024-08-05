@@ -12,8 +12,8 @@ export const links = [
         href: "/galeria"
     },
     {
-        title: "Busqueda Libros",
-        href: "/busquedaLibros"
+        title: "Biblioteca",
+        href: "/biblioteca"
     },
     {
         title: "Contacto",
