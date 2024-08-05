@@ -49,9 +49,9 @@ const AdvancedSearch = ({ posts }) => {
           node.acfLibros.categoriaLibro === filters.category) &&
         (filters.publicationDate === "" ||
           formattedPublicationDate === filters.publicationDate) &&
-        (filters.author === "" ||
+        /* (filters.author === "" ||
           node.acfLibros.autor.autorPublicacion.toLowerCase() ===
-            filters.author.toLowerCase()) && // Exact match for author
+            filters.author.toLowerCase()) && */ // Exact match for author
         (filters.city === "" ||
           node.acfLibros.ciudad.toLowerCase() === filters.city.toLowerCase()) && // Exact match for city
         (filters.type === "" || node.acfLibros.type === filters.type)
@@ -109,12 +109,12 @@ const AdvancedSearch = ({ posts }) => {
               value={filters.publicationDate}
               onChange={handleInputChange}
             />
-            <Input
+            {/* <Input
               name="author"
               placeholder="Autor"
               value={filters.author}
               onChange={handleInputChange}
-            />
+            /> */}
             <Input
               name="city"
               placeholder="Ciudad"
