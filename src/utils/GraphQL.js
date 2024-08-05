@@ -30,39 +30,52 @@ export const fetchGraphQlLibros = async (query) => {
   }
 };
 
-
 export const getLibros = async () => {
   const query = `
-       query Libros {
-        graphQLibros {
-          edges {
-            node {
-              slug
-              acfLibros {
-                ordenEnumerada
-                caratulaLibro {
-                  node {
-                    altText
-                    mediaItemUrl
+        query Libros {
+          graphQLibros {
+            edges {
+              node {
+                databaseId
+                title
+                slug
+                acfLibros {
+                  ordenEnumerada
+                  fechaPublicacion
+                  categoriaLibro
+                  ciudad
+                  caratulaLibro {
+                    node {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  autor {
+                    autorPublicacion
+                  }
+                }
+                categories {
+                  nodes {
+                    name
                   }
                 }
               }
             }
           }
         }
-      }
 
 
     `;
 
   try {
-    const {graphQLibros}  = await fetchGraphQlLibros(query);
+    const { graphQLibros } = await fetchGraphQlLibros(query);
     return graphQLibros.edges.map((node) => node);
   } catch (error) {
     console.error("Error fetching libros:", error);
-    throw new Error(`Error fetching libros: ${error}`); 
+    throw new Error(`Error fetching libros: ${error}`);
   }
 };
+
 
 export const getSingleLibro = async (uri) => {
   const query = `
@@ -104,11 +117,11 @@ export const getSingleLibro = async (uri) => {
     `;
 
   try {
-    const  {graphQLibroBy}  = await fetchGraphQlLibros(query);
+    const { graphQLibroBy } = await fetchGraphQlLibros(query);
     return graphQLibroBy;
   } catch (error) {
     console.error("Error fetching libros:", error);
-    throw new Error(`Error fetching libros: ${error}`); 
+    throw new Error(`Error fetching libros: ${error}`);
   }
 };
 
@@ -127,11 +140,11 @@ export const getGalImg = async () => {
     `;
 
   try {
-    const  GaleriaOMM  = await fetchGraphQlLibros(query);
+    const GaleriaOMM = await fetchGraphQlLibros(query);
     return GaleriaOMM.mediaItems.nodes.map((node) => node);
   } catch (error) {
     console.error("Error fetching libros:", error);
-    throw new Error(`Error fetching libros: ${error}`); 
+    throw new Error(`Error fetching libros: ${error}`);
   }
 };
 

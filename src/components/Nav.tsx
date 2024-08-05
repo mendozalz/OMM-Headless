@@ -30,6 +30,7 @@ const Nav = () => {
             <li className="uppercase" ><a href="/home">Home</a></li>
             <li className="uppercase" ><a href="/biografia">Biografia</a></li>
             <li className="uppercase" ><a href="/galeria">Galeria</a></li>
+            <li className="uppercase" ><a href="/busquedaLibros">buscar libros</a></li>
             <li className="uppercase"><a href="/contacto">Contacto</a></li>
           </ul>
           <NavMovil/>

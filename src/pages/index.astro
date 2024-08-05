@@ -8,6 +8,7 @@ import ParrafoAnimado from "@/components/ParrafoAnimado";
 import Intro from "@/components/Intro";
 import GaleriaComponent from "@/components/GaleriaComponent.astro";
 import CarouselMaterial from "@/components/CarouselMaterial";
+import AdvancedSearch from "@/components/SearchLibros";
 
 
 const parrafo =
@@ -30,11 +31,11 @@ const parrafo2 =
 ---
 
 <Layout title="Octavio Marulanda Morales">
-  <Intro client:only="react"/>
+  <!-- <Intro client:only="react"/> -->
   <CarouselMaterial client:only="react"/>
   <LibrosContainer />
-  <GaleriaComponent pt="10px" px="15px" pb="15px"/>
   <div style={{ paddingTop: "30px" }}></div>
+  <h2 class="tituloSeparador font-cinzel">Octavio Marulanda Morales</h2>
   <ParrafoAnimado parrafo={parrafo} client:load />
   <ParrafoAnimado parrafo={parrafo2} client:load />
   <ParrafoAnimado parrafo={parrafo3} client:load />
