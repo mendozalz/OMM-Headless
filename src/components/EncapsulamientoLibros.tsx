@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LibrosItem from "./LibrosItem";
 import { motion } from "framer-motion";
 import type { Post, Props } from "../interfaces/interface";
@@ -32,16 +32,27 @@ const parrafoVariant = {
 const EncapsulamientoLibros: React.FC<Props> = ({ posts }) => {
   
   const [mostrarLibros, setMostrarLibros] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024); // 1024px is typically the 'lg' breakpoint
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
 
   const verMas = () => {
-    if (!mostrarLibros) {
-      setMostrarLibros(true);
-    } else {
-      setMostrarLibros(false);
-    }
+    setMostrarLibros(!mostrarLibros);
   };
 
-  const postSlice = mostrarLibros ? posts.slice(0) : posts.slice(0, 3);
+  const postSlice = mostrarLibros 
+    ? posts 
+    : posts.slice(0, isLargeScreen ? 4 : 3);
   
 
   return (
@@ -65,7 +76,7 @@ const EncapsulamientoLibros: React.FC<Props> = ({ posts }) => {
         ea magna. Laborum ipsum reprehenderit cupidatat incididunt velit minim
         consectetur.
       </motion.p>
-      <div  className="w-full h-auto grid grid-cols-3 place-items-center">
+      <div  className="w-full h-auto grid grid-cols-3 lg:grid-cols-4 place-items-center">
         {postSlice.map((post) => (
           <div
             key={post.node.acfLibros.ordenEnumerada}

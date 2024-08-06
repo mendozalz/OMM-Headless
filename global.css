@@ -75,7 +75,7 @@ html {
   transform: rotateY(-30deg);
   transition: 1s ease;
   animation: 1s ease 0s 1 initAnimation;
-  scale: 80%;
+  scale: 60%;
 }
 
 .book:hover {
