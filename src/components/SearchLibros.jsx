@@ -200,7 +200,7 @@ const AdvancedSearch = ({ posts }) => {
                     <b>Fecha de publicación:</b>{" "}
                     {new Date(resultado.node.acfLibros.fechaPublicacion)
                       .toISOString()
-                      .slice(0, 10)}
+                      .slice(0, 4)}
                   </p>
                   <p>
                     <b>Tipo de material:</b> {resultado.node.categories.nodes.map(category => category.name).join(", ")}
@@ -219,7 +219,7 @@ const AdvancedSearch = ({ posts }) => {
                     />
                   )}
                   {resultado.node.acfLibros.verEn && (
-                    <a className="font-bold" href={ resultado.node.acfLibros.verEn} target="_blank" rel="noopener noreferrer"><small className="text-[#064F5E]">Disponible en</small></a>
+                    <a className="font-bold" href={ resultado.node.acfLibros.verEn} target="_blank" rel="noopener noreferrer"><small className="lg:text-[#064F5E] text-base">Disponible en</small></a>
                   )}                  
                 </li>
               ))}
