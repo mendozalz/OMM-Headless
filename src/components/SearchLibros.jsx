@@ -107,7 +107,7 @@ const AdvancedSearch = ({ posts }) => {
   
   return (
     <div className="p-4">
-      <Card className="mb-4 max-w-[600px] m-auto mb-4">
+      <Card className="w-full md:max-w-[600px] m-auto mb-4">
         <CardHeader>
           <CardTitle>Buscador Avanzado de Libros</CardTitle>
         </CardHeader>
@@ -184,26 +184,26 @@ const AdvancedSearch = ({ posts }) => {
           <CardTitle>Resultados ({results.length})</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-t-4 grid grid-cols-3 gap-20">
+            <ul className="space-t-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {results.map((resultado) => (
-                <li key={resultado.node.databaseId} className="border-b pb-2">
-                  <p className="font-bold">
+                <li key={resultado.node.databaseId} className="border-b pb-2 leading-7">
+                 {/*  <p className="font-bold">
                     {resultado.node.acfLibros.ordenEnumerada}
-                  </p>
-                  <p>Titulo: {resultado.node.title}</p>
+                  </p> */}
+                  <p><b>Titulo:</b> {resultado.node.title}</p>
                   <p>
-                    Autor: {resultado.node.acfLibros.autor.autorPublicacion}
+                    <b>Autor:</b> {resultado.node.acfLibros.autor.autorPublicacion}
                   </p>
-                  <p>Categoría: {resultado.node.acfLibros.categoriaLibro}</p>
-                  <p>Ciudad: {resultado.node.acfLibros.ciudad}</p>
+                  <p><b>Categoría:</b> {resultado.node.acfLibros.categoriaLibro}</p>
+                  <p><b>Ciudad:</b> {resultado.node.acfLibros.ciudad}</p>
                   <p>
-                    Fecha de publicación:{" "}
+                    <b>Fecha de publicación:</b>{" "}
                     {new Date(resultado.node.acfLibros.fechaPublicacion)
                       .toISOString()
                       .slice(0, 10)}
                   </p>
                   <p>
-                    Tipo de material: {resultado.node.categories.nodes.map(category => category.name).join(", ")}
+                    <b>Tipo de material:</b> {resultado.node.categories.nodes.map(category => category.name).join(", ")}
                   </p>
                   {resultado.node.acfLibros.caratulaLibro?.node
                     ?.mediaItemUrl && (
@@ -215,7 +215,7 @@ const AdvancedSearch = ({ posts }) => {
                         resultado.node.acfLibros.caratulaLibro.node.altText ||
                         "Carátula del libro"
                       }
-                      className="mt-2 max-w-xs"
+                      className="mt-2 max-w-xs max-h-96 rounded-lg object-cover"
                     />
                   )}
                 </li>
