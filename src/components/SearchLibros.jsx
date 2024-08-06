@@ -11,17 +11,21 @@ import {
 } from "@/components/ui/select";
 
 const AdvancedSearch = ({ posts }) => {
+  /* Todo contenido que permanece comentado es por que esta sujeto a cambios */
+  
   const [filters, setFilters] = useState({
     title: "",
-    category: "",
+    category: "todasLasCategorias",
     publicationYear: "",
-    author: "",
-    city: "",
-    type: "",
+    city: "todasLasCiudades",
+    type: "todosLosTipos",
   });
   const [results, setResults] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [publicationYears, setPublicationYears] = useState([]); const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [types, setTypes] = useState([]);
+
+  //const [publicationYears, setPublicationYears] = useState([]); 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,63 +37,77 @@ const AdvancedSearch = ({ posts }) => {
   };
 
   const handleSearch = () => {
+    setResults([]); 
+    /* setFilters(prev => ({ ...prev, title: "" })); */ // codigo comentado por si piden el cambio
     const filteredResults = posts.filter((post) => {
       const { node } = post;
-
+  
       // Obtener el año de publicación
       const publicationYear = new Date(
         node.acfLibros.fechaPublicacion
       ).getFullYear();
-
+  
+      // Verificar si el tipo de material coincide
+      const typeMatches = filters.type === "todosLosTipos" || 
+        node.categories.nodes.some(category => category.name.toLowerCase() === filters.type.toLowerCase());
+  
+      // Búsqueda por título
+      const titleMatches = filters.title === "" ||
+        node.title.toLowerCase().includes(filters.title.toLowerCase()) ||
+        node.acfLibros.ordenEnumerada.toLowerCase().includes(filters.title.toLowerCase());
+  
+      console.log(`Title Filter: "${filters.title}", Post Title: "${node.title}", Orden Enumerada: "${node.acfLibros.ordenEnumerada}", Matches: ${titleMatches}`);
+  
       return (
-        (filters.title === "" ||
-          node.acfLibros.ordenEnumerada
-            .toLowerCase()
-            .includes(filters.title.toLowerCase())) &&
-        (filters.category === "" ||
-          node.acfLibros.categoriaLibro === filters.category) &&
-          (filters.publicationYear === "" || // Cambio aquí
-            publicationYear === parseInt(filters.publicationYear)) && // Cambio aquí
-          /* (filters.author === "" ||
-        /* (filters.author === "" ||
-          node.acfLibros.autor.autorPublicacion.toLowerCase() ===
-            filters.author.toLowerCase()) && */ // Exact match for author
-        (filters.city === "" ||
-          node.acfLibros.ciudad.toLowerCase() === filters.city.toLowerCase()) && // Exact match for city
-        (filters.type === "" || node.acfLibros.type === filters.type)
+        typeMatches &&
+        titleMatches &&
+        (filters.category === "todasLasCategorias" || 
+          node.acfLibros.categoriaLibro.toLowerCase() === filters.category.toLowerCase()) &&
+        (filters.publicationYear === "" || 
+          publicationYear.toString() === filters.publicationYear) &&
+        (filters.city === "todasLasCiudades" || 
+          node.acfLibros.ciudad.toLowerCase() === filters.city.toLowerCase())
       );
     });
-
-    console.log(filteredResults);
+  
+    console.log("Filtered Results:", filteredResults);
     setResults(filteredResults);
+  
+    setFilters(prev => ({ ...prev, title: "" }));
+
   };
 
-  useEffect(() => {
-    // Extraer categorías de los datos y aplanarlas
-    const allCategories = posts.flatMap((post) =>
-      post.node.categories.nodes.map((categoryNode) => categoryNode.name)
-    );
-    // Eliminar duplicados
-    const uniqueCategories = Array.from(new Set(allCategories));
+  
 
+  useEffect(() => {
+    // Extraer categorías únicas
+    const uniqueCategories = Array.from(
+      new Set(posts.map(post => post.node.acfLibros.categoriaLibro))
+    );
     setCategories(uniqueCategories);
 
-    // Obtener años de publicación únicos
-    const uniqueYears = new Set(
-      posts.map((post) =>
-        new Date(post.node.acfLibros.fechaPublicacion).getFullYear()
-      )
-    );
-    setPublicationYears(Array.from(uniqueYears));
-
     // Obtener ciudades únicas
-    const uniqueCities = new Set(posts.map((post) => post.node.acfLibros.ciudad));
-    setCities(Array.from(uniqueCities));
+    const uniqueCities = Array.from(
+      new Set(posts.map(post => post.node.acfLibros.ciudad))
+    );
+    setCities(uniqueCities);
+
+    // Obtener tipos de materiales únicos
+    const uniqueTypes = Array.from(
+      new Set(posts.flatMap(post => post.node.categories.nodes.map(node => node.name)))
+    );
+    setTypes(uniqueTypes);
+
+    console.log("Unique Categories:", uniqueCategories);
+    console.log("Unique Cities:", uniqueCities);
+    console.log("Unique Types:", uniqueTypes);
   }, [posts]);
 
+  console.log(types);
+  
   return (
     <div className="p-4">
-      <Card className="mb-4">
+      <Card className="mb-4 max-w-[600px] m-auto mb-4">
         <CardHeader>
           <CardTitle>Buscador Avanzado de Libros</CardTitle>
         </CardHeader>
@@ -101,39 +119,34 @@ const AdvancedSearch = ({ posts }) => {
               value={filters.title}
               onChange={handleInputChange}
             />
-            <Select onValueChange={handleSelectChange("category")}>
+            <Select value={filters.category} onValueChange={handleSelectChange("category")}>
+            
               <SelectTrigger>
                 <SelectValue placeholder="Categoría" />
               </SelectTrigger>
               <SelectContent>
-                {Array.from(
-                  new Set(
-                    posts.map((post) => post.node.acfLibros.categoriaLibro)
-                  )
-                ).map((category) => (
+                <SelectItem value="todasLasCategorias">Todas las categorías</SelectItem>
+                {categories.map((category) => (
                   <SelectItem key={category} value={category}>
                     {category}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            <Select onValueChange={handleSelectChange("publicationYear")}>
-              <SelectTrigger>
-                <SelectValue placeholder="Año de publicación" />
-              </SelectTrigger>
-              <SelectContent>
-                {publicationYears.map((year) => (
-                  <SelectItem key={year} value={year}>
-                    {year}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select onValueChange={handleSelectChange("city")}>
+            <Input
+              name="publicationYear"
+              type="number"
+              placeholder="Año de publicación"
+              value={filters.publicationYear}
+              onChange={handleInputChange}
+            />
+            <Select value={filters.city} onValueChange={handleSelectChange("city")}>
+            
               <SelectTrigger>
                 <SelectValue placeholder="Ciudad" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="todasLasCiudades">Todas las ciudades</SelectItem>
                 {cities.map((city) => (
                   <SelectItem key={city} value={city}>
                     {city}
@@ -141,14 +154,16 @@ const AdvancedSearch = ({ posts }) => {
                 ))}
               </SelectContent>
             </Select>
-            <Select onValueChange={handleSelectChange("type")}>
+            <Select value={filters.type} onValueChange={handleSelectChange("type")}>
+            
               <SelectTrigger>
                 <SelectValue placeholder="Tipo de material" />
               </SelectTrigger>
               <SelectContent>
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category}
+                <SelectItem value="todosLosTipos">Todos los tipos</SelectItem>
+                {types.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -166,13 +181,12 @@ const AdvancedSearch = ({ posts }) => {
       {results.length > 0 ? (
         <Card>
           <CardHeader>
-            <CardTitle>Resultados</CardTitle>
+          <CardTitle>Resultados ({results.length})</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-4">
+            <ul className="space-t-4 grid grid-cols-3 gap-20">
               {results.map((resultado) => (
                 <li key={resultado.node.databaseId} className="border-b pb-2">
-                  <p>{console.log(resultado)}</p>
                   <p className="font-bold">
                     {resultado.node.acfLibros.ordenEnumerada}
                   </p>
@@ -189,7 +203,7 @@ const AdvancedSearch = ({ posts }) => {
                       .slice(0, 10)}
                   </p>
                   <p>
-                    Tipo de material: {resultado.node.categories.nodes.name}
+                    Tipo de material: {resultado.node.categories.nodes.map(category => category.name).join(", ")}
                   </p>
                   {resultado.node.acfLibros.caratulaLibro?.node
                     ?.mediaItemUrl && (
