@@ -26,6 +26,7 @@ interface Props {
 }
 
 const LibrosItem: React.FC<Props> = ({ post }) => {
+  
   if (!post || !post.node || !post.node.acfLibros) {
     console.error("Post data is missing");
     return null;
@@ -34,6 +35,8 @@ const LibrosItem: React.FC<Props> = ({ post }) => {
   const { acfLibros, slug } = post.node;
   const mediaItemUrl = acfLibros?.caratulaLibro?.node?.mediaItemUrl;
 
+  console.log(acfLibros);
+  
   if (!mediaItemUrl) {
     console.error("Media item URL is missing");
     return null;

@@ -5,11 +5,16 @@ import {getLibros} from "../utils/GraphQL"
 
 const libros = await getLibros();
 
+const librosOrdenados = libros.sort((a:any, b:any) => a.node.acfLibros.ordenEnumerada - b.node.acfLibros.ordenEnumerada);
+
+console.log(librosOrdenados);
+
+
 ---
 
 <div
   id="libros"
   class="bg-white w-full h-auto lg:max-w-container lg:h-auto py-10 m-auto grid place-items-center md:place-items-start overflow-hidden p-1 lg:pb-10 md:px-5 md:py-0"
 >
-  <EncapsulamientoLibros posts={libros} client:only="react" />
+  <EncapsulamientoLibros posts={librosOrdenados} client:only="react" />
 </div>
