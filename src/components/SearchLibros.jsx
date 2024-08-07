@@ -243,6 +243,9 @@ const AdvancedSearch = ({ posts }) => {
                       className="mt-2 max-w-xs max-h-96 rounded-lg object-cover"
                     />
                   )}
+                  {resultado.node.acfLibros.verEn && (
+                    <a className="font-bold" href={ resultado.node.acfLibros.verEn} target="_blank" rel="noopener noreferrer"><small className="text-[#064F5E]">Disponible en</small></a>
+                  )}
                 </li>
               ))}
             </ul>
