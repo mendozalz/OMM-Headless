@@ -3,6 +3,7 @@ import AdvancedSearch from "@/components/SearchLibros";
 import Layout from "@/layouts/Layout.astro";
 import { getLibros } from "@/utils/GraphQL";
 const libros = await getLibros();
+export const prerender = false;
 
 ---
 
