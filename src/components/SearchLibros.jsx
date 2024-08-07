@@ -121,7 +121,7 @@ const AdvancedSearch = ({ posts }) => {
   const renderCategoryOptions = (categories) => {
     return categories.map((category) => (
       <SelectGroup key={category.name}>
-        <SelectLabel>{category.name}</SelectLabel>
+        {/* <SelectLabel>{category.name}</SelectLabel> */}
         {category.children.length > 0 ? (
           category.children.map((subCategory) => (
             <SelectItem key={`${category.name}-${subCategory}`} value={`${category.name}-${subCategory}`}>
