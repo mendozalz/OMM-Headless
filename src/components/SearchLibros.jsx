@@ -213,7 +213,7 @@ const AdvancedSearch = ({ posts }) => {
                     {resultado.node.acfLibros.autor.autorPublicacion}
                   </p>
                   <p>
-                    <b>Categoría:</b> {resultado.node.acfLibros.categoriaLibro}
+                    <b>Categoría:</b> {"Libros"} {/* {resultado.node.acfLibros.categoriaLibro} */}
                   </p>
                   <p>
                     <b>Ciudad:</b> {resultado.node.acfLibros.ciudad}
@@ -224,12 +224,12 @@ const AdvancedSearch = ({ posts }) => {
                       .toISOString()
                       .slice(0, 4)}
                   </p>
-                  <p>
+                  {/* <p>
                     <b>Tipo de material:</b>{" "}
                     {resultado.node.categories.nodes
                       .map((category) => category.name)
                       .join(", ")}
-                  </p>
+                  </p> */}
                   {resultado.node.acfLibros.caratulaLibro?.node
                     ?.mediaItemUrl && (
                     <img
