@@ -40,12 +40,12 @@ const AdvancedSearch = ({ posts }) => {
     setResults([]); 
     /* setFilters(prev => ({ ...prev, title: "" })); */ // codigo comentado por si piden el cambio
     const filteredResults = posts.filter((post) => {
-      const { node } = post;
-  
+      const { node } = post;      
+      
       // Obtener el año de publicación
       const publicationYear = new Date(
         node.acfLibros.fechaPublicacion
-      ).getFullYear();
+      ).getFullYear() + 1;
   
       // Verificar si el tipo de material coincide
       const typeMatches = filters.type === "todosLosTipos" || 
@@ -53,10 +53,8 @@ const AdvancedSearch = ({ posts }) => {
   
       // Búsqueda por título
       const titleMatches = filters.title === "" ||
-        node.title.toLowerCase().includes(filters.title.toLowerCase()) ||
-        node.acfLibros.ordenEnumerada.toLowerCase().includes(filters.title.toLowerCase());
+        node.title.toLowerCase().includes(filters.title.toLowerCase());
   
-      console.log(`Title Filter: "${filters.title}", Post Title: "${node.title}", Orden Enumerada: "${node.acfLibros.ordenEnumerada}", Matches: ${titleMatches}`);
   
       return (
         typeMatches &&
@@ -70,7 +68,6 @@ const AdvancedSearch = ({ posts }) => {
       );
     });
   
-    console.log("Filtered Results:", filteredResults);
     setResults(filteredResults);
   
     setFilters(prev => ({ ...prev, title: "" }));
@@ -103,7 +100,6 @@ const AdvancedSearch = ({ posts }) => {
     console.log("Unique Types:", uniqueTypes);
   }, [posts]);
 
-  console.log(results);
   
   return (
     <div className="p-4">
@@ -218,9 +214,6 @@ const AdvancedSearch = ({ posts }) => {
                       className="mt-2 max-w-xs max-h-96 rounded-lg object-cover"
                     />
                   )}
-                  {resultado.node.acfLibros.verEn && (
-                    <a className="font-bold" href={ resultado.node.acfLibros.verEn} target="_blank" rel="noopener noreferrer"><small className="lg:text-[#064F5E] text-base">Disponible en</small></a>
-                  )}                  
                 </li>
               ))}
             </ul>

@@ -36,7 +36,7 @@ const EncapsulamientoLibros: React.FC<Props> = ({ posts }) => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024); // 1024px is typically the 'lg' breakpoint
+      setIsLargeScreen(window.innerWidth >= 1024); 
     };
 
     checkScreenSize();
