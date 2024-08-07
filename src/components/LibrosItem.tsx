@@ -34,8 +34,6 @@ const LibrosItem: React.FC<Props> = ({ post }) => {
 
   const { acfLibros, slug } = post.node;
   const mediaItemUrl = acfLibros?.caratulaLibro?.node?.mediaItemUrl;
-
-  console.log(acfLibros);
   
   if (!mediaItemUrl) {
     console.error("Media item URL is missing");

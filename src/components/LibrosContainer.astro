@@ -6,10 +6,6 @@ import {getLibros} from "../utils/GraphQL"
 const libros = await getLibros();
 
 const librosOrdenados = libros.sort((a:any, b:any) => a.node.acfLibros.ordenEnumerada - b.node.acfLibros.ordenEnumerada);
-
-console.log(librosOrdenados);
-
-
 ---
 
 <div

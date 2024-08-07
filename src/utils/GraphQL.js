@@ -33,37 +33,41 @@ export const fetchGraphQlLibros = async (query) => {
 export const getLibros = async () => {
   const query = `
         query Libros {
-  graphQLibros {
-    edges {
-      node {
-        databaseId
-        title
-        slug
-        acfLibros {
-          ordenEnumerada
-          fechaPublicacion
-          categoriaLibro
-          ciudad
-          verEn
-          caratulaLibro {
-            node {
-              altText
-              mediaItemUrl
+          graphQLibros {
+            edges {
+              node {
+                databaseId
+                title
+                slug
+                acfLibros {
+                  ordenEnumerada
+                  fechaPublicacion
+                  ciudad
+                  verEn
+                  caratulaLibro {
+                    node {
+                      altText
+                      mediaItemUrl
+                    }
+                  }
+                  autor {
+                    autorPublicacion
+                  }
+                }
+                categories {
+                  nodes {
+                    name
+                    children {
+                      nodes {
+                        name
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
-          autor {
-            autorPublicacion
-          }
         }
-        categories {
-          nodes {
-            name
-          }
-        }
-      }
-    }
-  }
-}
 
     `;
 

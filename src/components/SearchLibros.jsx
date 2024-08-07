@@ -8,11 +8,13 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
+  SelectGroup,
+  SelectLabel,
 } from "@/components/ui/select";
 
 const AdvancedSearch = ({ posts }) => {
-  /* Todo contenido que permanece comentado es por que esta sujeto a cambios */
-  
+  /* Todo contenido que permanece comentado esta sujeto a cambios */
+
   const [filters, setFilters] = useState({
     title: "",
     category: "todasLasCategorias",
@@ -25,7 +27,7 @@ const AdvancedSearch = ({ posts }) => {
   const [cities, setCities] = useState([]);
   const [types, setTypes] = useState([]);
 
-  //const [publicationYears, setPublicationYears] = useState([]); 
+  //const [publicationYears, setPublicationYears] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,70 +39,102 @@ const AdvancedSearch = ({ posts }) => {
   };
 
   const handleSearch = () => {
-    setResults([]); 
+    setResults([]);
     /* setFilters(prev => ({ ...prev, title: "" })); */ // codigo comentado por si piden el cambio
     const filteredResults = posts.filter((post) => {
-      const { node } = post;      
-      
+      const { node } = post;
+
       // Obtener el año de publicación
-      const publicationYear = new Date(
-        node.acfLibros.fechaPublicacion
-      ).getFullYear() + 1;
-  
+      const publicationYear =
+        new Date(node.acfLibros.fechaPublicacion).getFullYear() + 1;
+
       // Verificar si el tipo de material coincide
-      const typeMatches = filters.type === "todosLosTipos" || 
-        node.categories.nodes.some(category => category.name.toLowerCase() === filters.type.toLowerCase());
-  
+      const typeMatches =
+        filters.type === "todosLosTipos" ||
+        node.categories.nodes.some(
+          (category) =>
+            category.name.toLowerCase() === filters.type.toLowerCase()
+        );
+
       // Búsqueda por título
-      const titleMatches = filters.title === "" ||
+      const titleMatches =
+        filters.title === "" ||
         node.title.toLowerCase().includes(filters.title.toLowerCase());
-  
-  
+
       return (
         typeMatches &&
         titleMatches &&
-        (filters.category === "todasLasCategorias" || 
-          node.acfLibros.categoriaLibro.toLowerCase() === filters.category.toLowerCase()) &&
-        (filters.publicationYear === "" || 
+        (filters.category === "todasLasCategorias" ||
+          node.acfLibros.categoriaLibro.toLowerCase() ===
+            filters.category.toLowerCase()) &&
+        (filters.publicationYear === "" ||
           publicationYear.toString() === filters.publicationYear) &&
-        (filters.city === "todasLasCiudades" || 
+        (filters.city === "todasLasCiudades" ||
           node.acfLibros.ciudad.toLowerCase() === filters.city.toLowerCase())
       );
     });
-  
-    setResults(filteredResults);
-  
-    setFilters(prev => ({ ...prev, title: "" }));
 
+    setResults(filteredResults);
+
+    setFilters((prev) => ({ ...prev, title: "" }));
   };
 
-  
-
   useEffect(() => {
-    // Extraer categorías únicas
-    const uniqueCategories = Array.from(
-      new Set(posts.map(post => post.node.acfLibros.categoriaLibro))
-    );
-    setCategories(uniqueCategories);
-
     // Obtener ciudades únicas
     const uniqueCities = Array.from(
-      new Set(posts.map(post => post.node.acfLibros.ciudad))
+      new Set(posts.map((post) => post.node.acfLibros.ciudad))
     );
     setCities(uniqueCities);
 
-    // Obtener tipos de materiales únicos
-    const uniqueTypes = Array.from(
-      new Set(posts.flatMap(post => post.node.categories.nodes.map(node => node.name)))
-    );
-    setTypes(uniqueTypes);
+    // Obtener categorias y subCategorias
 
-    console.log("Unique Categories:", uniqueCategories);
-    console.log("Unique Cities:", uniqueCities);
-    console.log("Unique Types:", uniqueTypes);
+    const categoriesMap = new Map();
+    const allCategoriesSet = new Set();
+
+    posts.forEach(post => {
+      post.node.categories.nodes.forEach(category => {
+        allCategoriesSet.add(category.name);
+        if (!categoriesMap.has(category.name)) {
+          categoriesMap.set(category.name, new Set());
+        }
+        if (category.children && category.children.nodes) {
+          category.children.nodes.forEach(subCategory => {
+            categoriesMap.get(category.name).add(subCategory.name);
+            allCategoriesSet.add(subCategory.name);
+          });
+        }
+      });
+    });
+
+    // Filtrar categorías principales que también son subcategorías
+    const uniqueCategories = Array.from(allCategoriesSet).map(categoryName => {
+      const subCategories = categoriesMap.get(categoryName) || new Set();
+      return {
+        name: categoryName,
+        children: Array.from(subCategories).filter(subCat => subCat !== categoryName)
+      };
+    }).filter(category => !Array.from(categoriesMap.values()).some(subCats => subCats.has(category.name)));
+
+    setCategories(uniqueCategories);
   }, [posts]);
 
-  
+  const renderCategoryOptions = (categories) => {
+    return categories.map((category) => (
+      <SelectGroup key={category.name}>
+        <SelectLabel>{category.name}</SelectLabel>
+        {category.children.length > 0 ? (
+          category.children.map((subCategory) => (
+            <SelectItem key={`${category.name}-${subCategory}`} value={`${category.name}-${subCategory}`}>
+              {subCategory}
+            </SelectItem>
+          ))
+        ) : (
+          <SelectItem value={category.name}>{category.name}</SelectItem>
+        )}
+      </SelectGroup>
+    ));
+  };
+
   return (
     <div className="p-4">
       <Card className="w-full md:max-w-[600px] m-auto mb-4">
@@ -115,18 +149,13 @@ const AdvancedSearch = ({ posts }) => {
               value={filters.title}
               onChange={handleInputChange}
             />
-            <Select value={filters.category} onValueChange={handleSelectChange("category")}>
-            
+            <Select value={filters.type} onValueChange={handleSelectChange("type")}>
               <SelectTrigger>
-                <SelectValue placeholder="Categoría" />
+                <SelectValue placeholder="Tipo de material" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="todasLasCategorias">Todas las categorías</SelectItem>
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category}
-                  </SelectItem>
-                ))}
+                <SelectItem value="todosLosTipos">Todas las categorías</SelectItem>
+                {renderCategoryOptions(categories)}
               </SelectContent>
             </Select>
             <Input
@@ -136,30 +165,20 @@ const AdvancedSearch = ({ posts }) => {
               value={filters.publicationYear}
               onChange={handleInputChange}
             />
-            <Select value={filters.city} onValueChange={handleSelectChange("city")}>
-            
+            <Select
+              value={filters.city}
+              onValueChange={handleSelectChange("city")}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Ciudad" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="todasLasCiudades">Todas las ciudades</SelectItem>
+                <SelectItem value="todasLasCiudades">
+                  Todas las ciudades
+                </SelectItem>
                 {cities.map((city) => (
                   <SelectItem key={city} value={city}>
                     {city}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select value={filters.type} onValueChange={handleSelectChange("type")}>
-            
-              <SelectTrigger>
-                <SelectValue placeholder="Tipo de material" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="todosLosTipos">Todos los tipos</SelectItem>
-                {types.map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {type}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -177,21 +196,28 @@ const AdvancedSearch = ({ posts }) => {
       {results.length > 0 ? (
         <Card>
           <CardHeader>
-          <CardTitle>Resultados ({results.length})</CardTitle>
+            <CardTitle>Resultados ({results.length})</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-t-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {results.map((resultado) => (
-                <li key={resultado.node.databaseId} className="border-b pb-2 leading-7">
-                 {/*  <p className="font-bold">
-                    {resultado.node.acfLibros.ordenEnumerada}
-                  </p> */}
-                  <p><b>Titulo:</b> {resultado.node.title}</p>
+                <li
+                  key={resultado.node.databaseId}
+                  className="border-b pb-2 leading-7"
+                >
                   <p>
-                    <b>Autor:</b> {resultado.node.acfLibros.autor.autorPublicacion}
+                    <b>Titulo:</b> {resultado.node.title}
                   </p>
-                  <p><b>Categoría:</b> {resultado.node.acfLibros.categoriaLibro}</p>
-                  <p><b>Ciudad:</b> {resultado.node.acfLibros.ciudad}</p>
+                  <p>
+                    <b>Autor:</b>{" "}
+                    {resultado.node.acfLibros.autor.autorPublicacion}
+                  </p>
+                  <p>
+                    <b>Categoría:</b> {resultado.node.acfLibros.categoriaLibro}
+                  </p>
+                  <p>
+                    <b>Ciudad:</b> {resultado.node.acfLibros.ciudad}
+                  </p>
                   <p>
                     <b>Fecha de publicación:</b>{" "}
                     {new Date(resultado.node.acfLibros.fechaPublicacion)
@@ -199,7 +225,10 @@ const AdvancedSearch = ({ posts }) => {
                       .slice(0, 4)}
                   </p>
                   <p>
-                    <b>Tipo de material:</b> {resultado.node.categories.nodes.map(category => category.name).join(", ")}
+                    <b>Tipo de material:</b>{" "}
+                    {resultado.node.categories.nodes
+                      .map((category) => category.name)
+                      .join(", ")}
                   </p>
                   {resultado.node.acfLibros.caratulaLibro?.node
                     ?.mediaItemUrl && (
