@@ -11,6 +11,9 @@ import {
   SelectGroup,
   SelectLabel,
 } from "@/components/ui/select";
+import EncapsulamientoLibros from "./EncapsulamientoLibros";
+import LibrosItem from "./LibrosItem";
+import Card3DMagicHover from "./Card3DMagicHover";
 
 const AdvancedSearch = ({ posts }) => {
   /* Todo contenido que permanece comentado esta sujeto a cambios */
@@ -91,14 +94,14 @@ const AdvancedSearch = ({ posts }) => {
     const categoriesMap = new Map();
     const allCategoriesSet = new Set();
 
-    posts.forEach(post => {
-      post.node.categories.nodes.forEach(category => {
+    posts.forEach((post) => {
+      post.node.categories.nodes.forEach((category) => {
         allCategoriesSet.add(category.name);
         if (!categoriesMap.has(category.name)) {
           categoriesMap.set(category.name, new Set());
         }
         if (category.children && category.children.nodes) {
-          category.children.nodes.forEach(subCategory => {
+          category.children.nodes.forEach((subCategory) => {
             categoriesMap.get(category.name).add(subCategory.name);
             allCategoriesSet.add(subCategory.name);
           });
@@ -107,13 +110,22 @@ const AdvancedSearch = ({ posts }) => {
     });
 
     // Filtrar categorías principales que también son subcategorías
-    const uniqueCategories = Array.from(allCategoriesSet).map(categoryName => {
-      const subCategories = categoriesMap.get(categoryName) || new Set();
-      return {
-        name: categoryName,
-        children: Array.from(subCategories).filter(subCat => subCat !== categoryName)
-      };
-    }).filter(category => !Array.from(categoriesMap.values()).some(subCats => subCats.has(category.name)));
+    const uniqueCategories = Array.from(allCategoriesSet)
+      .map((categoryName) => {
+        const subCategories = categoriesMap.get(categoryName) || new Set();
+        return {
+          name: categoryName,
+          children: Array.from(subCategories).filter(
+            (subCat) => subCat !== categoryName
+          ),
+        };
+      })
+      .filter(
+        (category) =>
+          !Array.from(categoriesMap.values()).some((subCats) =>
+            subCats.has(category.name)
+          )
+      );
 
     setCategories(uniqueCategories);
   }, [posts]);
@@ -124,7 +136,10 @@ const AdvancedSearch = ({ posts }) => {
         {/* <SelectLabel>{category.name}</SelectLabel> */}
         {category.children.length > 0 ? (
           category.children.map((subCategory) => (
-            <SelectItem key={`${category.name}-${subCategory}`} value={`${category.name}-${subCategory}`}>
+            <SelectItem
+              key={`${category.name}-${subCategory}`}
+              value={`${category.name}-${subCategory}`}
+            >
               {subCategory}
             </SelectItem>
           ))
@@ -149,12 +164,17 @@ const AdvancedSearch = ({ posts }) => {
               value={filters.title}
               onChange={handleInputChange}
             />
-            <Select value={filters.type} onValueChange={handleSelectChange("type")}>
+            <Select
+              value={filters.type}
+              onValueChange={handleSelectChange("type")}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Tipo de material" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="todosLosTipos">Todas las categorías</SelectItem>
+                <SelectItem value="todosLosTipos">
+                  Todas las categorías
+                </SelectItem>
                 {renderCategoryOptions(categories)}
               </SelectContent>
             </Select>
@@ -194,57 +214,40 @@ const AdvancedSearch = ({ posts }) => {
       </Card>
 
       {results.length > 0 ? (
-        <Card>
+        <Card className="overflow-hidden">
           <CardHeader>
             <CardTitle>Resultados ({results.length})</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-3 md:p-6">
             <ul className="space-t-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {results.map((resultado) => (
                 <li
-                  key={resultado.node.databaseId}
-                  className="border-b pb-2 leading-7"
+                key={resultado.node.databaseId}
+                className="border-b pb-2 leading-7 mt-0 lg:mt-[70px]"
                 >
-                  <p>
-                    <b>Titulo:</b> {resultado.node.title}
-                  </p>
-                  <p>
-                    <b>Autor:</b>{" "}
-                    {resultado.node.acfLibros.autor.autorPublicacion}
-                  </p>
-                  <p>
-                    <b>Categoría:</b> {"Libros"} {/* {resultado.node.acfLibros.categoriaLibro} */}
-                  </p>
-                  <p>
-                    <b>Ciudad:</b> {resultado.node.acfLibros.ciudad}
-                  </p>
-                  <p>
-                    <b>Fecha de publicación:</b>{" "}
-                    {new Date(resultado.node.acfLibros.fechaPublicacion)
-                      .toISOString()
-                      .slice(0, 4)}
-                  </p>
-                  {/* <p>
-                    <b>Tipo de material:</b>{" "}
-                    {resultado.node.categories.nodes
-                      .map((category) => category.name)
-                      .join(", ")}
-                  </p> */}
-                  {resultado.node.acfLibros.caratulaLibro?.node
-                    ?.mediaItemUrl && (
-                    <img
-                      src={
-                        resultado.node.acfLibros.caratulaLibro.node.mediaItemUrl
-                      }
-                      alt={
-                        resultado.node.acfLibros.caratulaLibro.node.altText ||
-                        "Carátula del libro"
-                      }
-                      className="mt-2 max-w-xs max-h-96 rounded-lg object-cover"
-                    />
-                  )}
+                  <Card3DMagicHover 
+                  title={resultado.node.title} 
+                  autorPublicacion={resultado.node.acfLibros.autor.autorPublicacion}
+                  ciudad={resultado.node.acfLibros.ciudad}
+                  fechaPublicacion={new Date(resultado.node.acfLibros.fechaPublicacion)
+                    .toISOString()
+                    .slice(0, 4)}
+                    mediaItemUrl={resultado.node.acfLibros.caratulaLibro.node.mediaItemUrl}
+                    altText={resultado.node.acfLibros.caratulaLibro.node.altText}
+                  />                  
                   {resultado.node.acfLibros.verEn && (
-                    <a className="font-bold" href={ resultado.node.acfLibros.verEn} target="_blank" rel="noopener noreferrer"><small className="text-[#064F5E] text-base">Disponible aquí</small></a>
+                    <div className="disponibleText mt-3 ml-2">
+                      <a
+                        className="font-bold"
+                        href={resultado.node.acfLibros.verEn}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <small className="text-[#064F5E] text-base mt-20">
+                          Disponible aquí
+                        </small>
+                      </a>
+                    </div>
                   )}
                 </li>
               ))}

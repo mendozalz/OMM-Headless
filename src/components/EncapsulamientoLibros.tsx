@@ -80,8 +80,7 @@ const EncapsulamientoLibros: React.FC<Props> = ({ posts }) => {
         {postSlice.map((post) => (
           <div
             key={post.node.acfLibros.ordenEnumerada}
-          >
-            
+          >        
             <LibrosItem post={post} />
           </div>
         ))}
