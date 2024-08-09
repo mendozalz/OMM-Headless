@@ -223,7 +223,7 @@ const AdvancedSearch = ({ posts }) => {
               {results.map((resultado) => (
                 <li
                 key={resultado.node.databaseId}
-                className="border-b pb-2 leading-7 mt-0 lg:mt-[70px]"
+                className="border-b pb-2 leading-7 mt-0 m-auto"
                 >
                   <Card3DMagicHover 
                   title={resultado.node.title} 
