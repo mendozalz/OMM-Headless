@@ -48,7 +48,7 @@ const Card3DMagicHover = ({
         </div>
         <img
           class="title"
-          src="public\img\logo octavio-03.png"
+          src="./img/logo octavio-03.png"
           alt="logo tipo de octavio marulanda morales"
           srcset=""
         />
