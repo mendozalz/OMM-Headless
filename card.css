@@ -44,6 +44,7 @@
 .title {
   width: 50%;
   opacity: 0;
+  scale: 0.5;
   transition: all 0.5s;
   position: absolute;
   z-index: -1;
@@ -51,12 +52,13 @@
 
 .card:hover .character {
   opacity: 1;
-  transform: translate3d(-36%, -38%, 100px);
+  transform: translate3d(-36%, -32%, 100px);
+  scale: 1;
 }
 
 .card:hover .title {
   opacity: 1;
-  transform: translate3d(-10%, -10%, 100px);
+  transform: translate3d(-10%, 10%, 100px);
 }
 
 .card:hover .caratulaPlana {
