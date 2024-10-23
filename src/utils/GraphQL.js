@@ -72,7 +72,7 @@ export const getLibros = async () => {
     `;
 
   try {
-    const { graphQLibros } = await fetchGraphQlLibros(query);
+    const { graphQLibros } = await fetchGraphQlLibros(query);    
     return graphQLibros.edges.map((node) => node);
   } catch (error) {
     console.error("Error fetching libros:", error);
