@@ -1,4 +1,4 @@
-import { motion, useAnimate, stagger } from "framer-motion";
+import { motion } from "framer-motion";
 
 const TimeLineComponent = () => {
   return (

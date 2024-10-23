@@ -78,7 +78,7 @@ html {
   scale: 60%;
 }
 
-.bookCover{
+.bookCover {
   width: 300px;
   height: 480px;
   position: relative;
@@ -444,7 +444,7 @@ html {
 
 /* Titulo Separador */
 
-.tituloSeparador{
+.tituloSeparador {
   text-align: center;
   font-size: 3rem;
   text-decoration: underline;
@@ -474,36 +474,34 @@ html {
 
 /* Laptops */
 
-@media only screen and (min-width: 1201px) and (max-width:1600px){
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
   /* Efecto Zoom Parallax */
   .zoomContainer {
-   & .zoomSticky {
-       & .zoomEl {
-           & .zoomImageContainer {
-               img {
-                   -o-object-fit: cover;
-                   object-fit: cover;
-                   filter: blur();
-                   margin-top: 24px !important;
-               }
-           }
-       }
-   }
-}
- 
+    & .zoomSticky {
+      & .zoomEl {
+        & .zoomImageContainer {
+          img {
+            -o-object-fit: cover;
+            object-fit: cover;
+            filter: blur();
+            margin-top: 24px !important;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Tablet Galaxy TAB A8 */
 
-@media only screen and (min-width: 1201px) and (max-width:1350px){
-  .contenedor-main-footer.overflow-hidden.w-full.h-\[320px\].md\:h-\[40vh\].lg\:h-\[62vh\].\32 xl\:h-\[72vh\].border-t-2.relative {
+@media only screen and (min-width: 1201px) and (max-width: 1350px) {
+  .contenedor-main-footer.overflow-hidden.w-full.h-\[320px\].md\:h-\[40vh\].lg\:h-\[62vh\].\32
+    xl\:h-\[72vh\].border-t-2.relative {
     height: 66vh;
+  }
 }
-}
 
-
-
-@media only screen and (min-width: 601px) and (max-width:1200px){
+@media only screen and (min-width: 601px) and (max-width: 1200px) {
   .book {
     scale: 70%;
   }
@@ -590,12 +588,12 @@ html {
 
   /* Titulo Separador */
 
-.tituloSeparador{
-  text-align: center;
-  font-size: 3rem;
-  text-decoration: underline;
-  margin-bottom: 20px;
-}
+  .tituloSeparador {
+    text-align: center;
+    font-size: 3rem;
+    text-decoration: underline;
+    margin-bottom: 20px;
+  }
 
   /* Parrafos Animados */
 
@@ -613,7 +611,6 @@ html {
       } */
     }
   }
-
 }
 
 @media only screen and (max-width: 600px) {
@@ -707,13 +704,13 @@ html {
 
   /* Titulo Separador */
 
-.tituloSeparador{
-  text-align: center;
-  font-size: 2rem;
-  text-decoration: underline;
-  line-height: 40px;
-  margin-bottom: 20px;
-}
+  .tituloSeparador {
+    text-align: center;
+    font-size: 2rem;
+    text-decoration: underline;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
 
   /* Parrafos Animados */
 
@@ -782,7 +779,11 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(180deg,var(--verde-dark),var(--verde-medio));
+  background-image: linear-gradient(
+    180deg,
+    var(--verde-dark),
+    var(--verde-medio)
+  );
   outline: 0px solid var(--verde-oscuro);
   border-radius: 10px;
 }
@@ -791,8 +792,7 @@ body::-webkit-scrollbar-thumb {
 
 .hr-line {
   border-top: 1px solid transparent;
-  background:
-    linear-gradient(white, white) padding-box,
+  background: linear-gradient(white, white) padding-box,
     linear-gradient(90deg, White, DimGrey, White) border-box;
 }
 
@@ -813,13 +813,15 @@ p.intro {
   max-width: 1450px !important;
   container-type: inline-size;
   container-name: timeline;
+  position: relative;
+  overflow: hidden;
 }
 
 .main-timeline:before {
   content: "";
   display: block;
   width: 2px;
-  height: 100%;
+  height: 600vh;
   background: #c6c6c6;
   margin: 0 auto;
   position: absolute;
@@ -958,15 +960,15 @@ p.description {
   left: 0;
 }
 
-
 @container timeline (max-width: 640px) {
   .timeline {
     flex-direction: column !important;
   }
 
-  .main-timeline[data-astro-cid-wdliosd7] .timeline-content[data-astro-cid-wdliosd7] {
-  padding: 10px 0px;
-}
+  .main-timeline[data-astro-cid-wdliosd7]
+    .timeline-content[data-astro-cid-wdliosd7] {
+    padding: 10px 0px;
+  }
 
   .main-timeline:before {
     margin-left: 1px;
@@ -1047,17 +1049,13 @@ p.description {
 
 /* Codigo perteneciente al carrusel */
 
-
-
 .carruselMaterial svg.h-7.w-7 {
   stroke: rgb(0, 0, 0) !important;
   width: 50px;
   height: 50px;
 }
 
-
-@media only screen and (max-width:600px){ 
-
+@media only screen and (max-width: 600px) {
   .carruselMaterial svg.h-7.w-7 {
     stroke: rgb(0, 0, 0) !important;
     width: 30px;
@@ -1067,5 +1065,4 @@ p.description {
   .w-full.lg\:w-3\/4.pl-12.md\:w-2\/4.md\:pl-20.lg\:pl-32 {
     padding: 0 !important;
   }
-
 }
