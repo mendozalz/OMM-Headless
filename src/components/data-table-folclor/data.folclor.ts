@@ -27,18 +27,14 @@ export const ciudadInstituto = [
 
 export const actividades = [
   {
-    actividad: "Investigaciones Folclóricas",
+    actividad: "Investigador Folclórico",
   },
   {
     actividad: "Festivales & eventos",
   },
   {
-    actividad: "Libros sobre Folclor",
+    actividad: "Profesor de Folclor",
   },
-  {
-    actividad: "Revistas",
-  },
-  
 ];
 
 export const librosDocumentos = [
@@ -48,19 +44,24 @@ export const librosDocumentos = [
   },
   {
     encabezado: "Libro",
-    titulo: "Rondas y los juegos Infantiles",
+    titulo: "Folclor y cultura general",
   },
   {
     encabezado: "Libro",
-    titulo: "Rondas y los juegos Infantiles",
+    titulo: "Folclor en Colombia-practica de la identidad cultural",
   },
   {
     encabezado: "Libro",
-    titulo: "Rondas y los juegos Infantiles",
+    titulo: "La música popular colombiana - una historia de dos siglos",
   },
   {
     encabezado: "Libro",
-    titulo: "Rondas y los juegos Infantiles",
+    titulo: "Folclor del litoral pacifico colombiano",
+  },
+  {
+    encabezado: "Libro",
+    titulo:
+      "Libreto de ballet “Curan o la rebelión de las flautas” para Incolballet",
   },
   {
     encabezado: "Vistas",
@@ -82,21 +83,23 @@ export const librosDocumentos = [
     encabezado: "Discos",
     titulo: "Álbum sobre Folclor del Litoral Pacífica",
   },
-  
 ];
 
-
 export const eventosFestivales = [
-    {
-      titulo: "Encuentro nacional de rondas infantiles",
-    },
-    {
-      titulo: "Primer encuentro nacional del bambuco",
-    },
-    {
-      titulo: "Apoteosis Colombia",
-    },
-    {
-      titulo: "Primer encuentro de música de América Latina (UNESCO)",
-    },
-  ];
+  {
+    titulo: "Encuentro nacional de rondas infantiles",
+  },
+  {
+    titulo: "Primer encuentro nacional del bambuco",
+  },
+  {
+    titulo: "Apoteosis Colombia",
+  },
+  {
+    titulo: "Primer encuentro de música de América Latina (UNESCO)",
+  },
+  {
+    titulo:
+      "Investigación folclórica en Guapi Cauca, Valle del Cauca, Tolima, Caldas y Costa Atlántica.",
+  },
+];

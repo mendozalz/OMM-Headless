@@ -26,7 +26,7 @@ export const actividades = [
     actividad: "Director de la Escuela de Teatro",
   },
   {
-    actividad: "Profesor de Historia del teatro",
+    actividad: "Profesor de Historia del teatro universal y de Colombia",
   },
 ];
 
@@ -81,10 +81,7 @@ export const obrasTiteres = [
 ];
 
 export const eventosFestivales = [
-    {
-      titulo: "Investigación folclórica en Guapi Cauca 1963",
-    },
-    {
-      titulo: "Festival de las naciones en Paris",
-    },
-  ];
+  {
+    titulo: "Festival de teatro de las naciones en Paris",
+  },
+];

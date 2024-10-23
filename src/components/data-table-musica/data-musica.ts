@@ -18,6 +18,9 @@ export const actividades = [
   {
     actividad: "Festivales & Eventos",
   },
+  {
+    actividad: "Talleres de apreciación musical",
+  },
 ];
 
 export const LibrosDocumentos = [
@@ -31,7 +34,7 @@ export const LibrosDocumentos = [
   },
   {
     encabezado: "Libro",
-    titulo: "Un concierto que dura 20 anos",
+    titulo: "Un concierto que dura 20 años",
   },
   {
     encabezado: "Libro",
@@ -53,12 +56,10 @@ export const LibrosDocumentos = [
     encabezado: "Libro",
     titulo: "Gerardo Arellano: una ausencia inexplicable",
   },
-  
 ];
 
-
 export const eventosFestivales = [
-    {
-      titulo: "Talleres de apreciación de la música colombiana y andina",
-    },
-  ];
+  {
+    titulo: "Talleres de apreciación de la música colombiana y andina",
+  },
+];
