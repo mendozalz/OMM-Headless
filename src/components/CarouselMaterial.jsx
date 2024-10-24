@@ -1,4 +1,4 @@
-import { Carousel, Typography, Button } from "@material-tailwind/react";
+import { Carousel, Typography } from "@material-tailwind/react";
 
 const CarouselMaterial = () => {
   return (
@@ -17,35 +17,26 @@ const CarouselMaterial = () => {
           <img
             src={card.url}
             alt={card.title}
-            className="h-full w-full lg:object-contain object-cover"
+            className="h-full w-full lg:object-contain object-cover filter brightness contrast-100"
           />
           <div className="absolute inset-0 grid h-full w-full items-center">
-            <div className="w-full lg:w-3/4 pl-12 md:w-2/4 md:pl-20 lg:pl-32 -mt-6 lg:mt-20">
-              <Typography
-                variant="h1"
-                color="black"
-                className="text-[75px] lg:text-[5rem] lg:leading-[80px] leading-[80px] font-normal uppercase text-black/80 text-center lg:text-left md:mt-[60%] lg:mt-0 font-cinzel"
-              >
-                {card.title}
-              </Typography>
+            <div className="w-full lg:w-3/4 pl-12 md:w-2/4 md:pl-20 lg:pl-32 -mt-6 lg:mt-0">
               <Typography
                 variant="lead"
                 color="black"
-                className="lg:pl-4 lg:text-[4rem] text-[35px] lg:leading-[60px] leading-[30px] lg:font-normal text-black/80 lg:text-left text-center font-irregardless tracking-[10px] font-semibold mb-[20px] lg:mb-0"
-              >
-                {card.parrafo}
-              </Typography>
-              <Typography
-                variant="lead"
-                color="black"
-                className="lg:pl-4 lg:text-[2rem] text-[35px] lg:leading-[50px] leading-[30px] lg:font-normal text-black/80 lg:text-left text-center tracking-[10px] font-semibold mb-[100px] lg:mb-0"
+                className="lg:pl-4 lg:text-[5rem] text-[60px] lg:leading-[100px] leading-[80px] lg:font-normal text-black/80 lg:text-left text-center tracking-[10px] font-medium lg:mb-0 lg:font-cinzel font-serif"
               >
                 {card.tipo}
               </Typography>
               <div className="w-full px-4 lg:max-w-[200px] lg:mt-4 mt-0">
-                <Button className="bg-verde-oscuro text-white w-full px-4 py-1 rounded-2xl text-[25px] uppercase">
-                  <a href={card.verMas}>Leer más</a>
-                </Button>
+                <section className="link-braces flex justify-center items-center lg:justify-start">
+                  <a
+                    className="text-[25px] uppercase lg:font-bold font-medium"
+                    href={card.verMas}
+                  >
+                    Leer más
+                  </a>
+                </section>
               </div>
             </div>
           </div>

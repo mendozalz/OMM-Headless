@@ -1066,3 +1066,50 @@ p.description {
     padding: 0 !important;
   }
 }
+
+/* CSS custom para el efecto del Hero en los botones de Teatro, Música y Folclor */
+.link-braces {
+  position: relative;
+}
+.link-braces a {
+  padding: 0 0.3em;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+
+.link-braces a:hover {
+  color: #064f5e;
+}
+
+.link-braces a::before,
+.link-braces a::after {
+  position: absolute;
+  top: 6px;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.link-braces a::before {
+  left: -0.1em;
+  content: "[";
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.link-braces a::after {
+  right: 1.5em;
+  content: "]";
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.link-braces a:hover::before,
+.link-braces a:hover::after {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
