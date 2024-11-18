@@ -4,7 +4,7 @@ export const ciudadInstituto = [
     instituto: "Instituto Popular de Cultura",
   },
   {
-    ciudad: "Cali",
+    ciudad: "",
     instituto: "Incolbatet",
   },
   {
@@ -12,15 +12,15 @@ export const ciudadInstituto = [
     instituto: "Colcultura",
   },
   {
-    ciudad: "Bogotá",
+    ciudad: "",
     instituto: "Instituto Distrital de Cultura y Turismo.",
   },
   {
-    ciudad: "Bogotá",
+    ciudad: "",
     instituto: "Centro de orientación musical Francisco Cristancho",
   },
   {
-    ciudad: "Bogotá",
+    ciudad: "",
     instituto: "Academia Colombiana de Historia",
   },
 ];
@@ -39,27 +39,27 @@ export const actividades = [
 
 export const librosDocumentos = [
   {
-    encabezado: "Libro",
+    encabezado: "Libros",
     titulo: "Rondas y los juegos Infantiles",
   },
   {
-    encabezado: "Libro",
+    encabezado: "",
     titulo: "Folclor y cultura general",
   },
   {
-    encabezado: "Libro",
+    encabezado: "",
     titulo: "Folclor en Colombia-practica de la identidad cultural",
   },
   {
-    encabezado: "Libro",
+    encabezado: "",
     titulo: "La música popular colombiana - una historia de dos siglos",
   },
   {
-    encabezado: "Libro",
+    encabezado: "",
     titulo: "Folclor del litoral pacifico colombiano",
   },
   {
-    encabezado: "Libro",
+    encabezado: "",
     titulo:
       "Libreto de ballet “Curan o la rebelión de las flautas” para Incolballet",
   },
@@ -68,15 +68,15 @@ export const librosDocumentos = [
     titulo: "Huella y Memoria",
   },
   {
-    encabezado: "Vistas",
+    encabezado: "",
     titulo: "Lecturas de música colombiana",
   },
   {
-    encabezado: "Vistas",
+    encabezado: "",
     titulo: "Colección mitológica",
   },
   {
-    encabezado: "Vistas",
+    encabezado: "",
     titulo: "Bogotá 450 años – 55 revistas",
   },
   {

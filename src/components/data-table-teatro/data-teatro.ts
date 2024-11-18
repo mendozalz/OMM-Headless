@@ -32,7 +32,7 @@ export const actividades = [
 
 export const obrasTeatro = [
   {
-    encabezado: "Obra de Teatro",
+    encabezado: "Obras de Teatro",
     titulo: "Ritual para una máquina",
   },
   {
