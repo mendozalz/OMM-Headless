@@ -11,6 +11,10 @@ const galleries = await getGalImg();
 let images = galleries.flatMap((gallery: Gal) => gallery.sourceUrl);
 images = images.reverse();
 
+// Dividir las imágenes en dos grupos
+const imagenesFamiliares = images.slice(0, Math.floor(images.length / 2));
+const imagenesTrabajos = images.slice(Math.floor(images.length / 2));
+
 interface Props {
   pt: string;
   px: string;
@@ -18,8 +22,6 @@ interface Props {
 }
 
 const { pt, px, pb } = Astro.props;
-console.log(pt);
-
 ---
 
 <html>
@@ -27,25 +29,103 @@ console.log(pt);
     <title>Galería de Fotos</title>
   </head>
   <body>
-    <div class="galeria-octavio-marulanda h-auto w-full mt-24 lg:mt-28" style={`padding-top: ${pt}; padding-left: ${px}; padding-right: ${px}; padding-bottom: ${pb}`}>
+    <div
+      class="galeria-octavio-marulanda h-auto w-full mt-24 lg:mt-28"
+      style={`padding-top: ${pt}; padding-left: ${px}; padding-right: ${px}; padding-bottom: ${pb}`}
+    >
       <h1 class="intro font-bold text-center text-[26px] lg:text-[32px] py-8">
         Galeria de imagenes
       </h1>
-      <div id="gallery">
-        {
-          images.map((imageId: string, index: number) => (
-            <div>
-              <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
-              <a href={`#lightbox-${(index % 18) + 1}`} />
+
+      <div class="details-container">
+        <details class="detail-item" open>
+          <summary class="summary-header">
+            <div class="summary-content">
+              <h2>Imágenes Familiares</h2>
             </div>
-          ))
-        }
+            <div class="summary-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </summary>
+          <div class="gallery-container">
+            <div id="gallery" class="gallery-grid">
+              {
+                imagenesFamiliares.map((imageId: string, index: number) => (
+                  <div>
+                    <img src={imageId} alt={`Imagen Familiar ${index + 1}`} />
+                    <a href={`#lightbox-familiar-${index + 1}`} />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </details>
+
+        <details class="detail-item">
+          <summary class="summary-header">
+            <div class="summary-content">
+              <h2>Imágenes de Trabajo Investigativo</h2>
+            </div>
+            <div class="summary-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </summary>
+          <div class="gallery-container">
+            <div id="gallery" class="gallery-grid">
+              {
+                imagenesTrabajos.map((imageId: string, index: number) => (
+                  <div>
+                    <img src={imageId} alt={`Imagen Trabajo ${index + 1}`} />
+                    <a href={`#lightbox-trabajo-${index + 1}`} />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </details>
       </div>
+
+      {/* Lightboxes */}
       {
-        images.map((imageId: string, index: number) => (
-          <div class="lightbox" id={`lightbox-${(index % 18) + 1}`}>
+        [
+          ...imagenesFamiliares.map((imageId, index) => ({
+            id: `lightbox-familiar-${index + 1}`,
+            src: imageId,
+            alt: `Imagen Familiar ${index + 1}`,
+          })),
+          ...imagenesTrabajos.map((imageId, index) => ({
+            id: `lightbox-trabajo-${index + 1}`,
+            src: imageId,
+            alt: `Imagen Trabajo ${index + 1}`,
+          })),
+        ].map(({ id, src, alt }) => (
+          <div class="lightbox" id={id}>
             <div class="content">
-              <img src={`${imageId}`} alt={`Imagen ${index + 1}`} />
+              <img src={src} alt={alt} />
               <a class="close" href="#gallery" />
             </div>
           </div>
@@ -55,8 +135,6 @@ console.log(pt);
   </body>
 </html>
 
-<!-- Estilos -->
-
 <style>
   .galeria-octavio-marulanda {
     margin: 5px;
@@ -65,194 +143,253 @@ console.log(pt);
     /* padding: 115px 15px 15px; */
   }
 
-  #gallery {
+  .details-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .detail-item {
+    background: #1a1a1a;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 2px solid #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    background: #2d2d2d;
+    border-bottom: 2px solid #333;
+  }
+
+  .summary-header:hover {
+    background: #3d3d3d;
+  }
+
+  .summary-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .summary-content .icon {
+    width: 28px;
+    height: 28px;
+    stroke: #064f5e;
+    stroke-width: 2;
+  }
+
+  .summary-header h2 {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #075666;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .summary-icon svg {
+    transition: transform 0.3s ease;
+    stroke: #000000;
+    stroke-width: 3;
+  }
+
+  details[open] .summary-icon {
+    background: #064f5e;
+  }
+
+  details[open] .summary-icon svg {
+    transform: rotate(180deg);
+  }
+
+  .summary-header:hover .summary-icon {
+    background: #064f5e;
+    transform: scale(1.1);
+  }
+
+  .gallery-container {
+    background: #1a1a1a;
+    padding: 1.5rem;
+  }
+
+  /* Eliminar el triángulo por defecto del details */
+  details > summary {
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .gallery-grid {
     display: grid;
     grid-template: repeat(6, 1fr) / repeat(6, 1fr);
     grid-gap: 0.5em;
   }
 
-  @media (max-width: 800px) {
-    #gallery {
-      display: flex;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    #gallery > div {
-      width: 90%;
-      margin: 1%;
-    }
+  .gallery-grid > div {
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
   }
 
-  @media (max-width: 800px) and (max-width: 350px) {
-    #gallery > div {
-      width: 98%;
-    }
+  .gallery-grid > div:hover {
+    transform: scale(1.02);
   }
 
-  #gallery > div:nth-child(6n + 1) {
+  .gallery-grid > div:nth-child(6n + 1) {
     grid-column: span 2;
     grid-row: span 2;
   }
-  #gallery > div:nth-child(2) {
+
+  .gallery-grid > div:nth-child(2) {
     grid-column: span 3;
     grid-row: span 3;
   }
-  #gallery > div:nth-child(4) {
+
+  .gallery-grid > div:nth-child(4) {
     grid-column: span 1;
     grid-row: span 2;
   }
 
-  #gallery > div > a {
-    opacity: 0;
-    position: absolute;
-    color: #000;
-    background-color: #000;
-    font: bold 4em "Helvetica";
-    text-shadow:
-      0 -1px 5px #fff,
-      -1px 0px 5px #fff,
-      0 1px 5px #fff,
-      1px 0px 5px #fff;
-    padding: 2rem;
-    mix-blend-mode: difference;
+  .gallery-grid img {
     width: 100%;
     height: 100%;
-    transition: all ease 1s;
-  }
-
-  #gallery > div > img {
-    width: 100%;
-    min-height: 100%;
-    transition: all ease 1s;
     object-fit: cover;
+    transition: all 0.3s ease;
   }
 
-  #gallery > div:hover img {
-    filter: blur(4px);
+  .gallery-grid > div:hover img {
+    filter: brightness(0.8);
   }
 
-  #gallery > div:hover a {
-    opacity: 1;
-  }
-
-  #gallery > div {
-    overflow: hidden;
-    position: relative;
-    box-shadow:
-      0 2px 8px 0 rgba(0, 0, 0, 0.2),
-      0 3px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  #gallery div,
-  #gallery a {
+  .gallery-grid a {
+    position: absolute;
+    inset: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
+    color: white;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
   }
 
-  [id^="lightbox-"] {
+  .gallery-grid > div:hover a {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 800px) {
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .gallery-grid > div {
+      width: calc(50% - 0.5rem);
+      aspect-ratio: 1;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .gallery-grid > div {
+      width: 100%;
+    }
+  }
+
+  /* Mantener estilos existentes del lightbox */
+  .lightbox {
+    display: none;
     position: fixed;
+    z-index: 999;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    opacity: 0;
-    transition: opacity 450ms ease-in-out;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 99;
-  }
-
-  [id^="lightbox-"]:target {
-    opacity: 1;
-    pointer-events: inherit;
-  }
-
-  [id^="lightbox-"]:target img {
-    filter: blur(0);
-  }
-
-  [id^="lightbox-"] .content {
-    max-width: 90%;
-    position: relative;
-    color: #fff;
-  }
-
-  [id^="lightbox-"] .content:hover > a.close {
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-
-  [id^="lightbox-"] .content:hover > .title {
-    opacity: 1;
-    transform: translateY(-3px);
-  }
-
-  [id^="lightbox-"] .content:hover > .title::after {
-    opacity: 1;
-  }
-
-  [id^="lightbox-"] .content > * {
-    transition: all 450ms ease-in-out;
-  }
-
-  [id^="lightbox-"] .title {
-    display: block;
-    margin: 0;
-    padding: 1em;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    transform: translateY(50%);
-    font-size: 1.5em;
-    opacity: 0;
-  }
-
-  [id^="lightbox-"] .title::after {
-    content: " ";
-    background-color: rgba(0, 0, 0, 0.4);
-    bottom: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    transition: all 350ms ease-in-out 250ms;
-    opacity: 0;
-    transform-origin: bottom;
-    mix-blend-mode: soft-light;
-  }
-
-  [id^="lightbox-"] img {
-    max-height: 90vh;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    filter: blur(50px);
-  }
-
-  [id^="lightbox-"] a.close {
-    width: 2em;
-    height: 2em;
-    position: absolute;
     right: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .lightbox:target {
+    display: block;
+  }
+
+  .lightbox .content {
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    background: white;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scale(0, 0);
-    opacity: 0;
-    transform-origin: right top;
     text-decoration: none;
-    color: #fff;
+    color: black;
+    font-weight: bold;
+    transition: all 0.3s ease;
   }
 
-  [id^="lightbox-"] a.close::after {
-    content: "X";
+  .close:hover {
+    transform: scale(1.1);
+    background: #f0f0f0;
+  }
+
+  .close::after {
+    content: "×";
+    font-size: 1.5rem;
   }
 </style>
+
+<script>
+  // Animación suave para el contenido
+  document.querySelectorAll("details").forEach((detail) => {
+    detail.addEventListener("toggle", () => {
+      if (detail.open) {
+        const content = detail.querySelector(".gallery-container");
+        content.style.display = "block";
+        const height = content.offsetHeight;
+        content.style.height = "0";
+        content.offsetHeight; // force reflow
+        content.style.transition = "height 0.3s ease";
+        content.style.height = height + "px";
+      }
+    });
+  });
+</script>
