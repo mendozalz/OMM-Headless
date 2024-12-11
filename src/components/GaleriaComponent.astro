@@ -112,12 +112,12 @@ const { pt, px, pb } = Astro.props;
       {/* Lightboxes */}
       {
         [
-          ...imagenesFamiliares.map((imageId, index) => ({
+          ...imagenesFamiliares.map((imageId: string, index: number) => ({
             id: `lightbox-familiar-${index + 1}`,
             src: imageId,
             alt: `Imagen Familiar ${index + 1}`,
           })),
-          ...imagenesTrabajos.map((imageId, index) => ({
+          ...imagenesTrabajos.map((imageId: string, index: number) => ({
             id: `lightbox-trabajo-${index + 1}`,
             src: imageId,
             alt: `Imagen Trabajo ${index + 1}`,
@@ -382,13 +382,15 @@ const { pt, px, pb } = Astro.props;
   document.querySelectorAll("details").forEach((detail) => {
     detail.addEventListener("toggle", () => {
       if (detail.open) {
-        const content = detail.querySelector(".gallery-container");
-        content.style.display = "block";
-        const height = content.offsetHeight;
-        content.style.height = "0";
-        content.offsetHeight; // force reflow
-        content.style.transition = "height 0.3s ease";
-        content.style.height = height + "px";
+        const content = detail.querySelector(".gallery-container") as HTMLElement;
+        if (content) {
+          content.style.display = "block";
+          const height = content.offsetHeight;
+          content.style.height = "0";
+          content.offsetHeight; // force reflow
+          content.style.transition = "height 0.3s ease";
+          content.style.height = height + "px";
+        }
       }
     });
   });
