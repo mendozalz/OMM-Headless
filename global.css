@@ -765,7 +765,7 @@ html {
   pointer-events: none;
 } */
 
-html {
+/* html {
   scrollbar-color: var(--verde-claro) transparent;
   scrollbar-width: thin;
 }
@@ -786,8 +786,11 @@ body::-webkit-scrollbar-thumb {
   );
   outline: 0px solid var(--verde-oscuro);
   border-radius: 10px;
-}
+} */
 
+::-webkit-scrollbar {
+  display: none;
+}
 /* TimeLine */
 
 .hr-line {

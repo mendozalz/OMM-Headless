@@ -26,7 +26,7 @@ const Nav = () => {
     >
       <div className="lg:max-w-[85vw] w-full flex justify-between items-center">
         <div className="contenedor-logo">
-          <a className="cursor-pointer" href="/">
+          <a className="cursor-pointer" href="/" data-astro-reload>
             <img
               className="w-auto h-[75px] lg:h-[100px] mr-auto py-1 lg:p-2"
               src="/img/logo octavio-04.png"

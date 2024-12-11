@@ -1,0 +1,63 @@
+.svgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 35vh;
+}
+
+.styledSvg {
+  width: 100%;
+  height: 50%;
+  transform: scale(2);
+}
+
+@keyframes textAnimation {
+  0% {
+    stroke-dashoffset: 100;
+    fill: transparent;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    fill: #fff;
+  }
+}
+
+.styledPath {
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 0.1;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: textAnimation 5s ease-in-out forwards;
+}
+
+/* Optimizaciones para diferentes resoluciones */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+}
+
+@media screen and (max-width: 768px) {
+  .svgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 20vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .svgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 20vh;
+  }
+}

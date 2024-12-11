@@ -1,0 +1,94 @@
+@keyframes zoomIn {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2.2);
+  }
+}
+
+.container {
+  --before-image: url("/img/colombia.jpg");
+  --after-image: url("/img/after_colombia.png");
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.container::before {
+  background-image: var(--before-image);
+  filter: brightness(0.4);
+  z-index: 1;
+  animation: zoomIn 4s ease-in-out forwards;
+}
+
+.container::after {
+  background-image: var(--after-image);
+  background-size: cover;
+  background-position: center 15%;
+  z-index: 4;
+  transform: scale(1);
+  animation: zoomOut 4s ease-in-out forwards;
+}
+
+/* Optimizaciones para diferentes resoluciones */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+  .container::after {
+    background-position: center 25%;
+  }
+  @keyframes zoomOut {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(2.4);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container::after {
+    background-position: center 25%;
+  }
+  @keyframes zoomOut {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(6.5);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container::after {
+    background-position: center 30%;
+  }
+}
