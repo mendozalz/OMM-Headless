@@ -76,7 +76,7 @@ const { pt, px, pb } = Astro.props;
         <details class="detail-item">
           <summary class="summary-header">
             <div class="summary-content">
-              <h2>Imágenes de Trabajo Investigativo</h2>
+              <h2>Trabajo Investigativo</h2>
             </div>
             <div class="summary-icon">
               <svg
@@ -146,7 +146,7 @@ const { pt, px, pb } = Astro.props;
   .details-container {
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
   }
 
   .detail-item {
@@ -382,7 +382,9 @@ const { pt, px, pb } = Astro.props;
   document.querySelectorAll("details").forEach((detail) => {
     detail.addEventListener("toggle", () => {
       if (detail.open) {
-        const content = detail.querySelector(".gallery-container") as HTMLElement;
+        const content = detail.querySelector(
+          ".gallery-container"
+        ) as HTMLElement;
         if (content) {
           content.style.display = "block";
           const height = content.offsetHeight;
