@@ -47,9 +47,6 @@ const AdvancedSearch = ({ posts }) => {
     const filteredResults = posts.filter((post) => {
       const { node } = post;
 
-      // Obtener el año de publicación
-      const publicationYear =
-        new Date(node.acfLibros.fechaPublicacion).getFullYear() + 1;
 
       // Verificar si el tipo de material coincide
       const typeMatches =
@@ -69,11 +66,7 @@ const AdvancedSearch = ({ posts }) => {
         titleMatches &&
         (filters.category === "todasLasCategorias" ||
           node.acfLibros.categoriaLibro.toLowerCase() ===
-            filters.category.toLowerCase()) &&
-        (filters.publicationYear === "" ||
-          publicationYear.toString() === filters.publicationYear) &&
-        (filters.city === "todasLasCiudades" ||
-          node.acfLibros.ciudad.toLowerCase() === filters.city.toLowerCase())
+            filters.category.toLowerCase())
       );
     });
 
@@ -176,31 +169,6 @@ const AdvancedSearch = ({ posts }) => {
                   Todas las categorías
                 </SelectItem>
                 {renderCategoryOptions(categories)}
-              </SelectContent>
-            </Select>
-            <Input
-              name="publicationYear"
-              type="number"
-              placeholder="Año de publicación"
-              value={filters.publicationYear}
-              onChange={handleInputChange}
-            />
-            <Select
-              value={filters.city}
-              onValueChange={handleSelectChange("city")}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Ciudad" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="todasLasCiudades">
-                  Todas las ciudades
-                </SelectItem>
-                {cities.map((city) => (
-                  <SelectItem key={city} value={city}>
-                    {city}
-                  </SelectItem>
-                ))}
               </SelectContent>
             </Select>
           </div>
