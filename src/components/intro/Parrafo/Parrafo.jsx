@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import styles from './Parrafo.module.css';
+import { useState, useEffect } from "react";
+import styles from "./Parrafo.module.css";
 import { HiArrowLongRight } from "react-icons/hi2";
 
 const Parrafo = () => {
@@ -15,24 +15,47 @@ const Parrafo = () => {
   }, []);
 
   return (
-    <div className={`${styles.parrafoContainer} ${isVisible ? styles.visible : ''}`}>
+    <div
+      className={`${styles.parrafoContainer} ${isVisible ? styles.visible : ""}`}
+    >
+      <h2>Octavio Marulanda Morales ( 1921 - 1997).</h2>
       <p>
-      Octavio Marulanda Morales fue un destacado promotor cultural colombiano, nacido el 7 de octubre de 1921 en Manizales. Desde temprana edad mostró interés por la música, influenciado por la radiola de su padre. Durante su juventud, enfrentó desafíos familiares, como el traslado de su madre a un psiquiátrico en Bogotá.
+        Colombiano de racamandaca, paisa de pura cepa, dedicó su vida a divulgar
+        y enriquecer las tradiciones, diversidad y costumbres del país. Viajó
+        por Colombia entera para conocer, compartir, promover y extender ese
+        conocimiento y su pasión por la riqueza cultural y artística de la
+        tierra en que nació.
       </p>
       <p>
-      En 1944, contrajo matrimonio con Berenice Arbeláez y se trasladó a Cali, donde inició su carrera en la emisora Electra Cultural. Su pasión por la cultura lo llevó a fundar la primera escuela de teatro del país, Artistas del Pueblo, en 1952, además de crear el periódico Páginas Culturales.
+        Tal vez su herencia mulata le imprimió un ADN enriquecido de diversas
+        experiencias, afectos y memorias que arraigados a sus células, lo
+        hicieron parte integrante de nuestra identidad nacional, entretejida por
+        vivencias y creencias ancestrales de indígenas, exclavos negros
+        africanos, conquistadores e inmigrantes europeos, hasta el punto de
+        harse también costeño, Andino, llanero y amazonense.
       </p>
       <p>
-      Marulanda Morales alcanzó reconocimiento internacional con la obra teatral "A la diestra de Dios padre", presentada en el Festival de las Naciones en París en 1958. A lo largo de su vida, dirigió diversas instituciones culturales, como el Instituto Popular de Cultura y la Escuela Departamental de Teatro en Bellas Artes de Cali.
+        Su amor por el arte y la cultura seguramente corrió por sus venas desde
+        su concepción, pero afloró a su conciencia siendo un niño, por el gusto
+        que sentía al escuchar las notas de la música que reproducía la radiola
+        de su padre; desde temprana edad mostró inclinación por las letras, lo
+        que lo convirtió en lector incansable y en escritor. Su biblioteca
+        personal llegó a contener unos tres mil libros y atesoró un número
+        similar de discos musicales.
       </p>
       <p>
-      En 1973, publicó el libro "Folclor y Cultura General" y se involucró en la organización del concurso Mono Núñez. Su labor también se extendió a la promoción de la música colombiana, siendo cofundador de la Fundación de Música de Ginebra en 1976.
+        Profesional en Administración de Empresas y Contaduría Pública,
+        desarrolló sus actividades en el campo de la cultura, combinando su
+        trabajo con la investigación musical y folclórica. Estudió teatro en
+        Cali y folclor en Bogotá, fue creador y director de entidades educativas
+        y culturales, fue alumno y maestro.
       </p>
       <p>
-      Durante la década de 1980, se vinculó a Colcultura en Bogotá y publicó varios libros sobre música y cultura colombiana. Además, contribuyó a la creación del Centro de Documentación Musical en Funmusica en 1991.
-      </p>
-      <p>
-      El legado de Octavio Marulanda Morales perdura a través de sus escritos y su incansable trabajo en la promoción de la cultura colombiana. Falleció el 10 de febrero de 1997, dejando un importante legado en el ámbito cultural del país.
+        Su intensa carrera y su consagración a la actividad cultural del país,
+        no evitó que se enamorara de una bellísima mujer manizalita y que sacara
+        adelante una familia a la que inculcó definitivamente, su gusto por la
+        lectura, el estudio, la docencia y el respeto por la diversidad y las
+        diferencias. Le sobreviven a la fecha 5 hijos, 10 nietos y 10 bisnietos.
       </p>
       <div className={styles.continuar}>
         <a href="/home" className={styles.continuarLink}>
