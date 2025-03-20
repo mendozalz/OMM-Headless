@@ -1,33 +1,12 @@
 ---
 import {
-  actividades,
+actividades,
   ciudadInstituto,
   eventosFestivales,
   obrasTeatro,
-  obrasTiteres,
+  montajes
 } from "./data-teatro";
 
-interface CiudadInstituto {
-  ciudad: string;
-  instituto: string;
-}
-interface Actividades {
-  actividad: string;
-}
-
-interface ObrasTeatro {
-  encabezado: string;
-  titulo: string;
-}
-
-interface ObrasTiteres {
-  encabezado: string;
-  titulo: string;
-}
-
-interface Eventos {
-  titulo: string;
-}
 ---
 
 <!-- component -->
@@ -41,7 +20,7 @@ interface Eventos {
             <tr
               class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
             >
-              <th class="px-4 py-3 border-b-[1px] border-black">Ciudad(es)</th>
+              <th class="px-4 py-3 border-b-[1px] border-black">Entidades donde trabajó</th>
               <th class="px-4 py-3 border-b-[1px] hidden lg:block"
                 >Actividades</th
               >
@@ -49,45 +28,28 @@ interface Eventos {
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700">
-              <td class="px-4 py-1 border w-1/2">
-                <div class="flex items-center">
-                  <div class="relative w-8 h-8 mr-3 rounded-full md:block">
-                    <img
-                      class="object-cover w-full h-full rounded-full"
-                      src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg"
-                      alt=""
-                      loading="lazy"
-                    />
-                    <div
-                      class="absolute inset-0 rounded-full shadow-inner"
-                      aria-hidden="true"
-                    >
-                    </div>
-                  </div>
-                  <p class="font-semibold text-black">
-                    {ciudadInstituto[0].ciudad}
-                  </p>
-                </div>
+              <td class="px-4 py-1 border w-1/2 relative" id="instituto-container">
+                <div class="w-full h-full my-3 block lg:absolute top-0" id="instituto-content">
+                  <ul class="list-disc">
                 {
                   ciudadInstituto.map((item) => (
-                    <div class="flex items-center text-sm my-3">
-                      <ul class="list-disc">
-                        <li class="text-xs text-gray-600">
+                        <li class="text-ms  text-gray-600 mt-2">
                           * {item.instituto}
                         </li>
-                      </ul>
-                    </div>
                   ))
                 }
+                </ul>
+                </div>
               </td>
-              <td class="px-4 py-3 text-ms font-semibold w-1/2 hidden lg:block"
-                >{
-                  actividades.map((item) => (
-                    <ul class="px-2">
-                      <li class="list-disc">{item.actividad}</li>
-                    </ul>
-                  ))
-                }</td
+              <td class="px-4 py-3 text-ms  w-full hidden lg:block text-gray-600">
+                <ul class="px-2 list-disc">
+                  {
+                    actividades.map((item) => (
+                      <li class="mt-2"> * {item.actividad}</li>
+                    ))
+                  }
+                </ul>
+              </td
               >
             </tr>
           </tbody>
@@ -123,21 +85,21 @@ interface Eventos {
                         />
                       </div>
                       <div>
-                        <p class="font-semibold text-black">{item.ciudad}</p>
-                        <p class="text-xs text-gray-600">{item.instituto}</p>
+                        <p class="text-xs text-gray-600">* {item.instituto}</p>
                       </div>
                     </div>
                   ))
                 }
               </td>
-              <td class="px-4 py-3 text-ms font-semibold border w-1/2"
-                >{
-                  actividades.map((item) => (
-                    <ul class="px-2">
-                      <li class="list-disc">{item.actividad}</li>
-                    </ul>
-                  ))
-                }</td
+              <td class="px-4 py-3 text-ms  border w-1/2">
+                <ul class="px-2">
+                  {
+                    actividades.map((item) => (
+                      <li class="list-disc mt-2">* {item.actividad}</li>
+                    ))
+                  }
+                </ul>
+              </td
               >
             </tr>
           </tbody>
@@ -149,37 +111,35 @@ interface Eventos {
               class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
             >
               <th class="px-4 py-3 border-b-[1px] border-black"
-                >LIBROS & DOCUMENTOS</th
+                >Obras de Teatro Escritas</th
               >
-              <th class="px-4 py-3 hidden lg:block">EVENTOS & FESTIVALES</th>
+              <th class="px-4 py-3 hidden lg:block">Eventos y festivales</th>
             </tr>
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700">
               <td class="px-4 py-1 border w-1/2">
-                <p class="font-semibold text-black mt-2">
-                  {obrasTeatro[0].encabezado}
-                </p>
                 {
                   obrasTeatro.map((item) => (
-                    <div class="text-sm my-3">
+                    <div class="text-ms  text-gray-600 my-3">
                       <div>
-                        <p class="text-xs text-gray-600">* {item.titulo}</p>
+                        <p>* {item.titulo}</p>
                       </div>
                     </div>
                   ))
                 }
               </td>
               <td
-                class="px-4 py-3 text-ms font-semibold border w-1/2 flex flex-col border-none mt-4 lg:block"
-                >{
+                class="px-4 text-ms  border w-full border-none hidden lg:block"
+                >
+                <ul class="py-2 text-ms  text-gray-600">
+                {
                   eventosFestivales.map((item) => (
-                    <ul class="px-2 py-2">
-                      <li class="list-disc">{item.titulo}</li>
-                    </ul>
-                  ))
-                }</td
-              >
+                      <li class="list-disc my-3">* {item.titulo}</li>
+                    ))
+                  }
+                </ul>
+                </td>
             </tr>
           </tbody>
         </table>
@@ -197,30 +157,57 @@ interface Eventos {
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700">
-              <td class="px-4 py-1 border w-1/2 hidden">
+              <td class="px-4 py-1 border w-full hidden">
                 {
                   obrasTeatro.map((item) => (
                     <div class="text-sm my-3">
                       <div>
-                        <p class="font-semibold text-black">
-                          {item.encabezado}
-                        </p>
-                        <p class="text-xs text-gray-600">{item.titulo}</p>
+                        <p class="text-xs text-gray-600">* {item.titulo}</p>
                       </div>
                     </div>
                   ))
                 }
               </td>
               <td
-                class="px-4 py-3 text-ms font-semibold border w-full flex flex-col border-none mt-4"
-                >{
-                  eventosFestivales.map((item) => (
-                    <ul class="px-2 py-2">
-                      <li class="list-disc">{item.titulo}</li>
-                    </ul>
-                  ))
-                }</td
+                class="px-4 text-ms  border w-full flex flex-col border-none mt-4"
+                >
+                <ul class="py-2 text-ms  text-gray-600">
+                  {
+                    eventosFestivales.map((item) => (
+                      <li class="list-disc my-3">* {item.titulo}</li>
+                    ))
+                  }
+                </ul>
+              </td
               >
+            </tr>
+          </tbody>
+        </table>
+        <!-- 3ra fila -->
+        <table class="w-full">
+          <thead>
+            <tr
+              class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+            >
+              <th class="px-4 py-3 border-b-[1px] border-black"
+                >Montajes de Obras de Teatro</th
+              >
+              
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="text-gray-700">
+              <td class="px-4 py-1 border w-1/2">
+                {
+                  montajes.map((item) => (
+                    <div class="text-ms text-gray-600 my-3">
+                      <div>
+                        <p set:html={"* " + item.titulo}/>
+                      </div>
+                    </div>
+                  ))
+                }
+              </td>
             </tr>
           </tbody>
         </table>

@@ -29,12 +29,9 @@
   font-size: 20px;
   text-align: justify;
   color: #ffffff;
-}
-.parrafoContainer h2 {
-  margin-bottom: 20px;
-  line-height: 1.4;
-  font-size: 25px;
-  color: #ffffff;
+  hyphens: auto;
+  text-wrap: pretty;
+  hyphenate-limit-chars: 7;
 }
 
 .continuar {
@@ -83,6 +80,9 @@
   }
   .parrafoContainer p {
     margin-bottom: 15px;
+    hyphens: auto;
+    text-wrap: pretty;
+    hyphenate-limit-chars: 7;
   }
 }
 
@@ -90,12 +90,15 @@
   .parrafoContainer {
     width: 85%;
     letter-spacing: 1px;
-    top: 60vh;
+    top: 58vh;
   }
 
   .parrafoContainer p {
     margin-bottom: 10px;
     line-height: 1.4;
     font-size: 16px;
+    hyphens: auto;
+    text-wrap: pretty;
+    hyphenate-limit-chars: 7;
   }
 }

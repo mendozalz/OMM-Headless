@@ -1,7 +1,4 @@
 .svgContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 20vw;
   height: 35vh;
 }
@@ -10,6 +7,15 @@
   width: 100%;
   height: 50%;
   transform: scale(2);
+}
+
+.parrafoContainer h2 {
+  margin-bottom: 20px;
+  line-height: 1.4;
+  font-size: 30px;
+  color: #ffffff;
+  padding-top: 95px;
+  text-align: center;
 }
 
 @keyframes textAnimation {
@@ -44,20 +50,30 @@
 
 @media screen and (max-width: 768px) {
   .svgContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 30vw;
     height: 20vh;
+  }
+  .parrafoContainer h2 {
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-size: 23px;
+    color: #ffffff;
+    padding-top: 50px;
+    text-align: center;
   }
 }
 
 @media screen and (max-width: 480px) {
   .svgContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 40vw;
     height: 20vh;
+  }
+  .parrafoContainer h2 {
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-size: 23px;
+    color: #ffffff;
+    padding-top: 25px;
+    text-align: center;
   }
 }

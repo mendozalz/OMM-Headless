@@ -2,7 +2,7 @@ import styles from "./AnimatedSvg.module.css";
 
 const AnimatedSvg = () => {
   return (
-    <div className={styles.svgContainer}>
+    <section className={styles.svgContainer}>
       <svg
         className={styles.styledSvg}
         viewBox="0 0 53 10"
@@ -14,7 +14,10 @@ const AnimatedSvg = () => {
           fill="white"
         />
       </svg>
-    </div>
+      <div className={styles.parrafoContainer}>
+        <h2>(1921 - 1997)</h2>
+      </div>
+    </section>
   );
 };
 
