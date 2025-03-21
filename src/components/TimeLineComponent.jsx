@@ -30,7 +30,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Nació el 7 de octubre, en el Barrio Hoyo Frío de Manizales (Caldas). Fue el mayor de los hermanos.
+                * Nació el 7 de octubre, en el Barrio Hoyo Frío de Manizales (Caldas). Fue el mayor de los hermanos.
                 </p>
               </div>
             </motion.div>
@@ -56,7 +56,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                A los 3 años tiene contacto con la música en una radiola RCA Víctor que compra su padre. Empieza a escuchar música popular colombiana y algunas piezas clásicas como la sonata de Tanege interpretada por Andrés Segovia.
+                * A los 3 años tiene contacto con la música en una radiola RCA Víctor que compra su padre. Empieza a escuchar música popular colombiana y algunas piezas clásicas como la sonata de Tanege interpretada por Andrés Segovia.
                 </p>
               </div>
             </motion.div>
@@ -82,10 +82,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Comienza su escolarización primaria en el “Colegio de Cristo” de los Hermanos Maristas en Manizales, donde se gradúa de bachiller (1927 – 1939).
+                * Comienza su escolarización primaria en el "Colegio de Cristo" de los Hermanos Maristas en Manizales, donde se gradúa de bachiller (1927 – 1939).
                 </p>
                 <p className="description">
-                A sus 17 años hizo su primer viaje fuera de Manizales, ya que fue el responsable de trasladar a su madre a Bogotá para internarla en el psiquiátrico de Sibaté, donde murió en 1938. Le tomó 3 días llegar a Bogotá, y fue la última vez que la vió.
+                * A sus 17 años hizo su primer viaje fuera de Manizales, ya que fue el responsable de trasladar a su madre a Bogotá para internarla en el psiquiátrico de Sibaté, donde murió en 1938. Le tomó 3 días llegar a Bogotá, y fue la última vez que la vió.
                 </p>
               </div>
             </motion.div>
@@ -111,7 +111,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                El 22 de mayo, se casa con la Manizalita Berenice Arbeláez Ospina. De esta unión nacieron 5 hijos: Johanio, Ivanov, Lirian, Oneida y Janine, nombres que seleccionó él mismo, entre sus clásicos de literatura universal.
+                * El 22 de mayo, se casa con la Manizalita Berenice Arbeláez Ospina. De esta unión nacieron 5 hijos: Johanio, Ivanov, Lirian, Oneida y Janine, nombres que seleccionó él mismo, entre sus clásicos de literatura universal.
                 </p>
               </div>
             </motion.div>
@@ -137,10 +137,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Se traslada con su esposa a vivir a Cali, ciudad que vió nacer a sus hijos y en la vivió gran parte de su vida. 
+                * Se traslada con su esposa a vivir a Cali, ciudad que vió nacer a sus hijos y en la vivió gran parte de su vida. 
                 </p>
                 <p className="description">
-                Comienza a trabajar en la emisora Electra Cultural.
+                * Comienza a trabajar en la emisora Electra Cultural.
                 </p>
               </div>
             </motion.div>
@@ -166,7 +166,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Se incorpora al Instituto Popular de Cultura (1950 – 1965).
+                * Se incorpora al Instituto Popular de Cultura (1950 – 1965).
                 </p>
               </div>
             </motion.div>
@@ -192,7 +192,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Crea en el Instituto Popular de Cultura, el grupo de teatro “Los Artistas del Pueblo”. la primera escuela de teatro del país.
+                * Crea en el Instituto Popular de Cultura, el grupo de teatro "Los Artistas del Pueblo". la primera escuela de teatro del país.
                 </p>
               </div>
             </motion.div>
@@ -218,7 +218,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                En el Instituto Popular de Cultura crea el periódico “Páginas de Cultura”.
+                * En el Instituto Popular de Cultura crea el periódico "Páginas de Cultura".
                 </p>
               </div>
             </motion.div>
@@ -235,10 +235,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Profesor de Historia del Teatro Universal y de Colombia, en el Instituto Popular de Cultura y la Escuela Departamental de Teatro de Bellas Artes en Cali (1956 – 1976).
+                * Profesor de Historia del Teatro Universal y de Colombia, en el Instituto Popular de Cultura y la Escuela Departamental de Teatro de Bellas Artes en Cali (1956 – 1976).
                 </p>
                 <p className="description">
-                Obtiene el premio "Presidencia de la República", en el Festival Nacional de Teatro.
+                * Obtiene el premio "Presidencia de la República", en el Festival Nacional de Teatro.
                 </p>
               </div>
             </div>
@@ -255,7 +255,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Obtienen el premio nacional Agudelo de Teatro con el grupo “los Artistas del Pueblo”.
+                * Obtienen el premio nacional Agudelo de Teatro con el grupo "los Artistas del Pueblo".
                 </p>
               </div>
             </div>
@@ -272,10 +272,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                En el Instituto popular de Cultura crea el Departamento de Investigaciones Folclóricas (1959 -1972).
+                * En el Instituto popular de Cultura crea el Departamento de Investigaciones Folclóricas (1959 -1972).
                 </p>
                 <p className="description">
-                Como homenaje a Tomás Carrasquilla, montan la obra de teatro “En la diestra de Dios padre” con la que recorren el país. La obra se estrena en Cali el 23 de abril de 1959, y interpreta el papel de “San Pedro”.  Esta obra se convirtió en un importante capítulo de la historia del teatro en Colombia, ninguna otra ha sido tan representada. Gracias a su calidad, se presenta en Paris (Francia), en el Festival de las Naciones y obtienen el segundo lugar. 
+                * Como homenaje a Tomás Carrasquilla, montan la obra de teatro "En la diestra de Dios padre" con la que recorren el país. La obra se estrena en Cali el 23 de abril de 1959, y interpreta el papel de "San Pedro".  Esta obra se convirtió en un importante capítulo de la historia del teatro en Colombia, ninguna otra ha sido tan representada. Gracias a su calidad, se presenta en Paris (Francia), en el Festival de las Naciones y obtienen el segundo lugar. 
                 </p>
               </div>
             </div>
@@ -292,7 +292,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Se vincula a Bellas Artes y Extensión Cultural del Valle, en Cali, desde el 1 enero, como profesor en la Escuela de Teatro.
+                * Se vincula a Bellas Artes y Extensión Cultural del Valle, en Cali, desde el 1 enero, como profesor en la Escuela de Teatro.
                 </p>
               </div>
             </div>
@@ -309,10 +309,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Realizó Investigación folclórica en Guapi- Cauca. 
+                * Realizó Investigación folclórica en Guapi- Cauca. 
                 </p>
                 <p className="description">
-                Ocupa el cargo de subdirector de la Escuela Departamental de Teatro en Bellas Artes de Cali. 
+                * Ocupa el cargo de subdirector de la Escuela Departamental de Teatro en Bellas Artes de Cali. 
                 </p>
               </div>
             </div>
@@ -329,7 +329,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Director editorial del libro “La música colonial en Colombia” de Robert Stevenson, Editorial América de Cali.
+                * Director editorial del libro "La música colonial en Colombia" de Robert Stevenson, Editorial América de Cali.
                 </p>
               </div>
             </div>
@@ -346,10 +346,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Estudia en Incolda , Administración Financiera (1969 a 1970).
+                * Estudia en Incolda , Administración Financiera (1969 a 1970).
                 </p>
                 <p className="description">
-                Comienza a dictar clases de historia del teatro en Bellas Artes.
+                * Comienza a dictar clases de historia del teatro en Bellas Artes.
                 </p>
               </div>
             </div>
@@ -366,10 +366,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Con motivo de los Juegos Panamericanos de Cali, dicta un ciclo de conferencias a profesionales sobre la cultura colombiana en la Universidad del Valle.
+                * Con motivo de los Juegos Panamericanos de Cali, dicta un ciclo de conferencias a profesionales sobre la cultura colombiana en la Universidad del Valle.
                 </p>
                 <p className="description">
-                Ocupa el cargo de director de la Escuela Departamental de Teatro de Bellas Artes (1971 a 1975).
+                * Ocupa el cargo de director de la Escuela Departamental de Teatro de Bellas Artes (1971 a 1975).
                 </p>
               </div>
             </div>
@@ -386,10 +386,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Cumple 20 años dirigiendo la escuela de teatro del Instituto Popular de Cultura.
+                * Cumple 20 años dirigiendo la escuela de teatro del Instituto Popular de Cultura.
                 </p>
                 <p className="description">
-                Publica el libro Folclor y Cultura General con el Instituto Popular de Cultura.
+                * Publica el libro Folclor y Cultura General con el Instituto Popular de Cultura.
                 </p>
               </div>
             </div>
@@ -412,7 +412,7 @@ const TimeLineComponent = () => {
                 * Fue coescritor de los reglamentos y estatutos de la Fundación Promúsica Nacional de Ginebra, FUNMUSICA.
                 </p>
                 <p className="description">
-                * Miembro del comité técnico permanente de la Fundación y creador del Centro de Documentación Musical “Hernán Restrepo Duque”.
+                * Miembro del comité técnico permanente de la Fundación y creador del Centro de Documentación Musical "Hernán Restrepo Duque".
                 </p>
               </div>
             </div>
@@ -429,7 +429,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Se retira de Bellas Artes después de laborar para la institución 13 años y 11 meses.
+                * Se retira de Bellas Artes después de laborar para la institución 13 años y 11 meses.
                 </p>
               </div>
             </div>
@@ -446,10 +446,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Miembro fundador y asesor folclórico y pedagógico del Instituto Colombiano de Ballet Clásico de Cali (Incolballet).
+                * Miembro fundador y asesor folclórico y pedagógico del Instituto Colombiano de Ballet Clásico de Cali (Incolballet).
                 </p>
                 <p className="description">
-                Director de la sección de Folclore y Festivales del Centro de documentación musical de Colcultura, Bogotá (1978 – 1980).
+                * Director de la sección de Folclore y Festivales del Centro de documentación musical de Colcultura, Bogotá (1978 – 1980).
                 </p>
               </div>
             </div>
@@ -466,22 +466,22 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Ingresa a Colcultura Bogotá, como director de la sección de “Folclor y Festivales”.
+                * Ingresa a Colcultura Bogotá, como director de la sección de "Folclor y Festivales".
                 </p>
                 <p className="description">
-                Realizó un álbum de 3 discos sobre el folclor del Litoral Pacífico.
+                * Realizó un álbum de 3 discos sobre el folclor del Litoral Pacífico.
                 </p>
                 <p className="description">
-                Hizo el primer encuentro nacional de Rondas Infantiles en Armero (Tolima).
+                * Hizo el primer encuentro nacional de Rondas Infantiles en Armero (Tolima).
                 </p>
                 <p className="description">
-                Realizó el Festival de la Cumbiamba.
+                * Realizó el Festival de la Cumbiamba.
                 </p>
                 <p className="description">
-                Coordinó por Colombia, la primera Tribuna Latinoamericana (Trimalca), primer encuentro de música de América Latina convocado por la Unesco.
+                * Coordinó por Colombia, la primera Tribuna Latinoamericana (Trimalca), primer encuentro de música de América Latina convocado por la Unesco.
                 </p>
                 <p className="description">
-                Realizó el evento Apoteosis Colombia.
+                * Realizó el evento Apoteosis Colombia.
                 </p>
               </div>
             </div>
@@ -498,13 +498,13 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Se vincula a la oficina de diseño especializado de caligrafía clásica de Gladys González Arévalo (Artestudio).
+                * Se vincula a la oficina de diseño especializado de caligrafía clásica de Gladys González Arévalo (Artestudio).
                 </p>
                 <p className="description">
-                Entra a integrar el comité técnico permanente de Funmúsica.
+                * Entra a integrar el comité técnico permanente de Funmúsica.
                 </p>
                 <p className="description">
-                Profesor de folclore en el Centro de Orientación Musical Francisco Cristancho, Bogotá 1980-1993.
+                * Profesor de folclore en el Centro de Orientación Musical Francisco Cristancho, Bogotá 1980-1993.
                 </p>
               </div>
             </div>
@@ -521,7 +521,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Escribe para Funmúsica el libro “Historia de un hombre que se convirtió en símbolo”.
+                * Escribe para Funmúsica el libro "Historia de un hombre que se convirtió en símbolo".
                 </p>
               </div>
             </div>
@@ -538,7 +538,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Representante por Colombia en el primer Congreso Interamericano de Etnomusicología y Folclor (Inidef) en Caracas Venezuela.
+                * Representante por Colombia en el primer Congreso Interamericano de Etnomusicología y Folclor (Inidef) en Caracas Venezuela.
                 </p>
               </div>
             </div>
@@ -555,7 +555,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                En Artestudio editores, publica el libro "El Folclor de Colombia", Práctica de la identidad cultural.
+                * En Artestudio editores, publica el libro "El Folclor de Colombia", Práctica de la identidad cultural.
                 </p>
               </div>
             </div>
@@ -572,10 +572,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Representante por Colombia y relator del 45 Congreso de Americanistas, Universidad de los Andes, Bogotá.
+                * Representante por Colombia y relator del 45 Congreso de Americanistas, Universidad de los Andes, Bogotá.
                 </p>
                 <p className="description">
-                Recolección de rondas y juegos infantiles para el plan de incorporación de la cultura popular a la educación de la “Escuela Nueva” del Ministerio de educación, OEA y Museo de Artes y Tradiciones populares.
+                * Recolección de rondas y juegos infantiles para el plan de incorporación de la cultura popular a la educación de la "Escuela Nueva" del Ministerio de educación, OEA y Museo de Artes y Tradiciones populares.
                 </p>
               </div>
             </div>
@@ -592,7 +592,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Profesor de folclore Instituto Universitario de Historia, Bogotá 1987 - 1993.
+                * Profesor de folclore Instituto Universitario de Historia, Bogotá 1987 - 1993.
                 </p>
               </div>
             </div>
@@ -609,13 +609,13 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Se vincula al Instituto Distrital de Cultura y Turismo en Bogotá.
+                * Se vincula al Instituto Distrital de Cultura y Turismo en Bogotá.
                 </p>
                 <p className="description">
-                En la sala Oriol Rangel realiza un ciclo de homenajes a compositores (70 homenajes en 2 años).
+                * En la sala Oriol Rangel realiza un ciclo de homenajes a compositores (70 homenajes en 2 años).
                 </p>
                 <p className="description">
-                En colaboración con la secretaria ejecutiva del Convenio Andrés Bello, publica el libro “Las Rondas y los Juegos Infantiles -Folclor y Educación”.
+                * En colaboración con la secretaria ejecutiva del Convenio Andrés Bello, publica el libro "Las Rondas y los Juegos Infantiles -Folclor y Educación".
                 </p>
               </div>
             </div>
@@ -632,7 +632,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Director de la Colección “Lecturas de música colombiana” del Instituto Distrital de Cultura y Turismo de Bogotá (Tomos del 1 al 4) (1989-1991).
+                * Director de la Colección "Lecturas de música colombiana" del Instituto Distrital de Cultura y Turismo de Bogotá (Tomos del 1 al 4) (1989-1991).
                 </p>
               </div>
             </div>
@@ -649,10 +649,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Director de la revista “Huella y memoria”.
+                * Director de la revista "Huella y memoria".
                 </p>
                 <p className="description">
-                Director de “Apoteosis Colombiana” con el Instituto Distrital de Cultura y Turismo de Bogotá.
+                * Director de "Apoteosis Colombiana" con el Instituto Distrital de Cultura y Turismo de Bogotá.
                 </p>
               </div>
             </div>
@@ -669,13 +669,13 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                En Funmúsica organiza y dirige  el Centro de Documentación Musical e inicia la publicación de libros sobre compositores colombianos.
+                * En Funmúsica organiza y dirige  el Centro de Documentación Musical e inicia la publicación de libros sobre compositores colombianos.
                 </p>
                 <p className="description">
-                Elabora programas especiales de Apreciación Musical para las emisoras culturales de la Universidad Javeriana de Antioquia y Cauca.
+                * Elabora programas especiales de Apreciación Musical para las emisoras culturales de la Universidad Javeriana de Antioquia y Cauca.
                 </p>
                 <p className="description">
-                Realiza talleres de Apreciación e Historia de la música colombiana en la Casa de la Cultura de Buga, Palmira, El Cerrito y Ginebra en el Valle del Cauca, 1991 - 1997.
+                * Realiza talleres de Apreciación e Historia de la música colombiana en la Casa de la Cultura de Buga, Palmira, El Cerrito y Ginebra en el Valle del Cauca, 1991 - 1997.
                 </p>
               </div>
             </div>
@@ -692,7 +692,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                En Funmúsica, escribe el libro “Hernando Sinisterra Gómez, huella y memoria” Tomo I de la Colección Nuestra Música y el libro Álvaro Romero Sánchez – Una partitura sin fin, Tomo II.
+                * En Funmúsica, escribe el libro "Hernando Sinisterra Gómez, huella y memoria" Tomo I de la Colección Nuestra Música y el libro Álvaro Romero Sánchez – Una partitura sin fin, Tomo II.
                 </p>
               </div>
             </div>
@@ -709,13 +709,13 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                En Funmúsica escribe el libro “Un concierto que dura 20 años”, Tomo III, con motivo de sus 20 años.
+                * En Funmúsica escribe el libro "Un concierto que dura 20 años", Tomo III, con motivo de sus 20 años.
                 </p>
                 <p className="description">
-                Y el libro Pedro Morales Pino – Gloria recobrada, el Tomo IV de la Colección Nuestra Música.
+                * Y el libro Pedro Morales Pino – Gloria recobrada, el Tomo IV de la Colección Nuestra Música.
                 </p>
                 <p className="description">
-                Con la Fundación Armonía de Santander, participa en el Festivalito.
+                * Con la Fundación Armonía de Santander, participa en el Festivalito.
                 </p>
               </div>
             </div>
@@ -732,10 +732,10 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                Con Funmúsica publica el folleto “Palabras sonoras, vocabulario de música”.
+                * Con Funmúsica publica el folleto "Palabras sonoras, vocabulario de música".
                 </p>
                 <p className="description">
-                Johannio Marulanda, su hijo le hace una entrevista y publica el folleto “Una vida dedicada a la cultura colombiana”.
+                * Johannio Marulanda, su hijo le hace una entrevista y publica el folleto "Una vida dedicada a la cultura colombiana".
                 </p>
               </div>
             </div>
@@ -752,7 +752,7 @@ const TimeLineComponent = () => {
               <div className="icon order-2"></div>
               <div className="timeline-content order-3 md:w-1/2 p-3">
                 <p className="description">
-                <span className="font-bold">Partida: </span> Muere el 10 de febrero a los 76 años, estaba trabajando aún para Funmúsica.
+                <span className="font-bold">Partida: </span> * Muere el 10 de febrero a los 76 años, estaba trabajando aún para Funmúsica.
                 </p>
               </div>
             </div>

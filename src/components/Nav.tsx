@@ -8,7 +8,7 @@ const Nav = () => {
     [0, 100],
     ["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 0)"]
   );
-  const height = useTransform(scrollY, [0, 100], [100, 80]);
+  const height = useTransform(scrollY, [0, 100], [130, 80]);
 
   return (
     <motion.div
