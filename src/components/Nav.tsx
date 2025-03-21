@@ -39,7 +39,7 @@ const Nav = () => {
             <a href="/home">Home</a>
             <div className="effect"></div>
           </li>
-          <li className="uppercase relative">
+          <li className="uppercase relative" style={{ whiteSpace: "nowrap" }}>
             <a href="/cronologia-de-vida">CRONOLOGIA DE VIDA</a>
             <div className="effect"></div>
           </li>

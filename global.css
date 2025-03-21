@@ -1148,7 +1148,7 @@ a:hover {
 
 .effect {
   position: absolute;
-  left: -600%;
+  left: -650%;
   -webkit-transition: 0.7s ease-in-out;
   -moz-transition: 0.7s ease-in-out;
   -o-transition: 0.7s ease-in-out;
