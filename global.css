@@ -814,7 +814,7 @@ p.intro {
   padding-right: 0px !important;
   margin-right: 0 !important;
   margin-left: 0 !important;
-  max-width: 1450px !important;
+  width: 85vw !important;
   container-type: inline-size;
   container-name: timeline;
   position: relative;

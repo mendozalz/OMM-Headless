@@ -1,65 +1,44 @@
 export const ciudadInstituto = [
   {
-    ciudad: "Ginebra",
-    instituto: "Funmusica",
+    instituto: "Funmúsica, Ginebra (Valle)",
   },
 ];
 
 export const actividades = [
   {
-    actividad: "Festival Mono Núñez",
+    actividad: "Escribió libros sobre músicos y compositores colombianos.",
   },
   {
-    actividad: "Escribió libros sobre músicos y compositores colombianos",
+    actividad: "Creador y director Centro de Investigación y Documentación Musical de Funmúsica.",
   },
   {
-    actividad: "Centro de Investigación y Documentación musical",
-  },
-  {
-    actividad: "Festivales & Eventos",
-  },
-  {
-    actividad: "Talleres de apreciación musical",
+    actividad: "Realizó Talleres de apreciación musical Colombiana y andina.",
   },
 ];
 
-export const LibrosDocumentos = [
+export const libros = [
   {
-    encabezado: "Libro",
-    titulo: "Hernán Sinisterra Gómez – Huella y memoria",
+    titulo: "Historia de un hombre que se convirtió en símbolo.",
   },
   {
-    encabezado: "Libro",
-    titulo: "Álvaro Romero Sánchez – Una partitura sin fin",
+    titulo: "Hernando Sinisterra, Huella y Memoria.",
   },
   {
-    encabezado: "Libro",
-    titulo: "Un concierto que dura 20 años",
+    titulo: "Álvaro Romero Sánchez, Una partitura sin fín.",
   },
   {
-    encabezado: "Libro",
-    titulo: "Pedro Morales Pino – La gloria recobrada",
+    titulo: "Un Concierto que dura 20 años.",
   },
   {
-    encabezado: "Libro",
-    titulo: "Palabras sonoras – Vocabulario de música",
+    titulo: "Pedro Morales Pino, La gloria recobrada.",
   },
   {
-    encabezado: "Libro",
-    titulo: "La historia de un hombre que se convirtió en símbolo",
-  },
-  {
-    encabezado: "Libro",
-    titulo: "Una mirada histórica al pasillo colombiano",
-  },
-  {
-    encabezado: "Libro",
-    titulo: "Gerardo Arellano: una ausencia inexplicable",
+    titulo: "Palabras sonoras, vocabulario de musica.",
   },
 ];
 
 export const eventosFestivales = [
   {
-    titulo: "Talleres de apreciación de la música colombiana y andina",
+    titulo: "Trabajó con el Festival Mono Núñez.",
   },
 ];

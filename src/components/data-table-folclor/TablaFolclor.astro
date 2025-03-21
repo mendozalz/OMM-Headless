@@ -3,29 +3,20 @@ import {
   actividades,
   ciudadInstituto,
   eventosFestivales,
-  librosDocumentos,
+  libros,
+  revistas,
+  discos
 } from "./data.folclor";
 
-interface CiudadInstituto {
-  ciudad: string;
-  instituto: string;
-}
-interface Actividades {
-  actividad: string;
-}
-
-interface librosDocumentos {
-  encabezado: string;
-  titulo: string;
-}
-
-interface Eventos {
-  titulo: string;
-}
+// Filtrar las revistas que pertenecen a "Bogotá 450 años"
+const bogotaRevistas = revistas.filter(item => 
+  item.titulo.includes("- ") && 
+  !item.titulo.includes("Bogotá 450 años")
+);
 ---
 
 <!-- component -->
-<div class="max-w-container m-auto pt-[100px]">
+<div class="m-auto flex justify-center pt-[100px]">
   <section class="container mx-auto p-6 font-mono">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
@@ -35,7 +26,7 @@ interface Eventos {
             <tr
               class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
             >
-              <th class="px-4 py-3 border-b-[1px] border-black">Ciudad(es)</th>
+              <th class="px-4 py-3 border-b-[1px] border-black">Entidades donde trabajó</th>
               <th class="px-4 py-3 border-b-[1px] hidden lg:block"
                 >Actividades</th
               >
@@ -43,47 +34,50 @@ interface Eventos {
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700">
-              <td class="px-4 py-1 border w-1/2">
-                <div class="flex items-center">
-                  <div class="relative w-8 h-8 mr-3 rounded-full md:block">
-                    <img
-                      class="object-cover w-full h-full rounded-full"
-                      src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg"
-                      alt=""
-                      loading="lazy"
-                    />
-                    <div
-                      class="absolute inset-0 rounded-full shadow-inner"
-                      aria-hidden="true"
-                    >
-                    </div>
-                  </div>
-                  <p class="font-semibold text-black">
-                    {ciudadInstituto[0].ciudad} y {ciudadInstituto[2].ciudad}
-                  </p>
-                </div>
+              <td class="px-4 py-1 border w-1/2 relative" id="instituto-container">
+                <div class="w-full h-full my-3 block lg:absolute top-0" id="instituto-content">
+                  <ul class="list-disc">
                 {
                   ciudadInstituto.map((item) => (
-                    <div class="flex items-center text-sm my-3">
-                      <ul class="list-disc">
-                        <li class="text-xs text-gray-600">
+                        <li class="text-ms text-gray-600 mt-2">
                           * {item.instituto}
                         </li>
-                      </ul>
-                    </div>
                   ))
                 }
+                </ul>
+                </div>
               </td>
-              <td
-                class="px-4 py-3 text-ms font-semibold border w-1/2 hidden lg:block border-none"
-                >{
-                  actividades.map((item) => (
-                    <ul class="px-2">
-                      <li class="list-disc">{item.actividad}</li>
-                    </ul>
-                  ))
-                }</td
-              >
+              <td class="px-4 py-3 text-ms w-full hidden lg:block text-gray-600">
+                <ul class="px-2 list-disc">
+                  {
+                    actividades.map((item, index) => {
+                      if (item.actividad === "Investigaciones realizadas:") {
+                        return (
+                          <>
+                            <li class="mt-2"> * {item.actividad}</li>
+                            <ul class="ml-2">
+                              {actividades.slice(index + 1, index + 5).map(subItem => (
+                                <li class="mt-1 text-pretty">{subItem.actividad}</li>
+                              ))}
+                            </ul>
+                          </>
+                        );
+                      } else if (
+                        !item.actividad.startsWith("-") && 
+                        index > 1 && 
+                        index < actividades.length - 3
+                      ) {
+                        return null;
+                      } else if (index >= actividades.length - 3) {
+                        return <li class="mt-2"> * {item.actividad}</li>;
+                      } else if (index === 0) {
+                        return <li class="mt-2"> * {item.actividad}</li>;
+                      }
+                      return null;
+                    })
+                  }
+                </ul>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -93,47 +87,42 @@ interface Eventos {
             <tr
               class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
             >
-              <th class="px-4 py-3 border-b-[1px] border-black hidden"
-                >Ciudad(es)</th
-              >
               <th class="px-4 py-3 border-b-[1px] border-black">Actividades</th>
             </tr>
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700">
-              <td class="px-4 py-1 border w-1/2 hidden">
-                {
-                  ciudadInstituto.map((item) => (
-                    <div class="flex items-center text-sm my-3">
-                      <div class="relative w-8 h-8 mr-3 rounded-full md:block mt-4">
-                        <img
-                          class="object-cover w-full h-full rounded-full"
-                          src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg"
-                          alt=""
-                          loading="lazy"
-                        />
-                        <div
-                          class="absolute inset-0 rounded-full shadow-inner"
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div>
-                        <p class="font-semibold text-black">{item.ciudad}</p>
-                        <p class="text-xs text-gray-600">{item.instituto}</p>
-                      </div>
-                    </div>
-                  ))
-                }
+              <td class="px-4 py-3 text-ms border w-1/2">
+                <ul class="px-2">
+                  {
+                    actividades.map((item, index) => {
+                      if (item.actividad === "Investigaciones realizadas:") {
+                        return (
+                          <>
+                            <li class="list-disc mt-2">* {item.actividad}</li>
+                            <ul class="ml-2">
+                              {actividades.slice(index + 1, index + 5).map(subItem => (
+                                <li class="mt-1">{subItem.actividad}</li>
+                              ))}
+                            </ul>
+                          </>
+                        );
+                      } else if (
+                        !item.actividad.startsWith("-") && 
+                        index > 1 && 
+                        index < actividades.length - 3
+                      ) {
+                        return null;
+                      } else if (index >= actividades.length - 3) {
+                        return <li class="list-disc mt-2">* {item.actividad}</li>;
+                      } else if (index === 0) {
+                        return <li class="list-disc mt-2">* {item.actividad}</li>;
+                      }
+                      return null;
+                    })
+                  }
+                </ul>
               </td>
-              <td class="px-4 py-3 text-ms font-semibold border w-1/2"
-                >{
-                  actividades.map((item) => (
-                    <ul class="px-2">
-                      <li class="list-disc">* {item.actividad}</li>
-                    </ul>
-                  ))
-                }</td
-              >
             </tr>
           </tbody>
         </table>
@@ -144,84 +133,146 @@ interface Eventos {
               class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
             >
               <th class="px-4 py-3 border-b-[1px] border-black"
-                >LIBROS & DOCUMENTOS</th
+                >Libros</th
               >
-              <th class="px-4 py-3 hidden lg:block">EVENTOS & FESTIVALES</th>
+              <th class="px-4 py-3 hidden lg:block">Revistas</th>
             </tr>
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700">
-              <td class="px-4 py-1 border w-1/2">
+              <td class="px-4 py-1 border w-1/2 relative">
+                <div class="text-ms text-gray-600 my-3 lg:absolute top-0">
                 {
-                  librosDocumentos.map((item) => (
-                    <div class="text-sm my-3">
-                      <div>
-                        <p class="font-semibold text-black text-base mb-4">
-                          {item.encabezado}
-                        </p>
-                        <p class="text-xs text-gray-600">* {item.titulo}</p>
-                      </div>
-                    </div>
-                  ))
-                }
-                <small class="mt-8"
-                  ><b>Escribió con el seudónimo de: Estateraria.</b></small
-                >
+                  libros.map((item) => (
+                      <p>* {item.titulo}</p>
+                    ))
+                  }
+                </div>
               </td>
               <td
-                class="px-4 py-3 text-ms font-semibold border w-1/2 flex flex-col border-none mt-4 hidden lg:block"
-                >{
-                  eventosFestivales.map((item) => (
-                    <ul class="px-2 py-2">
-                      <li class="list-disc">{item.titulo}</li>
-                    </ul>
-                  ))
-                }</td
-              >
+                class="px-4 text-ms border w-full border-none hidden lg:block"
+                >
+                <ul class="py-2 text-ms text-gray-600">
+                {
+                  revistas.map((item, index) => {
+                    if (item.titulo === "Bogotá 450 años – Lecturas de Música Colombiana - 55 revistas:") {
+                      return (
+                        <li class="list-disc my-3">
+                          * {item.titulo} 
+                          <button 
+                            id="openModalBtn" 
+                            class="ml-2 px-3 py-1 mt-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                          >
+                            Ver Listado
+                          </button>
+                        </li>
+                      );
+                    } else if (!item.titulo.includes("- ")) {
+                      return <li class="list-disc my-3">* {item.titulo}</li>;
+                    }
+                    return null;
+                  })
+                }
+                </ul>
+                </td>
             </tr>
           </tbody>
         </table>
-        <!-- 4fila en movil -->
+        <!-- 3ra fila movil -->
         <table class="w-full lg:hidden">
           <thead>
             <tr
               class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
             >
-              <th class="px-4 py-3 border-b-[1px] border-black hidden"
-                >LIBROS & DOCUMENTOS</th
-              >
-              <th class="px-4 py-3">EVENTOS & FESTIVALES</th>
+              <th class="px-4 py-3 border-b-[1px] border-black">Revistas</th>
             </tr>
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700">
-              <td class="px-4 py-1 border w-1/2 hidden">
+              <td class="px-4 py-3 text-ms border w-1/2">
+                <ul class="px-2">
+                  {
+                    revistas.map((item, index) => {
+                      if (item.titulo === "Bogotá 450 años – Lecturas de Música Colombiana - 55 revistas:") {
+                        return (
+                          <li class="list-disc mt-2">
+                            * {item.titulo}
+                            <button 
+                              id="openModalBtnMobile" 
+                              class="ml-2 px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                              Ver Listado
+                            </button>
+                          </li>
+                        );
+                      } else if (!item.titulo.includes("- ")) {
+                        return <li class="list-disc mt-2">* {item.titulo}</li>;
+                      }
+                      return null;
+                    })
+                  }
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 3ra fila -->
+        <table class="w-full">
+          <thead>
+            <tr
+              class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+            >
+              <th class="px-4 py-3 border-b-[1px] border-black"
+                >Discos</th
+              >
+              <th class="px-4 py-3 hidden lg:block">Eventos & Festivales</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="text-gray-700">
+              <td class="px-4 py-1 border w-1/2 relative">
+                <div class="text-ms text-gray-600 my-3 lg:absolute top-0">
                 {
-                  librosDocumentos.map((item) => (
-                    <div class="text-sm my-3">
-                      <div>
-                        <p class="font-semibold text-black">
-                          {item.encabezado}
-                        </p>
-                        <p class="text-xs text-gray-600">{item.titulo}</p>
-                      </div>
-                    </div>
-                  ))
-                }
-                <small class="mt-8"
-                  ><b>Escribió con el seudónimo de: Estateraria.</b></small
-                >
+                  discos.map((item) => (
+                        <p>* {item.titulo}</p>
+                    ))
+                  }
+                </div>
               </td>
               <td
-                class="px-4 py-3 text-ms font-semibold border w-full flex flex-col border-none mt-4"
-                >{
-                  eventosFestivales.map((item) => (
-                    <ul class="px-2 py-2">
-                      <li class="list-disc">{item.titulo}</li>
-                    </ul>
-                  ))
-                }</td
+                class="px-4 text-ms border w-full border-none hidden lg:block"
               >
+                <ul class="py-2 text-ms text-gray-600">
+                  {
+                    eventosFestivales.map((item) => (
+                      <li class="list-disc my-3">* {item.titulo}</li>
+                    ))
+                  }
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 4ta fila movil -->
+        <table class="w-full lg:hidden">
+          <thead>
+            <tr
+              class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+            >
+              <th class="px-4 py-3 border-b-[1px] border-black">Eventos & Festivales</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="text-gray-700">
+              <td class="px-4 py-3 text-ms border w-1/2">
+                <ul class="px-2">
+                  {
+                    eventosFestivales.map((item) => (
+                      <li class="list-disc mt-2">* {item.titulo}</li>
+                    ))
+                  }
+                </ul>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -229,3 +280,104 @@ interface Eventos {
     </div>
   </section>
 </div>
+
+<!-- Modal para mostrar el listado de revistas -->
+<div id="revistasModal" class="fixed inset-0 bg-black bg-opacity-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
+  <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[80vh] overflow-y-auto transform scale-95 transition-all duration-300 ease-in-out">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-4 sticky top-0 bg-white z-10 pb-2">
+        <h3 class="text-xl font-bold text-gray-900">Bogotá 450 años – Lecturas de Música Colombiana</h3>
+        <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors duration-200">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="mt-4 overflow-y-auto max-h-[60vh] pr-2" style="scrollbar-width: thin;">
+        <ul class="space-y-2 text-gray-700">
+          {bogotaRevistas.map((item) => (
+            <li class="py-1">
+              {item.titulo.replace("- ", "*-")}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Funcionalidad para abrir y cerrar el modal
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('revistasModal');
+    const modalContent = modal?.querySelector('.transform');
+    const modalContentScroll = modal?.querySelector('.overflow-y-auto');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const openModalBtnMobile = document.getElementById('openModalBtnMobile');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    
+    // Función para abrir el modal con transición
+    const openModal = () => {
+      if (modal) {
+        // Primero hacemos visible el modal pero sin mostrar contenido aún
+        modal.classList.remove('pointer-events-none');
+        
+        // Pequeño retraso para que la transición se vea bien
+        setTimeout(() => {
+          modal.classList.add('bg-opacity-50');
+          modal.classList.add('opacity-100');
+          if (modalContent) {
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+          }
+        }, 10);
+        
+        document.body.style.overflow = 'hidden'; // Prevenir scroll en el body
+      }
+    };
+    
+    // Función para cerrar el modal con transición
+    const closeModal = () => {
+      if (modal) {
+        modal.classList.remove('bg-opacity-50');
+        modal.classList.remove('opacity-100');
+        if (modalContent) {
+          modalContent.classList.remove('scale-100');
+          modalContent.classList.add('scale-95');
+        }
+        
+        // Esperar a que termine la transición antes de ocultar completamente
+        setTimeout(() => {
+          modal.classList.add('pointer-events-none');
+          document.body.style.overflow = ''; // Restaurar scroll
+        }, 300);
+      }
+    };
+    
+    // Event listeners para los botones
+    if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+    if (openModalBtnMobile) openModalBtnMobile.addEventListener('click', openModal);
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    
+    // Permitir scroll dentro del modal sin cerrar el modal
+    if (modalContentScroll) {
+      modalContentScroll.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+      });
+    }
+    
+    // Cerrar el modal al hacer clic fuera de él
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+    
+    // Cerrar el modal con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('pointer-events-none')) {
+        closeModal();
+      }
+    });
+  });
+</script>
