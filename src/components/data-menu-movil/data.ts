@@ -4,8 +4,8 @@ export const links = [
         href: "/home"
     },
     {
-        title: "Biografia",
-        href: "/biografia"
+        title: "Cronología de vida",
+        href: "/cronologia-de-vida"
     },
     {
         title: "Galeria",
@@ -22,7 +22,7 @@ export const links = [
 
 ]
 
-export const footerLinks = [
+/* export const footerLinks = [
 
     {
         title: "Facebook",
@@ -39,4 +39,4 @@ export const footerLinks = [
         href: "/" 
     }
   
-  ]
+  ] */

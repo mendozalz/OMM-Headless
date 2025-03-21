@@ -40,7 +40,7 @@ const Nav = () => {
             <div className="effect"></div>
           </li>
           <li className="uppercase relative">
-            <a href="/biografia">Biografia</a>
+            <a href="/cronologia-de-vida">CRONOLOGIA DE VIDA</a>
             <div className="effect"></div>
           </li>
           <li className="uppercase relative">

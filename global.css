@@ -223,7 +223,7 @@ html {
   top: 18px;
   & .menuMovil {
     width: 100%;
-    max-height: 400px;
+    max-height: 300px;
     background-color: var(--verde-oscuro);
     border-radius: 25px;
     position: relative;
@@ -321,7 +321,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 100px 40px 50px 40px;
+  padding: 70px 30px 30px 30px;
   height: 100%;
   box-sizing: border-box;
   & .bodyMenuMovil {
@@ -335,7 +335,7 @@ html {
     a {
       text-decoration: none;
       color: white;
-      font-size: 35px;
+      font-size: 25px;
     }
   }
 }
@@ -965,6 +965,9 @@ p.description {
 }
 
 @container timeline (max-width: 640px) {
+  .main-timeline {
+    padding: 0;
+  }
   .timeline {
     flex-direction: column !important;
   }
@@ -975,7 +978,8 @@ p.description {
   }
 
   .main-timeline:before {
-    margin-left: 1px;
+    margin-left: 0px;
+    background: transparent;
   }
 
   .main-timeline .icon {
@@ -983,7 +987,7 @@ p.description {
   }
 
   .main-timeline .timeline-content {
-    padding: 10px 30px;
+    padding: 20px 0px;
   }
 
   .order_1 {
