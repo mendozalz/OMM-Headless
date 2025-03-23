@@ -13,9 +13,9 @@ const postLibros = Astro.props;
     <div class="lg:max-w-[85vw] m-auto">
       <div class="hero-single-libros grid lg:grid-cols-1 lg:pl-8">
         <div class="btnVolver">
-          <a
+          <button
             class="inline-flex cursor-pointer items-center gap-2 self-start rounded-full border px-6 py-2 transition-colors duration-200 hover:border-verde-dark text-verde-oscuro"
-            href="/home/#libros"
+            onclick="window.history.back()"
           >
             <svg
               viewBox="0 -960 960 960"
@@ -28,7 +28,7 @@ const postLibros = Astro.props;
                 fill="#698084"></path></svg
             >
             Volver
-          </a>
+          </button>
         </div>
         <!-- Libros Portada -->
         <!-- {
@@ -54,8 +54,8 @@ const postLibros = Astro.props;
               class="w-full h-[380px] rounded-xl object-cover"
               width="1020"
               height="320"
-              src={postLibros.acfLibros.caratulaLibro.node.mediaItemUrl}
-              alt=""
+              src={postLibros.acfLibros.caratulaLibro?.node?.mediaItemUrl || '/img/portada-default.jpg'}
+              alt={postLibros.title || 'Portada del libro'}
             />
           </div>
           <!-- Titulo -->
@@ -78,7 +78,7 @@ const postLibros = Astro.props;
               }
             </div>
             <DateComponent
-              fechaPublicacion={postLibros.acfLibros.fechaPublicacion}
+              fechaPublicacion={postLibros.acfLibros?.fechaPublicacion || ''}
             />
           </div>
         </div>
@@ -102,9 +102,9 @@ const postLibros = Astro.props;
     </div>
     <div class="img-autor">
       <Autor
-        imgAutor={postLibros.acfLibros.autor.fotoAutor.node.mediaItemUrl}
-        autor={postLibros.acfLibros.autor.autorPublicacion}
-        bio={postLibros.acfLibros.autor.biografiaDelAutor}
+        imgAutor={postLibros.acfLibros.autor.fotoAutor?.node?.mediaItemUrl || '/img/autor-default.jpg'}
+        autor={postLibros.acfLibros.autor.autorPublicacion || 'Autor desconocido'}
+        bio={postLibros.acfLibros.autor.biografiaDelAutor || 'No hay información biográfica disponible.'}
       />
     </div>
   </div>

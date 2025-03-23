@@ -202,8 +202,9 @@ const AdvancedSearch = ({ posts }) => {
                     .slice(0, 4)}
                     mediaItemUrl={resultado.node.acfLibros.caratulaLibro.node.mediaItemUrl}
                     altText={resultado.node.acfLibros.caratulaLibro.node.altText}
+                    slug={resultado.node.slug}
                   />                  
-                  {resultado.node.acfLibros.verEn && (
+                  {/* {resultado.node.acfLibros.verEn && (
                     <div className="disponibleText mt-3 ml-2">
                       <a
                         className="font-bold"
@@ -216,7 +217,7 @@ const AdvancedSearch = ({ posts }) => {
                         </small>
                       </a>
                     </div>
-                  )}
+                  )} */}
                 </li>
               ))}
             </ul>

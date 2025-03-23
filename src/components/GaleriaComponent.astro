@@ -2,18 +2,57 @@
 import { getGalImg } from "../utils/GraphQL";
 
 type Gal = {
-  gallery: string;
+  id: string;
+  title: string;
+  altText: string;
   sourceUrl: string;
 };
 
 const galleries = await getGalImg();
+console.log("Galerías:", galleries);
 
-let images = galleries.flatMap((gallery: Gal) => gallery.sourceUrl);
-images = images.reverse();
+// Categorizar imágenes basado en el texto alt o title
+const imagenesFamiliares = galleries.filter((gallery: Gal) => 
+  gallery.altText?.toLowerCase().includes('familiar') || 
+  gallery.altText?.toLowerCase().includes('familia') || 
+  gallery.title?.toLowerCase().includes('familiar') || 
+  gallery.title?.toLowerCase().includes('familia')
+);
 
-// Dividir las imágenes en dos grupos
-const imagenesFamiliares = images.slice(0, Math.floor(images.length / 2));
-const imagenesTrabajos = images.slice(Math.floor(images.length / 2));
+const imagenesActor = galleries.filter((gallery: Gal) => 
+  gallery.altText?.toLowerCase().includes('actor') || 
+  gallery.altText?.toLowerCase().includes('teatro') || 
+  gallery.title?.toLowerCase().includes('actor') || 
+  gallery.title?.toLowerCase().includes('teatro')
+);
+
+const imagenesInvestigador = galleries.filter((gallery: Gal) => 
+  gallery.altText?.toLowerCase().includes('investigador') || 
+  gallery.altText?.toLowerCase().includes('investigación') || 
+  gallery.title?.toLowerCase().includes('investigador') || 
+  gallery.title?.toLowerCase().includes('investigación')
+);
+
+const imagenesFunmusica = galleries.filter((gallery: Gal) => 
+  gallery.altText?.toLowerCase().includes('funmusica') || 
+  gallery.altText?.toLowerCase().includes('música') || 
+  gallery.title?.toLowerCase().includes('funmusica') || 
+  gallery.title?.toLowerCase().includes('música')
+);
+
+// Si alguna imagen no tiene categoría específica, asignarla a "Otros"
+const imagenesOtras = galleries.filter((gallery: Gal) => 
+  !imagenesFamiliares.includes(gallery) && 
+  !imagenesActor.includes(gallery) && 
+  !imagenesInvestigador.includes(gallery) && 
+  !imagenesFunmusica.includes(gallery)
+);
+
+console.log("Familiares:", imagenesFamiliares);
+console.log("Actor:", imagenesActor);
+console.log("Investigador:", imagenesInvestigador);
+console.log("Funmusica:", imagenesFunmusica);
+console.log("Otras:", imagenesOtras);
 
 interface Props {
   pt: string;
@@ -41,7 +80,7 @@ const { pt, px, pb } = Astro.props;
         <details class="detail-item" open>
           <summary class="summary-header">
             <div class="summary-content">
-              <h2>Imágenes Familiares</h2>
+              <h2>FAMILIARES</h2>
             </div>
             <div class="summary-icon">
               <svg
@@ -62,9 +101,9 @@ const { pt, px, pb } = Astro.props;
           <div class="gallery-container">
             <div id="gallery" class="gallery-grid">
               {
-                imagenesFamiliares.map((imageId: string, index: number) => (
+                imagenesFamiliares.map((image: Gal, index: number) => (
                   <div>
-                    <img src={imageId} alt={`Imagen Familiar ${index + 1}`} />
+                    <img src={image.sourceUrl} alt={image.altText || `Imagen Familiar ${index + 1}`} />
                     <a href={`#lightbox-familiar-${index + 1}`} />
                   </div>
                 ))
@@ -76,7 +115,7 @@ const { pt, px, pb } = Astro.props;
         <details class="detail-item">
           <summary class="summary-header">
             <div class="summary-content">
-              <h2>Trabajo Investigativo</h2>
+              <h2>ACTOR</h2>
             </div>
             <div class="summary-icon">
               <svg
@@ -97,30 +136,152 @@ const { pt, px, pb } = Astro.props;
           <div class="gallery-container">
             <div id="gallery" class="gallery-grid">
               {
-                imagenesTrabajos.map((imageId: string, index: number) => (
+                imagenesActor.map((image: Gal, index: number) => (
                   <div>
-                    <img src={imageId} alt={`Imagen Trabajo ${index + 1}`} />
-                    <a href={`#lightbox-trabajo-${index + 1}`} />
+                    <img src={image.sourceUrl} alt={image.altText || `Imagen Actor ${index + 1}`} />
+                    <a href={`#lightbox-actor-${index + 1}`} />
                   </div>
                 ))
               }
             </div>
           </div>
         </details>
+
+        <details class="detail-item">
+          <summary class="summary-header">
+            <div class="summary-content">
+              <h2>INVESTIGADOR</h2>
+            </div>
+            <div class="summary-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </summary>
+          <div class="gallery-container">
+            <div id="gallery" class="gallery-grid">
+              {
+                imagenesInvestigador.map((image: Gal, index: number) => (
+                  <div>
+                    <img src={image.sourceUrl} alt={image.altText || `Imagen Investigador ${index + 1}`} />
+                    <a href={`#lightbox-investigador-${index + 1}`} />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </details>
+
+        <details class="detail-item">
+          <summary class="summary-header">
+            <div class="summary-content">
+              <h2>FUNMUSICA</h2>
+            </div>
+            <div class="summary-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </summary>
+          <div class="gallery-container">
+            <div id="gallery" class="gallery-grid">
+              {
+                imagenesFunmusica.map((image: Gal, index: number) => (
+                  <div>
+                    <img src={image.sourceUrl} alt={image.altText || `Imagen Funmusica ${index + 1}`} />
+                    <a href={`#lightbox-funmusica-${index + 1}`} />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </details>
+
+        {imagenesOtras.length > 0 && (
+          <details class="detail-item">
+            <summary class="summary-header">
+              <div class="summary-content">
+                <h2>OTRAS IMÁGENES</h2>
+              </div>
+              <div class="summary-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </summary>
+            <div class="gallery-container">
+              <div id="gallery" class="gallery-grid">
+                {
+                  imagenesOtras.map((image: Gal, index: number) => (
+                    <div>
+                      <img src={image.sourceUrl} alt={image.altText || `Imagen ${index + 1}`} />
+                      <a href={`#lightbox-otra-${index + 1}`} />
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </details>
+        )}
       </div>
 
       {/* Lightboxes */}
       {
         [
-          ...imagenesFamiliares.map((imageId: string, index: number) => ({
+          ...imagenesFamiliares.map((image: Gal, index: number) => ({
             id: `lightbox-familiar-${index + 1}`,
-            src: imageId,
-            alt: `Imagen Familiar ${index + 1}`,
+            src: image.sourceUrl,
+            alt: image.altText || `Imagen Familiar ${index + 1}`,
           })),
-          ...imagenesTrabajos.map((imageId: string, index: number) => ({
-            id: `lightbox-trabajo-${index + 1}`,
-            src: imageId,
-            alt: `Imagen Trabajo ${index + 1}`,
+          ...imagenesActor.map((image: Gal, index: number) => ({
+            id: `lightbox-actor-${index + 1}`,
+            src: image.sourceUrl,
+            alt: image.altText || `Imagen Actor ${index + 1}`,
+          })),
+          ...imagenesInvestigador.map((image: Gal, index: number) => ({
+            id: `lightbox-investigador-${index + 1}`,
+            src: image.sourceUrl,
+            alt: image.altText || `Imagen Investigador ${index + 1}`,
+          })),
+          ...imagenesFunmusica.map((image: Gal, index: number) => ({
+            id: `lightbox-funmusica-${index + 1}`,
+            src: image.sourceUrl,
+            alt: image.altText || `Imagen Funmusica ${index + 1}`,
+          })),
+          ...imagenesOtras.map((image: Gal, index: number) => ({
+            id: `lightbox-otra-${index + 1}`,
+            src: image.sourceUrl,
+            alt: image.altText || `Imagen ${index + 1}`,
           })),
         ].map(({ id, src, alt }) => (
           <div class="lightbox" id={id}>
@@ -195,205 +356,262 @@ const { pt, px, pb } = Astro.props;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
-  .summary-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #075666;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-
   .summary-icon svg {
     transition: transform 0.3s ease;
-    stroke: #000000;
-    stroke-width: 3;
-  }
-
-  details[open] .summary-icon {
-    background: #064f5e;
   }
 
   details[open] .summary-icon svg {
     transform: rotate(180deg);
   }
 
-  .summary-header:hover .summary-icon {
-    background: #064f5e;
-    transform: scale(1.1);
-  }
-
   .gallery-container {
-    background: #1a1a1a;
     padding: 1.5rem;
-  }
-
-  /* Eliminar el triángulo por defecto del details */
-  details > summary {
-    list-style: none;
-  }
-  details > summary::-webkit-details-marker {
-    display: none;
+    background: #1a1a1a;
   }
 
   .gallery-grid {
     display: grid;
-    grid-template: repeat(6, 1fr) / repeat(6, 1fr);
-    grid-gap: 0.5em;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
   }
 
-  .gallery-grid > div {
-    overflow: hidden;
+  .gallery-grid div {
     position: relative;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
   }
 
-  .gallery-grid > div:hover {
-    transform: scale(1.02);
-  }
-
-  .gallery-grid > div:nth-child(6n + 1) {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .gallery-grid > div:nth-child(2) {
-    grid-column: span 3;
-    grid-row: span 3;
-  }
-
-  .gallery-grid > div:nth-child(4) {
-    grid-column: span 1;
-    grid-row: span 2;
+  .gallery-grid div:hover {
+    transform: scale(1.03);
   }
 
   .gallery-grid img {
     width: 100%;
-    height: 100%;
+    height: 200px;
     object-fit: cover;
-    transition: all 0.3s ease;
-  }
-
-  .gallery-grid > div:hover img {
-    filter: brightness(0.8);
+    display: block;
+    border-radius: 8px;
   }
 
   .gallery-grid a {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  /* Lightbox Styles */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    color: white;
-    background: rgba(0, 0, 0, 0);
-    transition: background 0.3s ease;
-  }
-
-  .gallery-grid > div:hover a {
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  @media (max-width: 800px) {
-    .gallery-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .gallery-grid > div {
-      width: calc(50% - 0.5rem);
-      aspect-ratio: 1;
-    }
-  }
-
-  @media (max-width: 500px) {
-    .gallery-grid > div {
-      width: 100%;
-    }
-  }
-
-  /* Mantener estilos existentes del lightbox */
-  .lightbox {
-    display: none;
-    position: fixed;
     z-index: 999;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 1em;
-    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
   }
 
   .lightbox:target {
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .lightbox .content {
+    position: relative;
     max-width: 90%;
     max-height: 90%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 
   .lightbox img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 90vh;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
-  .close {
+  .lightbox .close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 2rem;
-    height: 2rem;
-    background: white;
+    top: -40px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    color: #000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: black;
     font-weight: bold;
-    transition: all 0.3s ease;
   }
 
-  .close:hover {
-    transform: scale(1.1);
-    background: #f0f0f0;
+  .lightbox .close::before,
+  .lightbox .close::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: #000;
+    transform: rotate(45deg);
   }
 
-  .close::after {
-    content: "×";
-    font-size: 1.5rem;
+  .lightbox .close::after {
+    transform: rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .gallery-grid img {
+      height: 150px;
+    }
   }
 </style>
 
 <script>
-  // Animación suave para el contenido
-  document.querySelectorAll("details").forEach((detail) => {
-    detail.addEventListener("toggle", () => {
-      if (detail.open) {
-        const content = detail.querySelector(
-          ".gallery-container"
-        ) as HTMLElement;
+  // Función para cerrar todos los detalles excepto el actual
+  function closeOtherDetails(currentDetail) {
+    document.querySelectorAll("details").forEach((detail) => {
+      if (detail !== currentDetail && detail.open) {
+        // Animación de cierre suave
+        const content = detail.querySelector(".gallery-container");
         if (content) {
-          content.style.display = "block";
-          const height = content.offsetHeight;
-          content.style.height = "0";
-          content.offsetHeight; // force reflow
-          content.style.transition = "height 0.3s ease";
-          content.style.height = height + "px";
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.opacity = "1";
+          
+          // Forzar un reflow para que la transición funcione
+          content.offsetHeight;
+          
+          // Iniciar la animación de cierre
+          content.style.maxHeight = "0";
+          content.style.opacity = "0";
+          
+          // Esperar a que termine la animación antes de cerrar el details
+          setTimeout(() => {
+            detail.open = false;
+          }, 300);
+        } else {
+          detail.open = false;
         }
       }
     });
+  }
+
+  // Configurar transiciones y comportamiento para todos los details
+  document.addEventListener("DOMContentLoaded", () => {
+    const allDetails = document.querySelectorAll("details");
+    
+    // Preparar todos los contenedores para animaciones
+    allDetails.forEach((detail) => {
+      const content = detail.querySelector(".gallery-container");
+      if (content) {
+        content.style.overflow = "hidden";
+        content.style.transition = "max-height 0.5s ease, opacity 0.5s ease";
+        
+        if (!detail.open) {
+          content.style.maxHeight = "0";
+          content.style.opacity = "0";
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.opacity = "1";
+        }
+      }
+    });
+    
+    // Añadir event listeners para cada details
+    allDetails.forEach((detail) => {
+      detail.addEventListener("click", (event) => {
+        // Solo procesar clics en el summary
+        if (event.target.closest("summary")) {
+          // Prevenir el comportamiento por defecto para manejarlo manualmente
+          event.preventDefault();
+          
+          if (!detail.open) {
+            // Cerrar otros detalles primero
+            closeOtherDetails(detail);
+            
+            // Abrir este detalle con animación
+            detail.open = true;
+            const content = detail.querySelector(".gallery-container");
+            if (content) {
+              // Iniciar con altura cero
+              content.style.maxHeight = "0";
+              content.style.opacity = "0";
+              
+              // Forzar un reflow para que la transición funcione
+              content.offsetHeight;
+              
+              // Animar a la altura completa
+              setTimeout(() => {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = "1";
+              }, 10);
+            }
+          } else {
+            // Si ya está abierto, cerrarlo con animación
+            const content = detail.querySelector(".gallery-container");
+            if (content) {
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.style.opacity = "1";
+              
+              // Forzar un reflow para que la transición funcione
+              content.offsetHeight;
+              
+              // Animar al cierre
+              content.style.maxHeight = "0";
+              content.style.opacity = "0";
+              
+              // Cerrar el details después de la animación
+              setTimeout(() => {
+                detail.open = false;
+              }, 500);
+            } else {
+              detail.open = false;
+            }
+          }
+        }
+      });
+    });
+    
+    // Asegurarse de que solo un details esté abierto inicialmente
+    let foundOpen = false;
+    allDetails.forEach((detail) => {
+      if (detail.open) {
+        if (foundOpen) {
+          detail.open = false;
+        } else {
+          foundOpen = true;
+          const content = detail.querySelector(".gallery-container");
+          if (content) {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.opacity = "1";
+          }
+        }
+      }
+    });
+    
+    // Si ninguno está abierto, abrir el primero
+    if (!foundOpen && allDetails.length > 0) {
+      allDetails[0].open = true;
+      const content = allDetails[0].querySelector(".gallery-container");
+      if (content) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.opacity = "1";
+      }
+    }
   });
 </script>

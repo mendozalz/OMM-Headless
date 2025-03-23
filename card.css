@@ -67,3 +67,34 @@
   opacity: 0;
   z-index: -9;
 }
+
+/* Estilos para la nueva tarjeta simple sin efecto hover */
+.card-simple {
+  width: var(--card-width);
+  height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 0;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-simple:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.caratula-libro {
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.libro-info {
+  width: 100%;
+  margin-top: 1rem;
+}
