@@ -9,8 +9,8 @@ interface Props{
 
 const { autor, bio, imgAutor } = Astro.props;
 ---
-<section class="mx-auto max-w-screen-lg h-auto px-7 lg:px-0 mb-5 flex flex-col lg:flex-row flex-nowrap gap-4 lg:gap-10 items-center">
-    <img style="border-radius: 50%;" src={imgAutor} width="200" class="relative w-[200px] lg:w-[180px] bg-slate-200 p-10 rounded-full" alt="Foto de Octavio Marulanda" /> 
+<section class="mx-auto max-w-screen-lg h-auto px-7 lg:px-0 mb-5 flex flex-col lg:flex-row flex-nowrap gap-0 lg:gap-2 items-center">
+    <img style="border-radius: 50%;" src={imgAutor} width="200" class="relative w-[200px] lg:w-[180px] bg-slate-200 p-2 rounded-full" alt="Foto de Octavio Marulanda" /> 
 
     <div class="
             prose lg:prose-xl max-w-none 
@@ -21,8 +21,8 @@ const { autor, bio, imgAutor } = Astro.props;
             prose-headings:font-pacamara-space prose-h2:mb-7
             dark:prose-a:text-white dark:prose-a:hover:text-pacamara-accent dark:prose-p:text-verde-oscuro
         ">
-        <h3 class="text-verde-dark">{autor}</h3>
-        <p>{bio}</p>
+        <h3 class="text-verde-dark text-[18px] lg:text-[24px] text-center lg:text-left">{autor}</h3>
+        <p class="text-center lg:text-left">{bio}</p>
     </div>
 </section>
 <div class="w-full h-[3px] overflow-hidden gradient-line"></div>

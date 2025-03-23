@@ -16,6 +16,10 @@ export const links = [
         href: "/biblioteca"
     },
     {
+        title: "Testimonios",
+        href: "/resenas"
+    },
+    {
         title: "Contacto",
         href: "/contacto"
     },

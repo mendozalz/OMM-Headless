@@ -283,25 +283,35 @@ const bogotaRevistas = revistas.filter(item =>
 
 <!-- Modal para mostrar el listado de revistas -->
 <div id="revistasModal" class="fixed inset-0 bg-black bg-opacity-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
-  <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[80vh] overflow-y-auto transform scale-95 transition-all duration-300 ease-in-out">
-    <div class="p-6">
-      <div class="flex justify-between items-center mb-4 sticky top-0 bg-white z-10 pb-2">
-        <h3 class="text-xl font-bold text-gray-900">Bogotá 450 años – Lecturas de Música Colombiana</h3>
-        <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors duration-200">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="mt-4 overflow-y-auto max-h-[60vh] pr-2">
-        <ul class="space-y-2 text-gray-700">
-          {bogotaRevistas.map((item) => (
-            <li class="py-1">
-              {item.titulo.replace("- ", "*-")}
-            </li>
-          ))}
-        </ul>
-      </div>
+  <div class="w-full max-w-3xl transform overflow-hidden rounded-lg bg-white shadow-xl transition-all duration-300 flex flex-col scale-95" style="max-height: calc(100vh - 2rem)">
+    <div class="flex justify-between items-center p-3 sm:p-4 md:p-6 border-b border-gray-200 bg-verde-claro bg-opacity-20 sticky top-0">
+      <h3 class="text-xl sm:text-2xl font-bold text-verde-oscuro">Bogotá 450 años – Lecturas de Música Colombiana</h3>
+      <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700 transition-colors duration-200 p-2 rounded-full hover:bg-gray-100">
+        <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div 
+      class="p-3 sm:p-4 md:p-6 overflow-y-auto" 
+      style="max-height: calc(100vh - 12rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch;"
+      id="modalContent"
+    >
+      <ul class="space-y-2 text-gray-700 prose max-w-none leading-relaxed text-sm sm:text-base">
+        {bogotaRevistas.map((item) => (
+          <li class="py-1">
+            {item.titulo.replace("- ", "*-")}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="p-3 sm:p-4 border-t border-gray-200 flex justify-end bg-gray-50">
+      <button 
+        id="closeModalBtnFooter" 
+        class="px-3 sm:px-4 py-2 bg-verde-oscuro text-white rounded hover:bg-verde-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-verde-oscuro focus:ring-opacity-50"
+      >
+        Cerrar
+      </button>
     </div>
   </div>
 </div>
@@ -311,14 +321,46 @@ const bogotaRevistas = revistas.filter(item =>
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('revistasModal');
     const modalContent = modal?.querySelector('.transform');
-    const modalContentScroll = modal?.querySelector('.overflow-y-auto');
+    const modalScrollableContent = document.getElementById('modalContent');
     const openModalBtn = document.getElementById('openModalBtn');
     const openModalBtnMobile = document.getElementById('openModalBtnMobile');
     const closeModalBtn = document.getElementById('closeModalBtn');
+    const closeModalBtnFooter = document.getElementById('closeModalBtnFooter');
+    
+    // Variables para almacenar la posición original del scroll
+    let scrollY = 0;
+    
+    // Función para prevenir el scroll en el documento cuando el modal está abierto
+    const preventDefaultScroll = (e: WheelEvent): void => {
+      // Solo prevenir el scroll en el documento si el evento no viene del contenido del modal
+      if (modalScrollableContent && !modalScrollableContent.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    };
+    
+    // Manejar el scroll táctil
+    const handleTouchMove = (e: TouchEvent): void => {
+      if (modalScrollableContent && !modalScrollableContent.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    };
     
     // Función para abrir el modal con transición
     const openModal = () => {
       if (modal) {
+        // Guardar la posición actual del scroll
+        scrollY = window.scrollY;
+        
+        // Bloquear el scroll en el documento
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.style.top = `-${scrollY}px`;
+        
+        // Añadir event listeners para prevenir scroll
+        document.addEventListener('wheel', preventDefaultScroll, { passive: false });
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        
         // Primero hacemos visible el modal pero sin mostrar contenido aún
         modal.classList.remove('pointer-events-none');
         
@@ -331,8 +373,6 @@ const bogotaRevistas = revistas.filter(item =>
             modalContent.classList.add('scale-100');
           }
         }, 10);
-        
-        document.body.style.overflow = 'hidden'; // Prevenir scroll en el body
       }
     };
     
@@ -349,7 +389,18 @@ const bogotaRevistas = revistas.filter(item =>
         // Esperar a que termine la transición antes de ocultar completamente
         setTimeout(() => {
           modal.classList.add('pointer-events-none');
-          document.body.style.overflow = ''; // Restaurar scroll
+          
+          // Eliminar event listeners
+          document.removeEventListener('wheel', preventDefaultScroll);
+          document.removeEventListener('touchmove', handleTouchMove);
+          
+          // Restaurar el scroll
+          document.body.style.position = '';
+          document.body.style.width = '';
+          document.body.style.top = '';
+          document.body.style.overflow = '';
+          window.scrollTo(0, scrollY);
+          
         }, 300);
       }
     };
@@ -358,13 +409,7 @@ const bogotaRevistas = revistas.filter(item =>
     if (openModalBtn) openModalBtn.addEventListener('click', openModal);
     if (openModalBtnMobile) openModalBtnMobile.addEventListener('click', openModal);
     if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-    
-    // Permitir scroll dentro del modal sin cerrar el modal
-    if (modalContentScroll) {
-      modalContentScroll.addEventListener('wheel', (e) => {
-        e.stopPropagation();
-      });
-    }
+    if (closeModalBtnFooter) closeModalBtnFooter.addEventListener('click', closeModal);
     
     // Cerrar el modal al hacer clic fuera de él
     if (modal) {

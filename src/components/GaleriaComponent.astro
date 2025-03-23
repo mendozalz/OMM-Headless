@@ -9,7 +9,6 @@ type Gal = {
 };
 
 const galleries = await getGalImg();
-console.log("Galerías:", galleries);
 
 // Categorizar imágenes basado en el texto alt o title
 const imagenesFamiliares = galleries.filter((gallery: Gal) => 
@@ -48,12 +47,6 @@ const imagenesOtras = galleries.filter((gallery: Gal) =>
   !imagenesFunmusica.includes(gallery)
 );
 
-console.log("Familiares:", imagenesFamiliares);
-console.log("Actor:", imagenesActor);
-console.log("Investigador:", imagenesInvestigador);
-console.log("Funmusica:", imagenesFunmusica);
-console.log("Otras:", imagenesOtras);
-
 interface Props {
   pt: string;
   px: string;
@@ -77,7 +70,7 @@ const { pt, px, pb } = Astro.props;
       </h1>
 
       <div class="details-container">
-        <details class="detail-item" open>
+        <details class="detail-item gallery-detail" open>
           <summary class="summary-header">
             <div class="summary-content">
               <h2>FAMILIARES</h2>
@@ -112,7 +105,7 @@ const { pt, px, pb } = Astro.props;
           </div>
         </details>
 
-        <details class="detail-item">
+        <details class="detail-item gallery-detail">
           <summary class="summary-header">
             <div class="summary-content">
               <h2>ACTOR</h2>
@@ -147,7 +140,7 @@ const { pt, px, pb } = Astro.props;
           </div>
         </details>
 
-        <details class="detail-item">
+        <details class="detail-item gallery-detail">
           <summary class="summary-header">
             <div class="summary-content">
               <h2>INVESTIGADOR</h2>
@@ -182,7 +175,7 @@ const { pt, px, pb } = Astro.props;
           </div>
         </details>
 
-        <details class="detail-item">
+        <details class="detail-item gallery-detail">
           <summary class="summary-header">
             <div class="summary-content">
               <h2>FUNMUSICA</h2>
@@ -218,7 +211,7 @@ const { pt, px, pb } = Astro.props;
         </details>
 
         {imagenesOtras.length > 0 && (
-          <details class="detail-item">
+          <details class="detail-item gallery-detail">
             <summary class="summary-header">
               <div class="summary-content">
                 <h2>OTRAS IMÁGENES</h2>
@@ -483,27 +476,22 @@ const { pt, px, pb } = Astro.props;
 </style>
 
 <script>
-  // Función para cerrar todos los detalles excepto el actual
-  function closeOtherDetails(currentDetail) {
+  function closeOtherDetails(currentDetail: HTMLDetailsElement) {
     document.querySelectorAll("details").forEach((detail) => {
       if (detail !== currentDetail && detail.open) {
-        // Animación de cierre suave
-        const content = detail.querySelector(".gallery-container");
+        const content = detail.querySelector(".gallery-container") as HTMLElement;
         if (content) {
           content.style.maxHeight = content.scrollHeight + "px";
           content.style.opacity = "1";
           
-          // Forzar un reflow para que la transición funcione
-          content.offsetHeight;
+          (content as HTMLElement).offsetHeight;
           
-          // Iniciar la animación de cierre
           content.style.maxHeight = "0";
           content.style.opacity = "0";
           
-          // Esperar a que termine la animación antes de cerrar el details
           setTimeout(() => {
             detail.open = false;
-          }, 300);
+          }, 500);
         } else {
           detail.open = false;
         }
@@ -511,107 +499,83 @@ const { pt, px, pb } = Astro.props;
     });
   }
 
-  // Configurar transiciones y comportamiento para todos los details
   document.addEventListener("DOMContentLoaded", () => {
-    const allDetails = document.querySelectorAll("details");
+    const allDetails = document.querySelectorAll(".gallery-detail") as NodeListOf<HTMLDetailsElement>;
+    let foundOpen = false;
     
-    // Preparar todos los contenedores para animaciones
     allDetails.forEach((detail) => {
-      const content = detail.querySelector(".gallery-container");
-      if (content) {
-        content.style.overflow = "hidden";
-        content.style.transition = "max-height 0.5s ease, opacity 0.5s ease";
-        
-        if (!detail.open) {
-          content.style.maxHeight = "0";
-          content.style.opacity = "0";
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.style.opacity = "1";
-        }
+      const content = detail.querySelector(".gallery-container") as HTMLElement;
+      content.style.overflow = "hidden";
+      content.style.transition = "max-height 0.5s ease, opacity 0.5s ease";
+      
+      if (!detail.open) {
+        content.style.maxHeight = "0";
+        content.style.opacity = "0";
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.opacity = "1";
       }
     });
     
-    // Añadir event listeners para cada details
     allDetails.forEach((detail) => {
       detail.addEventListener("click", (event) => {
-        // Solo procesar clics en el summary
-        if (event.target.closest("summary")) {
-          // Prevenir el comportamiento por defecto para manejarlo manualmente
+        const target = event.target as HTMLElement;
+        if (target && target.closest("summary")) {
           event.preventDefault();
           
           if (!detail.open) {
-            // Cerrar otros detalles primero
             closeOtherDetails(detail);
             
-            // Abrir este detalle con animación
             detail.open = true;
-            const content = detail.querySelector(".gallery-container");
+            const content = detail.querySelector(".gallery-container") as HTMLElement;
             if (content) {
-              // Iniciar con altura cero
               content.style.maxHeight = "0";
               content.style.opacity = "0";
               
-              // Forzar un reflow para que la transición funcione
-              content.offsetHeight;
+              (content as HTMLElement).offsetHeight;
               
-              // Animar a la altura completa
-              setTimeout(() => {
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.style.opacity = "1";
-              }, 10);
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.style.opacity = "1";
             }
           } else {
-            // Si ya está abierto, cerrarlo con animación
-            const content = detail.querySelector(".gallery-container");
+            const content = detail.querySelector(".gallery-container") as HTMLElement;
             if (content) {
               content.style.maxHeight = content.scrollHeight + "px";
               content.style.opacity = "1";
               
-              // Forzar un reflow para que la transición funcione
-              content.offsetHeight;
+              (content as HTMLElement).offsetHeight;
               
-              // Animar al cierre
               content.style.maxHeight = "0";
               content.style.opacity = "0";
               
-              // Cerrar el details después de la animación
               setTimeout(() => {
                 detail.open = false;
               }, 500);
-            } else {
-              detail.open = false;
             }
           }
         }
       });
     });
     
-    // Asegurarse de que solo un details esté abierto inicialmente
-    let foundOpen = false;
+    // Verificar si hay algún detalle abierto inicialmente
+    foundOpen = false;
     allDetails.forEach((detail) => {
       if (detail.open) {
-        if (foundOpen) {
-          detail.open = false;
-        } else {
-          foundOpen = true;
-          const content = detail.querySelector(".gallery-container");
-          if (content) {
-            content.style.maxHeight = content.scrollHeight + "px";
-            content.style.opacity = "1";
-          }
-        }
+        foundOpen = true;
+        const content = detail.querySelector(".gallery-container") as HTMLElement;
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.opacity = "1";
+      } else {
+        detail.open = false;
       }
     });
     
     // Si ninguno está abierto, abrir el primero
     if (!foundOpen && allDetails.length > 0) {
       allDetails[0].open = true;
-      const content = allDetails[0].querySelector(".gallery-container");
-      if (content) {
-        content.style.maxHeight = content.scrollHeight + "px";
-        content.style.opacity = "1";
-      }
+      const content = allDetails[0].querySelector(".gallery-container") as HTMLElement;
+      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.opacity = "1";
     }
   });
 </script>

@@ -52,6 +52,10 @@ const Nav = () => {
             <div className="effect"></div>
           </li>
           <li className="uppercase relative">
+            <a href="/resenas">Testimonios</a>
+            <div className="effect"></div>
+          </li>
+          <li className="uppercase relative">
             <a href="/contacto">Contacto</a>
             <div className="effect"></div>
           </li>

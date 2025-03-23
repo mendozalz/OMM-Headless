@@ -6,7 +6,7 @@ import Content from "./data-menu-movil/Content";
 const menu = {
   open: {
     width: "100%",
-    height: "400px",
+    height: "450px",
     top: "-10px",
     right: "-10px",
     transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1] },

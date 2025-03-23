@@ -7,12 +7,10 @@ type Gal = {
 }
 
 const galleries = await getGalImg();
-console.log(galleries);
 
 
 // Flatten and extract all images from all galleries
 const images = galleries.flatMap((gallery:Gal) => gallery.sourceUrl);
-console.log(images);
 
 ---
 

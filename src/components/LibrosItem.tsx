@@ -26,8 +26,6 @@ interface Props {
 }
 
 const LibrosItem: React.FC<Props> = ({ post }) => {
-  console.log(post);
-
   if (!post || !post.node || !post.node.acfLibros) {
     console.error("Post data is missing");
     return null;
