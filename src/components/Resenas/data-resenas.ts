@@ -52,7 +52,7 @@ La Ley en Ruitoque es el amor por lo propio: ningún artista cobra por actuar, l
 <b>Octavio Marulanda Morales,</b> Ginebra, Valle, 25 de mayo de 1996</b>
 `,
   },
-  {
+  /* {
     id: '2',
     autor: 'Vigías del Patrimonio',
     cargo: 'Festivalito Ruitoqueño de música colombiana',
@@ -126,5 +126,5 @@ La Fundación Folclórica Colombiana reconoce en Octavio Marulanda a uno de sus 
     autor: 'Roberto Sánchez',
     cargo: 'Luthier Tradicional',
     contenido: 'Los estudios de Octavio Marulanda sobre instrumentos tradicionales colombianos han sido una fuente invaluable para mi trabajo como constructor. Sus detalladas descripciones de técnicas constructivas, materiales y características sonoras me han permitido recuperar y preservar métodos tradicionales que estaban en riesgo de perderse. Gracias a su meticulosa documentación, hoy podemos seguir construyendo instrumentos que respetan las tradiciones ancestrales mientras se adaptan a las necesidades contemporáneas. Su contribución a la preservación de nuestro patrimonio organológico es inmensa y continúa guiando a nuevas generaciones de constructores.'
-  }
+  } */
 ];
