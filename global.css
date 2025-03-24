@@ -1061,6 +1061,15 @@ p.description {
   stroke: rgb(0, 0, 0) !important;
   width: 50px;
   height: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.carruselMaterial button {
+  opacity: 1 !important;
 }
 
 @media only screen and (max-width: 600px) {
@@ -1068,6 +1077,7 @@ p.description {
     stroke: rgb(0, 0, 0) !important;
     width: 30px;
     height: 30px;
+    padding: 5px;
   }
 
   .w-full.lg\:w-3\/4.pl-12.md\:w-2\/4.md\:pl-20.lg\:pl-32 {

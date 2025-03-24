@@ -10,11 +10,8 @@ export const resenas: Resena[] = [
     id: '1',
     autor: 'Festivalito Ruitoqueño de música colombiana',
     cargo: 'Patrimonio Cultural de Santander - Patrimonio Cultural de Floridablanca',
-    contenido: `Orgullo de Santander para Colombia
-
-Apoyar nuestra gestión es el respaldo a una labor de más de veinticuatro años encaminada a defender, preservar y difundir el patrimonio cultural colombiano, y al desarrollo y proyección de nuestros intérpretes, autores y compositores.
-
-La voz musical del Cacique Ruitoque
+    contenido: `
+<b>La voz musical del Cacique Ruitoque</b>
 El maestro Octavio Marulanda Morales, folclorólogo y escritor reconocido en Colombia, miembro del Comité Técnico de Funmúsica y Director del Centro de Documentación Musical "Hernán Restrepo Duque", fue el primer Invitado Especial al Festivalito y nos acompañó en el VI, con la anécdota en cuanto a que casi no llega pues se cruzó en el camino con Fernando Remolina quien lo iba a recoger al aeropuerto y por suerte, Fernando lo vió en las puertas de Villa Leo cuando ya se devolvía. Nos saludó, se sentó y no se volvió a parar hasta que se terminó. Partió a Ginebra, nos escribió y unos meses después falleció. Su nota ha sido el faro que nos ha iluminado el camino.
 
 Como lo prometido es deuda ahí van algunas notas sobre el Festivalito de La Mesa de las Tempestades. Hay mucho que aprender de ustedes y lo digo no en función de elogio sino en razón de un impacto que se me fue hasta el mas hondo fondo del alma.
@@ -27,9 +24,7 @@ Como me prometieron enviarme las grabaciones en audio y video para el Centro de 
 • Un desayuno con "chismorreo" en el hotel.
 • Una almorzada con "asado" en la finca de Manuel.
 
-Un favor muy especial si les quiero pedir y es ver si es posible obtener un ejemplar del libro "Pueblos de Santander" con destino a la biblioteca del Centro de Documentación.
-
-Un abrazo, Octavio Marulanda Morales
+Un favor muy especial si les quiero pedir y es ver si es posible obtener un ejemplar del libro "Pueblos de Santander" con destino a la biblioteca del Centro de Documentación. <br/> Un abrazo, Octavio Marulanda Morales
 
 El solo hecho de entrar en contacto con la atmósfera de un escenario angosto, sin barandas, rodeado de árboles sin candilejas, sin lujos de ninguna clase, anuncia con sensaciones profundas, que el llamado "Festivalito Ruitoqueño" es una verdadera convocatoria a la autenticidad santandereana, porque no es el espacio físico y las luces lo que expresa su relieve, sino la suma de muchas cosas, que exigen cada una el debido análisis.
 
@@ -38,11 +33,9 @@ El primer impacto lo produce la "diferencia" con otros eventos regionales: ning�
 No hay transmisión radial ni televisiva, es una intimidad que se aproxima a un ritual cuyos límites están dados por mandamientos religiosos.
 
 Tal vez pueda hablarse de una gran velada donde se dan todas las calidades musicales, pero donde es indispensable la autenticidad sin imponer valoraciones teóricas. Cada cual pone en su voz o en su instrumento lo que tiene para dar, con emoción de entrega, con ese orgullo que distingue a quienes pueblan esas adorables breñas de Santander.
-Y mirando a lo musical propiamente dicho, varios hechos es necesario destacar: 
-El más importante es la presencia de un tiple que no se encuentra en ningún otro lugar de Colombia, caracterizado por la afinación en tonos bajos para dar pie a una fantástica gama de jugueteos melódicos, cuando se trata de la interpretación “por punteo” o a un despliegue de timbres lustrosos y gratificantes cuando desempeña la función de acompañamiento.
+Y mirando a lo musical propiamente dicho, varios hechos es necesario destacar: <br/> El más importante es la presencia de un tiple que no se encuentra en ningún otro lugar de Colombia, caracterizado por la afinación en tonos bajos para dar pie a una fantástica gama de jugueteos melódicos, cuando se trata de la interpretación “por punteo” o a un despliegue de timbres lustrosos y gratificantes cuando desempeña la función de acompañamiento.
 
-Durante el Festivalito Ruitoqueño de 1996 salieron al tablado tiples con diferente “personalidad, técnica y sabor”, que invitan a pensar en una nueva visión de ese instrumento en Colombia, puestos a sonar con virtuosismo escalofriante (Jairo Arenas, Adrián Manrique, Domingo López, Enrique
-Bohórquez, Orlando Serrano, para mencionar solo algunos).
+Durante el Festivalito Ruitoqueño de 1996 salieron al tablado tiples con diferente “personalidad, técnica y sabor”, que invitan a pensar en una nueva visión de ese instrumento en Colombia, puestos a sonar con virtuosismo escalofriante (Jairo Arenas, Adrián Manrique, Domingo López, Enrique Bohórquez, Orlando Serrano, para mencionar solo algunos).
 
 La conjunción de un tiple “primero”, punteado bajo el imperio de una afinación que parece imposible, con uno que hace de “segundo” como soporte armónico, al lado de una guitarra, hace el trío típico de aquella región, en la cual la bandola, que tanta importancia muestra en otros lugares, no tiene mucho espacio. Durante el Festival solo se presentó un ejecutante de bandola, Fernando Remolina, con una excelente calidad interpretativa y bien definida vocación.
 Y el requinto sigue allí, desempeñando un papel sustancial en la tradición regional asociado al tiple, dándole al torbellino, a la guabina y al bambuco ese acento profundo de raigambre indo-montañera, del cual hacen orgullosa expresión Los Cocomees.
