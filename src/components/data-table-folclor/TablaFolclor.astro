@@ -296,6 +296,7 @@ const bogotaRevistas = revistas.filter(item =>
       class="p-3 sm:p-4 md:p-6 overflow-y-auto" 
       style="max-height: calc(100vh - 12rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch;"
       id="modalContent"
+      onwheel="event.stopPropagation()"
     >
       <ul class="space-y-2 text-gray-700 prose max-w-none leading-relaxed text-sm sm:text-base">
         {bogotaRevistas.map((item) => (
@@ -330,21 +331,6 @@ const bogotaRevistas = revistas.filter(item =>
     // Variables para almacenar la posición original del scroll
     let scrollY = 0;
     
-    // Función para prevenir el scroll en el documento cuando el modal está abierto
-    const preventDefaultScroll = (e: WheelEvent): void => {
-      // Solo prevenir el scroll en el documento si el evento no viene del contenido del modal
-      if (modalScrollableContent && !modalScrollableContent.contains(e.target as Node)) {
-        e.preventDefault();
-      }
-    };
-    
-    // Manejar el scroll táctil
-    const handleTouchMove = (e: TouchEvent): void => {
-      if (modalScrollableContent && !modalScrollableContent.contains(e.target as Node)) {
-        e.preventDefault();
-      }
-    };
-    
     // Función para abrir el modal con transición
     const openModal = () => {
       if (modal) {
@@ -353,13 +339,6 @@ const bogotaRevistas = revistas.filter(item =>
         
         // Bloquear el scroll en el documento
         document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-        document.body.style.top = `-${scrollY}px`;
-        
-        // Añadir event listeners para prevenir scroll
-        document.addEventListener('wheel', preventDefaultScroll, { passive: false });
-        document.addEventListener('touchmove', handleTouchMove, { passive: false });
         
         // Primero hacemos visible el modal pero sin mostrar contenido aún
         modal.classList.remove('pointer-events-none');
@@ -390,16 +369,8 @@ const bogotaRevistas = revistas.filter(item =>
         setTimeout(() => {
           modal.classList.add('pointer-events-none');
           
-          // Eliminar event listeners
-          document.removeEventListener('wheel', preventDefaultScroll);
-          document.removeEventListener('touchmove', handleTouchMove);
-          
           // Restaurar el scroll
-          document.body.style.position = '';
-          document.body.style.width = '';
-          document.body.style.top = '';
           document.body.style.overflow = '';
-          window.scrollTo(0, scrollY);
           
         }, 300);
       }

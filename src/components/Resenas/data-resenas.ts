@@ -35,7 +35,29 @@ El solo hecho de entrar en contacto con la atmósfera de un escenario angosto, s
 
 El primer impacto lo produce la "diferencia" con otros eventos regionales: ningún afán publicitario, ni forcejeo de méritos, ni banderas prestigiosas, simplemente allí se escucha es la música resultante de un deseo de participación, en un largo concierto destinado a llegar al corazón de la gente que está cerca y que se preocupa por entender a sus artistas.
 
-No hay transmisión radial ni televisiva, es una intimidad que se aproxima a un ritual cuyos límites están dados por mandamientos religiosos.`,
+No hay transmisión radial ni televisiva, es una intimidad que se aproxima a un ritual cuyos límites están dados por mandamientos religiosos.
+
+Tal vez pueda hablarse de una gran velada donde se dan todas las calidades musicales, pero donde es indispensable la autenticidad sin imponer valoraciones teóricas. Cada cual pone en su voz o en su instrumento lo que tiene para dar, con emoción de entrega, con ese orgullo que distingue a quienes pueblan esas adorables breñas de Santander.
+Y mirando a lo musical propiamente dicho, varios hechos es necesario destacar: 
+El más importante es la presencia de un tiple que no se encuentra en ningún otro lugar de Colombia, caracterizado por la afinación en tonos bajos para dar pie a una fantástica gama de jugueteos melódicos, cuando se trata de la interpretación “por punteo” o a un despliegue de timbres lustrosos y gratificantes cuando desempeña la función de acompañamiento.
+
+Durante el Festivalito Ruitoqueño de 1996 salieron al tablado tiples con diferente “personalidad, técnica y sabor”, que invitan a pensar en una nueva visión de ese instrumento en Colombia, puestos a sonar con virtuosismo escalofriante (Jairo Arenas, Adrián Manrique, Domingo López, Enrique
+Bohórquez, Orlando Serrano, para mencionar solo algunos).
+
+La conjunción de un tiple “primero”, punteado bajo el imperio de una afinación que parece imposible, con uno que hace de “segundo” como soporte armónico, al lado de una guitarra, hace el trío típico de aquella región, en la cual la bandola, que tanta importancia muestra en otros lugares, no tiene mucho espacio. Durante el Festival solo se presentó un ejecutante de bandola, Fernando Remolina, con una excelente calidad interpretativa y bien definida vocación.
+Y el requinto sigue allí, desempeñando un papel sustancial en la tradición regional asociado al tiple, dándole al torbellino, a la guabina y al bambuco ese acento profundo de raigambre indo-montañera, del cual hacen orgullosa expresión Los Cocomees.
+El violín, que allí tiene una huella de varios siglos, sigue siendo parte importante del lenguaje instrumental en conjuntos que valoran su papel melódico y evocativo, permitiendo que sobrevivan en el repertorio viejas formas de hacer melodías, cuya permanencia depende fundamentalmente del recuerdo, mirando al horizonte de los ancestros. Parece ser que fue en Santander donde por primera vez el tiple y el violín se asociaron con un mejor resultado histórico que tiene huellas inolvidables en la autenticidad colombiana.
+Varios duetos actuaron en el Festivalito, entre los cuales se destacaron “Los Hermanos López”, dueños de un estilo propio y muy conocidos ya en los medios musicales del país. 
+Y el canto “a capella” que ha tenido en Za-chia-ty su mejor entidad artística bajo la dirección de Andrés Páez hizo su trabajo de contraste académico a modo de reafirmación de honores alcanzados en el Concurso Mono Núñez en 1995.
+
+Aquella libertad jubilosa para hacer música “como les da la gana” a los santandereanos, fue el mejor caldo de cultivo para que el grupo “Música para el pie izquierdo” mostrase con sabroso ingenio de inagotable creatividad el buen humor, la ironía y el deseo de hacer broma en la realidad cotidiana. Contrastes, tergiversaciones, caricaturas, brochazos picarescos, son ingredientes de un programa musical novedoso e inteligente.
+En justicia deberíamos comentar el trabajo de cada uno de los veinte participantes, pero no tenemos espacio suficiente. Los méritos abundan, nadie se escapa para recibir el galardón que tiene para todos la gratitud santandereana.
+Lo que se hace musicalmente en el Festival de “La mesa de las Tempestades” (nombre del lugar donde está situado el escenario) no llama a un planteamiento crítico porque es un evento singular que no busca competir con nada ni hacer imagen publicitaria; mas bien invita a reflexionar en el cambio que debemos adoptar para hacer que la música de la zona andina recupere su cotidianeidad, desarrollándose dentro de los parámetros que
+marca la voluntad de quienes la necesitan y de cierto modo la viven.
+La Ley en Ruitoque es el amor por lo propio: ningún artista cobra por actuar, los organizadores son un voluntariado cultural de categoría y dinámica envidiables y las decisiones del jurado calificador, que debe decir quien fue el mejor de todos para entregarle una (única) sencilla placa como galardón, deliberan bajo un palo de mango que está a pocos metros del escenario.
+
+<b>Octavio Marulanda Morales,</b> Ginebra, Valle, 25 de mayo de 1996</b>
+`,
   },
   {
     id: '2',

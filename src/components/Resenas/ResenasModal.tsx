@@ -20,37 +20,20 @@ const ResenasModal: React.FC<ResenasModalProps> = ({
   resena,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const scrollableContentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isRendered, setIsRendered] = useState<boolean>(false);
 
-  // Función para formatear el contenido respetando los saltos de línea
-  const formatContent = (content: string): JSX.Element[] => {
-    return content.split("\n").map((paragraph, index) =>
-      paragraph.trim() ? (
-        <p key={index} className={`mb-4 ${index === 0 ? "font-semibold" : ""}`}>
-          {paragraph}
-        </p>
-      ) : (
-        <div key={index} className="h-2"></div>
-      ) // Espacio para líneas en blanco
-    );
-  };
-
-  // Manejar la apertura y cierre del modal con animaciones
   useEffect(() => {
     if (isOpen) {
-      // Primero renderizar el componente
       setIsRendered(true);
-      // Luego mostrar con animación en el siguiente ciclo
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsVisible(true);
         });
       });
     } else {
-      // Primero ocultar con animación
       setIsVisible(false);
-      // Luego dejar de renderizar después de la animación
       const timer = setTimeout(() => {
         setIsRendered(false);
       }, 300);
@@ -74,55 +57,17 @@ const ResenasModal: React.FC<ResenasModalProps> = ({
       }
     };
 
-    // Prevenir el scroll en el documento cuando el modal está abierto
-    const preventDefaultScroll = (e: WheelEvent): void => {
-      // Solo prevenir el scroll en el documento si el evento no viene del contenido del modal
-      const modalContent = modalRef.current?.querySelector(".overflow-y-auto");
-      if (!modalContent?.contains(e.target as Node)) {
-        e.preventDefault();
-      }
-    };
-
-    // Manejar el scroll táctil
-    const handleTouchMove = (e: TouchEvent): void => {
-      const modalContent = modalRef.current?.querySelector(".overflow-y-auto");
-      if (!modalContent?.contains(e.target as Node)) {
-        e.preventDefault();
-      }
-    };
-
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
       document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("wheel", preventDefaultScroll, { passive: false });
-      document.addEventListener("touchmove", handleTouchMove, { passive: false });
-
-      // Bloquear completamente el scroll del documento
       document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
-      document.body.style.top = `-${window.scrollY}px`;
 
-      // Guardar la posición actual del scroll
-      document.body.dataset.scrollY = window.scrollY.toString();
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("wheel", preventDefaultScroll);
-      document.removeEventListener("touchmove", handleTouchMove);
-
-      // Restaurar el scroll cuando el modal se cierra
-      if (document.body.style.position === "fixed") {
-        const scrollY = document.body.dataset.scrollY || "0";
-        document.body.style.position = "";
-        document.body.style.width = "";
-        document.body.style.top = "";
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+        document.removeEventListener("mousedown", handleClickOutside);
         document.body.style.overflow = "";
-        window.scrollTo(0, parseInt(scrollY));
-      }
-    };
+      };
+    }
   }, [isOpen, onClose]);
 
   if (!isRendered) return null;
@@ -181,16 +126,24 @@ const ResenasModal: React.FC<ResenasModalProps> = ({
           </div>
 
           <div
+            ref={scrollableContentRef}
             className="p-3 sm:p-4 md:p-6 overflow-y-auto"
             style={{
               maxHeight: "calc(100vh - 12rem)",
               overscrollBehavior: "contain",
-              WebkitOverflowScrolling: "touch",
             }}
+            onWheel={(e) => e.stopPropagation()}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="prose max-w-none text-gray-700 leading-relaxed text-sm sm:text-base">
-              {formatContent(resena.contenido)}
+              {resena.contenido.split("\n").map((paragraph, index) => (
+                <p
+                  key={index}
+                  className={`mb-4 ${index === 0 ? "font-semibold" : ""}`}
+                >
+                  {paragraph}
+                </p>
+              ))}
             </div>
           </div>
 
