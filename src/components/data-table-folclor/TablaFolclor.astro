@@ -300,9 +300,7 @@ const bogotaRevistas = revistas.filter(item =>
     >
       <ul class="space-y-2 text-gray-700 prose max-w-none leading-relaxed text-sm sm:text-base">
         {bogotaRevistas.map((item) => (
-          <li class="py-1">
-            {item.titulo.replace("- ", "*-")}
-          </li>
+          <li class="py-1" set:html={item.titulo.replace("- ", "*-")} />
         ))}
       </ul>
     </div>

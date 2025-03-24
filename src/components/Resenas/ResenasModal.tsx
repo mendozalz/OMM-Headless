@@ -137,12 +137,15 @@ const ResenasModal: React.FC<ResenasModalProps> = ({
           >
             <div className="prose max-w-none text-gray-700 leading-relaxed text-sm sm:text-base">
               {resena.contenido.split("\n").map((paragraph, index) => (
-                <p
-                  key={index}
-                  className={`mb-4 ${index === 0 ? "font-semibold" : ""}`}
-                >
-                  {paragraph}
-                </p>
+                paragraph.trim() ? (
+                  <div 
+                    key={index}
+                    className={`mb-4 ${index === 0 ? "font-semibold" : ""}`}
+                    dangerouslySetInnerHTML={{ __html: paragraph }}
+                  />
+                ) : (
+                  <div key={index} className="h-2"></div>
+                )
               ))}
             </div>
           </div>
