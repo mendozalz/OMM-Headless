@@ -476,106 +476,153 @@ const { pt, px, pb } = Astro.props;
 </style>
 
 <script>
-  function closeOtherDetails(currentDetail: HTMLDetailsElement) {
-    document.querySelectorAll("details").forEach((detail) => {
-      if (detail !== currentDetail && detail.open) {
-        const content = detail.querySelector(".gallery-container") as HTMLElement;
-        if (content) {
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.style.opacity = "1";
-          
-          (content as HTMLElement).offsetHeight;
-          
-          content.style.maxHeight = "0";
-          content.style.opacity = "0";
-          
-          setTimeout(() => {
-            detail.open = false;
-          }, 500);
-        } else {
-          detail.open = false;
-        }
-      }
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const allDetails = document.querySelectorAll(".gallery-detail") as NodeListOf<HTMLDetailsElement>;
-    let foundOpen = false;
-    
-    allDetails.forEach((detail) => {
-      const content = detail.querySelector(".gallery-container") as HTMLElement;
-      content.style.overflow = "hidden";
-      content.style.transition = "max-height 0.5s ease, opacity 0.5s ease";
-      
-      if (!detail.open) {
-        content.style.maxHeight = "0";
-        content.style.opacity = "0";
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        content.style.opacity = "1";
-      }
-    });
-    
-    allDetails.forEach((detail) => {
-      detail.addEventListener("click", (event) => {
-        const target = event.target as HTMLElement;
-        if (target && target.closest("summary")) {
-          event.preventDefault();
-          
-          if (!detail.open) {
-            closeOtherDetails(detail);
+  // Función para inicializar la galería que se ejecutará inmediatamente
+  (function() {
+    // Función para cerrar otros detalles cuando se abre uno nuevo
+    function closeOtherDetails(currentDetail: HTMLDetailsElement): void {
+      document.querySelectorAll<HTMLDetailsElement>(".gallery-detail").forEach((detail) => {
+        if (detail !== currentDetail && detail.open) {
+          const content = detail.querySelector<HTMLElement>(".gallery-container");
+          if (content) {
+            // Establecer altura inicial antes de animar
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.opacity = "1";
+            content.style.transform = "translateY(0)";
             
-            detail.open = true;
-            const content = detail.querySelector(".gallery-container") as HTMLElement;
-            if (content) {
-              content.style.maxHeight = "0";
-              content.style.opacity = "0";
-              
-              (content as HTMLElement).offsetHeight;
-              
-              content.style.maxHeight = content.scrollHeight + "px";
-              content.style.opacity = "1";
-            }
+            // Forzar un reflow
+            content.offsetHeight;
+            
+            // Animar el cierre
+            content.style.maxHeight = "0";
+            content.style.opacity = "0";
+            content.style.transform = "translateY(-10px)";
+            
+            setTimeout(() => {
+              detail.open = false;
+            }, 600); // Tiempo ligeramente mayor para asegurar que la animación termine
           } else {
-            const content = detail.querySelector(".gallery-container") as HTMLElement;
-            if (content) {
-              content.style.maxHeight = content.scrollHeight + "px";
-              content.style.opacity = "1";
-              
-              (content as HTMLElement).offsetHeight;
-              
-              content.style.maxHeight = "0";
-              content.style.opacity = "0";
-              
-              setTimeout(() => {
-                detail.open = false;
-              }, 500);
-            }
+            detail.open = false;
           }
         }
       });
-    });
-    
-    // Verificar si hay algún detalle abierto inicialmente
-    foundOpen = false;
-    allDetails.forEach((detail) => {
-      if (detail.open) {
-        foundOpen = true;
-        const content = detail.querySelector(".gallery-container") as HTMLElement;
-        content.style.maxHeight = content.scrollHeight + "px";
-        content.style.opacity = "1";
-      } else {
-        detail.open = false;
-      }
-    });
-    
-    // Si ninguno está abierto, abrir el primero
-    if (!foundOpen && allDetails.length > 0) {
-      allDetails[0].open = true;
-      const content = allDetails[0].querySelector(".gallery-container") as HTMLElement;
-      content.style.maxHeight = content.scrollHeight + "px";
-      content.style.opacity = "1";
     }
-  });
+
+    // Configurar los detalles inicialmente
+    function setupDetails(): void {
+      const allDetails = document.querySelectorAll<HTMLDetailsElement>(".gallery-detail");
+      let foundOpen = false;
+      
+      // Configurar cada detalle
+      allDetails.forEach((detail) => {
+        const content = detail.querySelector<HTMLElement>(".gallery-container");
+        if (content) {
+          // Mejorar las propiedades de transición
+          content.style.overflow = "hidden";
+          content.style.transition = "max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+          
+          if (!detail.open) {
+            content.style.maxHeight = "0";
+            content.style.opacity = "0";
+            content.style.transform = "translateY(-10px)";
+          } else {
+            foundOpen = true;
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.opacity = "1";
+            content.style.transform = "translateY(0)";
+          }
+        }
+      });
+      
+      // Si ninguno está abierto, abrir el primero
+      if (!foundOpen && allDetails.length > 0) {
+        allDetails[0].open = true;
+        const content = allDetails[0].querySelector<HTMLElement>(".gallery-container");
+        if (content) {
+          // Establecer estado inicial
+          content.style.maxHeight = "0";
+          content.style.opacity = "0";
+          content.style.transform = "translateY(-10px)";
+          
+          // Forzar un reflow
+          content.offsetHeight;
+          
+          // Animar apertura
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.opacity = "1";
+          content.style.transform = "translateY(0)";
+        }
+      }
+      
+      // Agregar event listeners
+      allDetails.forEach((detail) => {
+        // Remover event listeners existentes para evitar duplicados
+        const summary = detail.querySelector("summary");
+        if (summary && summary.parentNode) {
+          const newSummary = summary.cloneNode(true);
+          summary.parentNode.replaceChild(newSummary, summary);
+          
+          // Agregar nuevo event listener
+          newSummary.addEventListener("click", function(event) {
+            event.preventDefault();
+            
+            if (!detail.open) {
+              closeOtherDetails(detail);
+              
+              detail.open = true;
+              const content = detail.querySelector<HTMLElement>(".gallery-container");
+              if (content) {
+                // Establecer estado inicial
+                content.style.maxHeight = "0";
+                content.style.opacity = "0";
+                content.style.transform = "translateY(-10px)";
+                
+                // Forzar un reflow
+                content.offsetHeight;
+                
+                // Animar apertura
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = "1";
+                content.style.transform = "translateY(0)";
+              }
+            } else {
+              const content = detail.querySelector<HTMLElement>(".gallery-container");
+              if (content) {
+                // Establecer altura inicial antes de animar
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = "1";
+                content.style.transform = "translateY(0)";
+                
+                // Forzar un reflow
+                content.offsetHeight;
+                
+                // Animar el cierre
+                content.style.maxHeight = "0";
+                content.style.opacity = "0";
+                content.style.transform = "translateY(-10px)";
+                
+                setTimeout(() => {
+                  detail.open = false;
+                }, 600); // Tiempo ligeramente mayor para asegurar que la animación termine
+              }
+            }
+          });
+        }
+      });
+    }
+
+    // Ejecutar la configuración inmediatamente
+    setupDetails();
+
+    // También ejecutar cuando el DOM esté listo
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupDetails);
+    }
+
+    // Configurar para ejecutarse cuando se navegue mediante Astro View Transitions
+    document.addEventListener("astro:page-load", setupDetails);
+    document.addEventListener("astro:after-swap", setupDetails);
+    
+    // Ejecutar después de un breve retraso para asegurar que todo esté cargado
+    setTimeout(setupDetails, 100);
+  })();
 </script>

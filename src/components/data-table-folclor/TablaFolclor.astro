@@ -316,8 +316,8 @@ const bogotaRevistas = revistas.filter(item =>
 </div>
 
 <script>
-  // Funcionalidad para abrir y cerrar el modal
-  document.addEventListener('DOMContentLoaded', () => {
+  // Función para inicializar el modal
+  function initModal() {
     const modal = document.getElementById('revistasModal');
     const modalContent = modal?.querySelector('.transform');
     const modalScrollableContent = document.getElementById('modalContent');
@@ -374,24 +374,73 @@ const bogotaRevistas = revistas.filter(item =>
       }
     };
     
-    // Event listeners para los botones
-    if (openModalBtn) openModalBtn.addEventListener('click', openModal);
-    if (openModalBtnMobile) openModalBtnMobile.addEventListener('click', openModal);
-    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-    if (closeModalBtnFooter) closeModalBtnFooter.addEventListener('click', closeModal);
+    // Eliminar event listeners existentes para evitar duplicados
+    if (openModalBtn) {
+      openModalBtn.removeEventListener('click', openModal);
+      openModalBtn.addEventListener('click', openModal);
+    }
+    
+    if (openModalBtnMobile) {
+      openModalBtnMobile.removeEventListener('click', openModal);
+      openModalBtnMobile.addEventListener('click', openModal);
+    }
+    
+    if (closeModalBtn) {
+      closeModalBtn.removeEventListener('click', closeModal);
+      closeModalBtn.addEventListener('click', closeModal);
+    }
+    
+    if (closeModalBtnFooter) {
+      closeModalBtnFooter.removeEventListener('click', closeModal);
+      closeModalBtnFooter.addEventListener('click', closeModal);
+    }
     
     // Cerrar el modal al hacer clic fuera de él
     if (modal) {
+      modal.removeEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+      
       modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
       });
     }
     
     // Cerrar el modal con la tecla Escape
+    document.removeEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('pointer-events-none')) {
+        closeModal();
+      }
+    });
+    
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal && !modal.classList.contains('pointer-events-none')) {
         closeModal();
       }
     });
+  }
+
+  // Inicializar el modal cuando el DOM está listo
+  document.addEventListener('DOMContentLoaded', initModal);
+  
+  // También inicializar cuando el script se ejecute (para navegación client-side)
+  initModal();
+  
+  // Agregar un observador de mutaciones para detectar cambios en el DOM
+  // Esto es útil para SPA y navegación client-side en Astro
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'childList') {
+        initModal();
+      }
+    }
+  });
+  
+  // Observar cambios en el cuerpo del documento
+  observer.observe(document.body, { childList: true, subtree: true });
+  
+  // Limpiar el observador cuando la página se descargue
+  window.addEventListener('beforeunload', () => {
+    observer.disconnect();
   });
 </script>
