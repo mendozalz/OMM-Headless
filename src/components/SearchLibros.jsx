@@ -120,7 +120,32 @@ const AdvancedSearch = ({ posts }) => {
           )
       );
 
-    setCategories(uniqueCategories);
+    // Ordenamos las categorías en el orden específico: Teatro, Folclor, Música
+    const orderedCategories = [];
+    
+    // Primero buscamos las categorías prioritarias en el orden especificado
+    const priorityOrder = ["Teatro", "Folclor", "Música"];
+    
+    // Añadimos categorías en el orden específico
+    priorityOrder.forEach(categoryName => {
+      const foundCategory = uniqueCategories.find(cat => 
+        cat.name.toLowerCase() === categoryName.toLowerCase()
+      );
+      if (foundCategory) {
+        orderedCategories.push(foundCategory);
+      }
+    });
+    
+    // Añadimos el resto de categorías que no están en la lista de prioridad
+    uniqueCategories.forEach(category => {
+      if (!priorityOrder.some(name => 
+        name.toLowerCase() === category.name.toLowerCase())
+      ) {
+        orderedCategories.push(category);
+      }
+    });
+
+    setCategories(orderedCategories);
   }, [posts]);
 
   const renderCategoryOptions = (categories) => {
@@ -165,10 +190,10 @@ const AdvancedSearch = ({ posts }) => {
                 <SelectValue placeholder="Tipo de material" />
               </SelectTrigger>
               <SelectContent>
+                {renderCategoryOptions(categories)}
                 <SelectItem value="todosLosTipos">
                   Todas las categorías
                 </SelectItem>
-                {renderCategoryOptions(categories)}
               </SelectContent>
             </Select>
           </div>

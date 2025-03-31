@@ -12,6 +12,9 @@ actividades,
 <!-- component -->
 <div class="m-auto flex justify-center pt-[100px]">
   <section class="container mx-auto p-6 font-mono">
+
+      <h1 class="text-4xl font-medium leading-none sm:text-6xl text-black text-center mb-8">Teatro</h1>
+
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         <!--  1ra fila -->
@@ -214,3 +217,34 @@ actividades,
     </div>
   </section>
 </div>
+  
+  <!-- Navegación con flechas -->
+  <div class="w-full max-w-4xl mx-auto p-4 mt-8 mb-16">
+    <div class="flex justify-between items-center">
+      <a href="/home" class="flex items-center text-black hover:text-verde-oscuro transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span class="text-lg ml-2 font-medium">Inicio</span>
+      </a>
+      <a href="/folclor" class="flex items-center text-black hover:text-verde-oscuro transition-colors duration-300">
+        <span class="text-lg mr-2 font-medium">Folclor</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+<style>
+  @media (max-width: 640px) {
+    .flex.justify-between span {
+      font-size: 1rem;
+    }
+    
+    .flex.justify-between svg {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+</style>
